@@ -1,0 +1,9 @@
+# Nur Praesentation + Medien gehoeren ins Repo
+*.md
+*.pptx
+*.pdf
+*.mov
+*.docx
+*.xlsx
+.DS_Store
+~$*
