@@ -1,5 +1,6 @@
 # Nur Praesentation + Medien gehoeren ins Repo
 *.md
+!README.md
 *.pptx
 *.pdf
 *.mov
@@ -7,3 +8,8 @@
 *.xlsx
 .DS_Store
 ~$*
+
+# Build-/Hilfsdateien nicht ins Repo
+.venv/
+__pycache__/
+*.py
