@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Partizipative KI-Einführung im Produktdatenmanagement — Koch & Schenkl</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+  :root{
+    --bg:#0b1220; --bg2:#0f1a2e; --ink:#eaf1fb; --muted:#9db0cc;
+    --accent:#4da3ff; --accent2:#33e0c0; --warm:#ffb454;
+    --card:#13213b; --line:#26385c; --navh:48px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink);overflow:hidden}
+
+  /* CHAPTER NAV */
+  .chapternav{position:fixed;top:0;left:0;right:0;height:var(--navh);z-index:40;
+    display:flex;align-items:center;gap:.35rem;padding:0 .8rem;overflow-x:auto;
+    background:rgba(9,14,26,.82);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);
+    scrollbar-width:thin}
+  .chapternav::-webkit-scrollbar{height:0}
+  .chapternav .brandmini{font-weight:800;font-size:.82rem;color:var(--muted);margin-right:.4rem;white-space:nowrap;letter-spacing:.02em}
+  .chapternav button{background:transparent;border:1px solid transparent;color:var(--muted);
+    font:inherit;font-size:.82rem;font-weight:600;padding:.32rem .7rem;border-radius:8px;cursor:pointer;white-space:nowrap}
+  .chapternav button:hover{color:var(--ink);border-color:var(--line)}
+  .chapternav button.on{color:#fff;background:linear-gradient(135deg,rgba(77,163,255,.28),rgba(51,224,192,.22));border-color:var(--accent)}
+
+  .deck{position:fixed;inset:0;top:var(--navh)}
+  .slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+    padding:5vh 8vw;overflow-y:auto;
+    background:radial-gradient(1200px 700px at 80% -10%, rgba(77,163,255,.14), transparent 60%),
+               radial-gradient(1000px 600px at -10% 110%, rgba(51,224,192,.10), transparent 55%),
+               linear-gradient(160deg,var(--bg),var(--bg2));
+    animation:fade .45s ease}
+  .slide.active{display:flex}
+  .slide.top{justify-content:flex-start;padding-top:4vh}
+  @keyframes fade{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+  .kicker{text-transform:uppercase;letter-spacing:.22em;font-size:.8rem;color:var(--accent2);font-weight:700;margin-bottom:1.1rem}
+  h1{font-size:clamp(2.4rem,6vw,5rem);line-height:1.02;font-weight:900;letter-spacing:-.02em}
+  h2{font-size:clamp(1.8rem,4vw,3rem);line-height:1.08;font-weight:800;letter-spacing:-.01em;margin-bottom:1.3rem}
+  h3{font-size:clamp(1.1rem,2vw,1.5rem);font-weight:700;margin-bottom:.5rem}
+  p,li{font-size:clamp(1.02rem,1.6vw,1.4rem);line-height:1.5;color:var(--ink)}
+  .lead{color:var(--muted)}
+  .muted{color:var(--muted)}
+  .big{font-size:clamp(1.5rem,2.8vw,2.5rem);line-height:1.25;font-weight:700}
+  .accent{color:var(--accent)} .warm{color:var(--warm)} .teal{color:var(--accent2)}
+  em{color:var(--warm);font-style:normal;font-weight:600}
+  strong{color:#fff}
+
+  ul{list-style:none;display:flex;flex-direction:column;gap:.9rem;margin-top:1.2rem}
+  ul li{position:relative;padding-left:1.9rem}
+  ul li::before{content:"";position:absolute;left:0;top:.55em;width:.65rem;height:.65rem;border-radius:3px;background:linear-gradient(135deg,var(--accent),var(--accent2))}
+
+  .title-wrap .sub{margin-top:1.6rem;font-size:clamp(1.1rem,2vw,1.6rem);color:var(--muted)}
+  .title-wrap .meta{margin-top:2.6rem;color:var(--muted);font-size:1rem;letter-spacing:.02em}
+
+  .divider .num{font-size:clamp(4rem,14vw,11rem);font-weight:900;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;color:transparent;line-height:.9}
+
+  .quote{font-size:clamp(1.4rem,3.2vw,2.7rem);font-weight:800;line-height:1.2;max-width:24ch}
+  .quote .mark{color:var(--accent2)}
+
+  /* timeline */
+  .timeline{display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1.2rem}
+  .tl{flex:1 1 118px;min-width:118px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:.9rem;position:relative;cursor:pointer;transition:.18s}
+  .tl:hover{border-color:var(--accent);transform:translateY(-2px)}
+  .tl.sel{border-color:var(--accent2);box-shadow:0 0 0 2px rgba(51,224,192,.35)}
+  .tl .yr{color:var(--accent);font-weight:800;font-size:.9rem}
+  .tl .st{font-weight:700;margin-top:.15rem;font-size:1rem}
+  .tl .dt{color:var(--muted);font-size:.78rem;margin-top:.15rem}
+  .tl .go{position:absolute;top:.6rem;right:.7rem;color:var(--muted);font-size:.8rem;opacity:.6}
+  .tldetail{margin-top:1.1rem;background:linear-gradient(160deg,rgba(77,163,255,.08),rgba(51,224,192,.05));
+    border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:14px;padding:1.2rem 1.4rem;min-height:120px}
+  .tldetail .hintline{color:var(--muted)}
+  .tldetail ul{margin-top:.6rem;gap:.6rem}
+  .tldetail p{margin-top:.4rem}
+  .eraimgs{display:flex;gap:.8rem;margin-top:1.1rem;flex-wrap:wrap}
+  .eraimg{position:relative;width:180px}
+  .eraimg img,.eraimg svg{display:block;width:180px;height:126px;border-radius:8px;border:1px solid var(--line);transition:.15s;object-fit:cover;background:#0a1024}
+  .eraimg:hover img,.eraimg:hover svg{border-color:var(--accent);transform:translateY(-2px)}
+  .eraimg .svgfb{display:none}
+  .eraimg img.imgfail{display:none}
+  .eraimg img.imgfail + .svgfb{display:block}
+  .eraimg .cap{position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);white-space:nowrap;
+    background:#050a16;border:1px solid var(--accent);color:var(--ink);font-size:.74rem;font-weight:600;
+    padding:.25rem .55rem;border-radius:6px;opacity:0;pointer-events:none;transition:.15s;z-index:6}
+  .eraimg:hover .cap{opacity:1}
+
+  /* cards */
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-top:1.3rem}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.3rem}
+  .card h3{color:var(--accent)}
+  .card p{color:var(--muted);font-size:1rem}
+  .clickbox{cursor:pointer;transition:.18s;position:relative}
+  .clickbox:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .clickbox .cta{margin-top:.9rem;color:var(--accent2);font-weight:700;font-size:.9rem}
+
+  table{width:100%;border-collapse:collapse;margin-top:1rem;font-size:clamp(.82rem,1.3vw,1.08rem)}
+  th,td{text-align:left;padding:.62rem .75rem;border-bottom:1px solid var(--line);vertical-align:top}
+  th{color:var(--accent2);text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}
+  tbody tr:hover{background:rgba(77,163,255,.06)}
+  .hl{color:var(--warm);font-weight:700}
+  .fftable td,.fftable th{padding:.3rem .55rem;font-size:clamp(.68rem,1.05vw,.92rem)}
+  .fftable tbody td:first-child{font-weight:700;color:#fff}
+  .fftable .sub{display:block;color:var(--muted);font-size:.7rem;font-weight:400;margin-top:.1rem}
+  .fftable .now{color:var(--warm);font-weight:700}
+  .fftable .trend{color:var(--accent2);font-weight:800;text-align:center;font-size:1.05rem}
+
+  .compare{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1rem}
+  .compare figure{margin:0}
+  .compare .vidbox{position:relative;background:#0a1024;border:1px solid var(--line);border-radius:14px;overflow:hidden;aspect-ratio:3562/1828;display:flex;align-items:center;justify-content:center}
+  .compare .vidbox img,.compare .vidbox video{display:block;width:100%;height:100%;object-fit:contain}
+  .compare .fallback{display:none;position:absolute;inset:0;align-items:center;justify-content:center;text-align:center;color:var(--warm);font-size:.9rem;padding:1rem}
+  .compare .vidbox.missing img{display:none}
+  .compare .vidbox.missing{border:2px dashed var(--warm)}
+  .compare .vidbox.missing .fallback{display:flex}
+  .compare figcaption{padding:.65rem .85rem;color:var(--muted);font-size:.9rem;line-height:1.35}
+  .compare figcaption b{color:var(--accent)}
+
+  .note{margin-top:1rem;color:var(--muted);font-size:.95rem;font-style:italic}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:2.2rem;align-items:center}
+  .narrow{width:100%}
+  @media(max-width:820px){.two,.compare{grid-template-columns:1fr}}
+
+  /* Zeitleisten: Detailkasten passt sich dynamisch der Resthöhe an und scrollt innen */
+  .fitslide{justify-content:flex-start;padding-bottom:56px}
+  .fitslide .timeline{flex:0 0 auto}
+  .fitslide .tldetail{flex:1 1 auto;min-height:120px;overflow-y:auto;scrollbar-width:thin;overscroll-behavior:contain;scrollbar-color:var(--line) transparent}
+  .tl .st{overflow-wrap:break-word;hyphens:auto}
+  /* Kompakt-Modus für niedrige Fenster (kleine Laptops, Beamer-Fenster) */
+  @media (max-height:820px){
+    .slide{padding-top:3.2vh}
+    .compare .vidbox{max-height:30vh}
+    .compare figcaption{font-size:.8rem;padding:.45rem .6rem}
+    .cards{gap:.7rem}
+    .card{padding:.95rem}
+    .card p{font-size:.92rem}
+    h2{margin-bottom:.9rem}
+    .fftable .sub{display:none}
+    .fftable td,.fftable th{padding:.26rem .5rem}
+  }
+  .yearchips{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin-bottom:1rem}
+  .yearchips .lbl{color:var(--muted);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-right:.25rem}
+  .yearchip{background:var(--card);border:1px solid var(--line);color:var(--ink);font:inherit;font-size:.85rem;font-weight:700;padding:.28rem .75rem;border-radius:999px;cursor:pointer;transition:.15s}
+  .yearchip:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .yearchip.on{background:linear-gradient(135deg,rgba(77,163,255,.28),rgba(51,224,192,.22));border-color:var(--accent2);color:#fff}
+  .yeartops{margin-top:1.2rem;border-top:1px solid var(--line);padding-top:.95rem}
+  .yeartops .lbl{color:var(--muted);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.65rem}
+  .yeartops .yt{display:flex;gap:.7rem;align-items:baseline;margin-bottom:.5rem}
+  .yeartops .yt .yearchip{flex:0 0 auto}
+  .yeartops .yt p{font-size:clamp(.95rem,1.4vw,1.15rem);line-height:1.4}
+
+  .progress{position:fixed;left:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s;z-index:30}
+  .counter{position:fixed;right:16px;bottom:12px;color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums;z-index:30}
+  .nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:30}
+  .nav button{background:var(--card);border:1px solid var(--line);color:var(--ink);width:38px;height:30px;border-radius:9px;cursor:pointer;font-size:1rem}
+  .nav button:hover{border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<nav class="chapternav" id="chapternav"><span class="brandmini">Partizipative KI-Einführung</span></nav>
+
+<div class="deck" id="deck">
+
+  <!-- 0 TITEL -->
+  <section class="slide title-wrap">
+    <div class="kicker">Fachvortrag · HMD Praxis der Wirtschaftsinformatik · Heft 372 „Partizipation“</div>
+    <h1 style="font-size:clamp(2rem,4.6vw,3.8rem)">Partizipative KI-Einführung im Produktdatenmanagement</h1>
+    <div class="sub"><strong>Mitarbeitende als aktive Gestalter der KI-Transformation</strong></div>
+    <div class="sub" style="margin-top:1.1rem">Eine Fallstudie aus der BMW Group: ein vollständiger Action-Research-Zyklus, Top-down- und Bottom-up-Maßnahmen — und was davon wirkt.</div>
+    <div class="meta">Michael Koch · Mark Schenkl — BMW Group · erscheint in HMD 372 (Dez. 2026)</div>
+  </section>
+
+  <!-- 1 AGENDA -->
+  <section class="slide">
+    <div class="kicker">Agenda · drei Akte</div>
+    <div class="cards">
+      <div class="card clickbox" data-goto="2"><h3>1 · Warum Partizipation?</h3><p>Warum die meisten KI-Einführungen scheitern: Blockaden bei Mitarbeitenden und Management — und der theoretische Rahmen.</p><div class="cta">▸ Zu Akt 1</div></div>
+      <div class="card clickbox" data-goto="7"><h3>2 · Die Maßnahmen</h3><p>Die Fallstudie: Führung als Enabler, Qualifizierung in vier Stufen, Lernformate mit Erlebnisfaktor, Vibe Coding.</p><div class="cta">▸ Zu Akt 2</div></div>
+      <div class="card clickbox" data-goto="12"><h3>3 · Wirkung &amp; Empfehlungen</h3><p>Was die Daten zeigen, welche Bedingungen wir ergänzen — und konkrete Handlungsempfehlungen für die Praxis.</p><div class="cta">▸ Zu Akt 3</div></div>
+    </div>
+  </section>
+
+  <!-- 2 DIVIDER 1 -->
+  <section class="slide divider">
+    <div class="num">01</div>
+    <h1 style="margin-top:1rem">Warum Partizipation?</h1>
+    <p class="lead" style="margin-top:1rem">Nicht die Technik ist der Engpass der KI-Transformation — <em>sondern der Mensch.</em></p>
+  </section>
+
+  <!-- 3 AUSGANGSLAGE -->
+  <section class="slide">
+    <div class="kicker">Akt 1 · Ausgangslage</div>
+    <h2>Viele Unternehmen scheitern an der KI-Einführung</h2>
+    <ul>
+      <li><strong>42 %</strong> der befragten Firmen haben 2025 die Mehrzahl ihrer KI-Initiativen aufgegeben <span class="muted">(S&amp;P Global Market Intelligence 2025)</span>.</li>
+      <li>Nur <strong>ein Drittel</strong> erreicht einen nennenswerten Return on Investment — obwohl <strong>73 %</strong> mindestens 1 Mio. $ pro Jahr investieren <span class="muted">(Bouquet et al. 2026)</span>.</li>
+      <li>Auf KI zu verzichten ist trotzdem keine Option — die Frage ist nicht <em>ob</em>, sondern <em>wie</em>.</li>
+    </ul>
+    <p class="big" style="margin-top:1.2rem">Unsere Fallstudie: das Produktdatenmanagement der BMW Group — <span class="accent">ca. 350 Mitarbeitende</span>, heterogene Aufgaben, zahlreiche IT-Systeme.</p>
+    <p class="note">Produktdatenmanagement (PDM) = strukturierte Erfassung, Verwaltung und Bereitstellung aller Daten der Produktentwicklung, z. B. CAD-Modelle und Stücklisten. Ziel der Studie: eine von den Mitarbeitenden getragene KI-Einführung.</p>
+  </section>
+
+  <!-- 4 BLOCKADEN (interaktiv) -->
+  <section class="slide top fitslide">
+    <div class="kicker" style="margin-top:.4rem">Akt 1 · Warum Mitarbeitende (nicht) mitmachen — <span class="teal">klicke eine Blockade</span></div>
+    <div class="timeline" id="timelineBlock">
+      <div class="tl" data-key="unwissen"><span class="go">▸</span><div class="yr">Blockade 1</div><div class="st">Unwissenheit, nicht Widerstand</div><div class="dt">70 % wissen nicht wie</div></div>
+      <div class="tl" data-key="ceiling"><span class="go">▸</span><div class="yr">Blockade 2</div><div class="st">Imagination Ceiling</div><div class="dt">KI nur als Automat erlebt</div></div>
+      <div class="tl" data-key="angst"><span class="go">▸</span><div class="yr">Blockade 3</div><div class="st">Existenzielle Ängste</div><div class="dt">Arbeitsplatz · Expertise</div></div>
+      <div class="tl" data-key="fatigue"><span class="go">▸</span><div class="yr">Blockade 4</div><div class="st">Überforderung &amp; Change Fatigue</div><div class="dt">Tempo · Zeitmangel</div></div>
+      <div class="tl" data-key="mgmt"><span class="go">▸</span><div class="yr">Blockade 5</div><div class="st">Lücken im Management</div><div class="dt">Skills Gap · Mythen</div></div>
+    </div>
+    <div class="tldetail" id="tldetailBlock">
+      <p class="hintline">▸ Fünf Blockaden, die Partizipation verhindern — belegt aus der aktuellen Literatur. Klicke eine Kachel. <span class="muted"></span></p>
+    </div>
+  </section>
+
+  <!-- 5 FÜNF BEDINGUNGEN -->
+  <section class="slide">
+    <div class="kicker">Akt 1 · Theoretischer Rahmen</div>
+    <h2>Fünf Bedingungen effektiver Partizipation <span class="muted" style="font-size:.6em">(Mehmood &amp; Farshchian 2023)</span></h2>
+    <table class="fftable">
+      <thead><tr><th>Nr.</th><th>Bedingung</th><th>Kurzbeschreibung</th></tr></thead>
+      <tbody>
+        <tr><td>B1</td><td>Transparente &amp; vertrauenswürdige Strategieentwicklung</td><td>Mitarbeitende kennen und verstehen den strategischen Rahmen der Transformation — und vertrauen ihm.</td></tr>
+        <tr><td>B2</td><td>Kommunikation &amp; Zusammenarbeit</td><td>Funktionierende Kommunikationskanäle und Zusammenarbeit über Hierarchieebenen hinweg.</td></tr>
+        <tr><td>B3</td><td>Anreize für Partizipation</td><td>Die Organisation setzt konkrete Anreize, damit Mitarbeitende sich aktiv beteiligen.</td></tr>
+        <tr><td>B4</td><td>Vermittlung von Wissen &amp; Fähigkeiten</td><td>Qualifizierung und Wissensangebote befähigen zur Partizipation.</td></tr>
+        <tr><td>B5</td><td>Balance: Steuerung &amp; Autonomie</td><td>Top-down-Rahmensetzung und Freiraum der Mitarbeitenden sind ausbalanciert.</td></tr>
+      </tbody>
+    </table>
+    <p class="big" style="margin-top:1.1rem">Formuliert für digitale Transformation im Allgemeinen — <span class="accent">ob sie für generative KI tragen, war bislang unerforscht.</span></p>
+  </section>
+
+  <!-- 6 FORSCHUNGSDESIGN -->
+  <section class="slide top">
+    <div class="kicker" style="margin-top:.4rem">Akt 1 · Forschungsfragen &amp; Methode</div>
+    <h2>Action Research: Forschen durch Gestalten</h2>
+    <div class="two" style="align-items:start">
+      <div>
+        <ul>
+          <li><strong>F1:</strong> Lassen sich die fünf Bedingungen von Mehmood &amp; Farshchian erfolgreich auf die KI-Einführung übertragen?</li>
+          <li><strong>F2:</strong> Welche <em>zusätzlichen</em> Bedingungen und Gestaltungsmaßnahmen braucht es, damit generative KI mitgetragen, eigenständig und verantwortungsvoll genutzt und weiterentwickelt wird?</li>
+          <li><strong>Design:</strong> vollständiger Action-Research-Zyklus nach Lewin (1946) über rund zwei Jahre; die Autoren sind zugleich Gestalter <em>und</em> Beobachter.</li>
+          <li><strong>Datenquellen:</strong> anonyme Wirksamkeitsanalyse (175 von ca. 350), Nutzungsdaten eines KI-Coding-Assistenten (7 Wochen), Gespräche mit allen Abteilungs- und ausgewählten Gruppenleitern sowie mit Vibe-Coding-Anwendern.</li>
+        </ul>
+      </div>
+      <figure style="margin:0;text-align:center">
+        <svg viewBox="0 0 460 300" style="max-width:100%;height:auto">
+          <defs><marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9db0cc"/></marker></defs>
+          <rect x="155" y="10" width="150" height="46" rx="12" fill="#13213b" stroke="#4da3ff" stroke-width="2"/><text x="230" y="38" text-anchor="middle" fill="#eaf1fb" font-size="17" font-weight="700">Planung</text>
+          <rect x="300" y="127" width="150" height="46" rx="12" fill="#13213b" stroke="#33e0c0" stroke-width="2"/><text x="375" y="155" text-anchor="middle" fill="#eaf1fb" font-size="17" font-weight="700">Handlung</text>
+          <rect x="155" y="244" width="150" height="46" rx="12" fill="#13213b" stroke="#ffb454" stroke-width="2"/><text x="230" y="272" text-anchor="middle" fill="#eaf1fb" font-size="17" font-weight="700">Beobachtung</text>
+          <rect x="10" y="127" width="150" height="46" rx="12" fill="#13213b" stroke="#4da3ff" stroke-width="2"/><text x="85" y="155" text-anchor="middle" fill="#eaf1fb" font-size="17" font-weight="700">Reflexion</text>
+          <path d="M312 62 Q368 80 374 120" fill="none" stroke="#9db0cc" stroke-width="2.5" marker-end="url(#arr)"/>
+          <path d="M372 180 Q366 224 310 250" fill="none" stroke="#9db0cc" stroke-width="2.5" marker-end="url(#arr)"/>
+          <path d="M148 250 Q92 224 86 180" fill="none" stroke="#9db0cc" stroke-width="2.5" marker-end="url(#arr)"/>
+          <path d="M88 120 Q94 80 148 60" fill="none" stroke="#9db0cc" stroke-width="2.5" marker-end="url(#arr)"/>
+          <text x="230" y="145" text-anchor="middle" fill="#9db0cc" font-size="13">Action-Research-Zyklus</text>
+          <text x="230" y="163" text-anchor="middle" fill="#9db0cc" font-size="13">(Lewin 1946) · ~2 Jahre</text>
+        </svg>
+        <figcaption class="muted" style="margin-top:.4rem;font-size:.85rem">Der Doppelrolle (Gestalter + Beobachter) begegnen anonyme Befragung, autorenunabhängige Nutzungsdaten und wechselseitige kritische Prüfung.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- 7 DIVIDER 2 -->
+  <section class="slide divider">
+    <div class="num">02</div>
+    <h1 style="margin-top:1rem">Die Maßnahmen</h1>
+    <p class="lead" style="margin-top:1rem">Top-down-Rahmen + Bottom-up-Befähigung — <em>bewusst kombiniert.</em></p>
+  </section>
+
+  <!-- 8 FÜHRUNG ALS ENABLER -->
+  <section class="slide">
+    <div class="kicker">Akt 2 · Maßnahme 1</div>
+    <h2>Führung als Enabler — über alle Ebenen</h2>
+    <ul>
+      <li><strong>Strategie mit vier Elementen:</strong> Top-down + Bottom-up kombinieren · intensive Kommunikation &amp; Partizipation · Kultur der Offenheit · gemeinsames Verständnis von Fehlerkultur („eine gescheiterte KI-Idee ist Lernen“).</li>
+      <li><strong>Die Kaskade:</strong> Der Bereichsleiter lebt KI-Nutzung persönlich vor und setzt Leitplanken — Abteilungsleiter bauen eigene KI-Erfahrung auf und priorisieren Kapazitäten — Gruppenleiter schaffen den geschützten Raum zum Ausprobieren und räumen Bedenken aus.</li>
+      <li><strong>Konkrete Instrumente:</strong> KI-Slot in jedem Mitarbeiter-Forum · „Prompt der Woche“ im Führungskreis (Mitarbeitende zeigen dem Management ihre KI-Lösungen) · Zielvereinbarung „5 KI-Use-Cases je Abteilung erproben“ — <em>welche</em>, entscheiden die Teams selbst · je Gruppe eine benannte KI-Ansprechperson.</li>
+    </ul>
+    <p class="note">Beobachtung aus der Fallstudie: Die Beteiligung war dort am höchsten, wo Abteilungsleiter selbst intensiv mit KI-Tools arbeiteten und regelmäßig darüber berichteten.</p>
+  </section>
+
+  <!-- 9 BEFÄHIGUNG -->
+  <section class="slide top">
+    <div class="kicker" style="margin-top:.4rem">Akt 2 · Maßnahme 2</div>
+    <h2>Befähigung: vier Stufen statt Gießkanne</h2>
+    <p class="lead">Reine Wissensvermittlung reicht nicht — drei psychologische Grundbedürfnisse müssen erfüllt sein: <strong>Kompetenz erleben, Verbundenheit, Autonomie</strong> <span class="muted">(Hermann et al. 2026)</span>.</p>
+    <div class="cards">
+      <div class="card"><h3>1 · Kennen</h3><p>Funktionsweise, Einsatzmöglichkeiten &amp; Grenzen von KI, sicheres Prompting.<br><span class="hl">70 %</span> ordneten sich zu Beginn hier ein.</p></div>
+      <div class="card"><h3>2 · Können</h3><p>Relevante Plattformen &amp; Tools, eigene Anwendungsfälle erkennen und einsteuern. <span class="hl">11 %</span> — mit Stufe 1 die Basisbefähigung für alle.</p></div>
+      <div class="card"><h3>3 · Beherrschen</h3><p>Eigene Use Cases umsetzen, Potenziale &amp; Aufwände bewerten, Daten aufbereiten. <span class="hl">14 %</span>.</p></div>
+      <div class="card"><h3>4 · Experte</h3><p>KI-Systeme &amp; -Agenten von Konzeption bis Integration entwickeln, Verantwortung übernehmen. <span class="hl">5 %</span>.</p></div>
+    </div>
+    <p class="big" style="margin-top:1.2rem">Bisher <span class="accent">~135 von 350</span> Mitarbeitenden freiwillig geschult — von <span class="accent">internen KI-Experten</span> mit Beispielen aus dem echten Arbeitsalltag, flankiert von einem Experten-Netzwerk.</p>
+  </section>
+
+  <!-- 10 LERNFORMATE -->
+  <section class="slide top">
+    <div class="kicker" style="margin-top:.4rem">Akt 2 · Maßnahme 3</div>
+    <h2>Lernformate mit Erlebnisfaktor</h2>
+    <div class="cards">
+      <div class="card"><h3>freaKI frAIday</h3><p>Ganztägiges Präsenzformat alle ~2 Monate: externe Impulse, Live-Coding, Breakout-Sessions, offener KI-Help-Desk, Kurzvorträge der Abteilungsleiter. <span class="hl">Durchgängig ausgebucht</span> — inzwischen Anfragen aus anderen Bereichen.</p></div>
+      <div class="card"><h3>AI@Work</h3><p>Eine Stunde pro Quartal, online: Mitarbeitende zeigen in 5–10-Minuten-Vorträgen, wie sie z. B. repetitive Aufgaben KI-gestützt automatisiert haben. Erreicht je Session <span class="hl">~30 %</span> des Bereichs.</p></div>
+      <div class="card"><h3>KI-Team-Challenge</h3><p>Teambuilding „Wer ist es?“: Teams bauen per Vibe Coding in <em>einer</em> Session eine funktionierende KI-Anwendung. Alle 3 Pilotteams erfolgreich; Materialien als <span class="hl">Open Source</span> veröffentlicht (Schenkl 2025).</p></div>
+    </div>
+    <p class="note">Der Leitgedanke: KI-Impulse nah an den konkreten Arbeitsaufgaben verankern — Live-Erlebnisse durchbrechen das Imagination Ceiling, Regelmäßigkeit wirkt der Überforderung entgegen.</p>
+  </section>
+
+  <!-- 11 VIBE CODING -->
+  <section class="slide">
+    <div class="kicker">Akt 2 · Maßnahme 4</div>
+    <h2>Vibe Coding: Autonomie für den Fachbereich</h2>
+    <div class="two" style="align-items:start">
+      <div>
+        <h3 class="teal">Was es bringt</h3>
+        <ul>
+          <li><strong>30+ Tools</strong> von Fachkräften <em>ohne Informatikausbildung</em> entwickelt — meist gegen die eigenen „Zeitfresser“.</li>
+          <li>Löst den <strong>Specification Gap</strong>: Der Fachexperte entwickelt im direkten KI-Dialog und bringt sein Domänenwissen unmittelbar ein.</li>
+          <li>Iterationszyklen in <strong>Minuten statt Wochen</strong> — Erkenntnisgewinn, der klassisch Monate bräuchte.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="warm">Wo die Grenzen liegen</h3>
+        <ul>
+          <li>100 % Vibe-Coding-Funktion ≠ 100 % <strong>IT-Produktreife</strong>: Authentisierung, Schnittstellen, Monitoring, Recovery.</li>
+          <li>Minuten-Iterationen passen nicht zu klassischen <strong>Sprint-Prozessen</strong> — es braucht eigene Governance-Regeln.</li>
+          <li>Der Vibe Coder bleibt <strong>nach dem Deployment in der Verantwortung</strong> — Abgabe bei „80 % fertig“ hat sich als Risiko erwiesen.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Aktuell wird gemeinsam mit der zentralen IT daran gearbeitet, diese Lücken zu schließen — um die Skalierungschancen des Vibe Coding sicher zu nutzen.</p>
+  </section>
+
+  <!-- 12 DIVIDER 3 -->
+  <section class="slide divider">
+    <div class="num">03</div>
+    <h1 style="margin-top:1rem">Wirkung &amp;<br>Empfehlungen</h1>
+    <p class="lead" style="margin-top:1rem">Ehrliche Evaluation statt Erfolgsfolklore — <em>inklusive der Defizite.</em></p>
+  </section>
+
+  <!-- 13 EVALUATION -->
+  <section class="slide top">
+    <div class="kicker" style="margin-top:.4rem">Akt 3 · Wirksamkeitsanalyse (175 von ~350 Mitarbeitenden)</div>
+    <h2>Die fünf Bedingungen im Realitätstest</h2>
+    <table class="fftable">
+      <thead><tr><th>Bedingung</th><th>Zentrale Befunde</th><th>Erkenntnis</th></tr></thead>
+      <tbody>
+        <tr><td>B1 Strategie</td><td><span class="now">58 %</span> ausreichend informiert · <span class="now">70 %</span> verstehen das Warum</td><td>Übertragbar — aber bei KI-Tempo eine Daueraufgabe, kein Meilenstein</td></tr>
+        <tr><td>B2 Kommunikation</td><td><span class="now">62 %</span> kennen ihre KI-Ansprechpartner</td><td>Übertragbar — Infrastruktur etabliert und bekannt</td></tr>
+        <tr><td>B3 Anreize</td><td><span class="now">67 %</span> in Schulungen · <span class="now">58 %</span> nutzen KI aktiv · <span class="now">57 %</span> finden (noch) keinen Use Case</td><td>Vom Lernen zum Anwenden bleibt eine Hürde — Imagination Ceiling</td></tr>
+        <tr><td>B4 Wissen</td><td>nur <span class="now">38 %</span> fanden Trainings praxisnah · <span class="now">49 %</span> kennen ihren Kompetenzbedarf</td><td>KI-Lernen wird kontinuierlich &amp; „on the job“ — statische Schulungen veralten</td></tr>
+        <tr><td>B5 Balance</td><td><span class="now">78 %</span> nennen fehlende Zeit als größtes Hindernis</td><td>Tagesgeschäft verhindert nicht den Einstieg, hemmt aber die Vertiefung</td></tr>
+      </tbody>
+    </table>
+    <p class="big" style="margin-top:1rem"><strong>Antwort auf F1:</strong> Alle fünf Bedingungen sind übertragbar — <span class="accent">drei davon (Anreize, Wissen, Balance) brauchen KI-spezifische Erweiterungen.</span></p>
+  </section>
+
+  <!-- 14 NUTZUNGSDATEN -->
+  <section class="slide">
+    <div class="kicker">Akt 3 · Nutzungsdaten als Validierung</div>
+    <h2>Wer den Einstieg schafft, nutzt KI auf hohem Niveau</h2>
+    <ul>
+      <li><strong>24 %</strong> der ~350 Mitarbeitenden nutzen den KI-Coding-Assistenten aktiv — bemerkenswert für einen Bereich, der <em>keine</em> IT-Abteilung ist.</li>
+      <li><strong>17.400 Interaktionen</strong> in sieben Wochen, davon über <strong>17.100 im Agent Mode</strong> — dem dialogischen Modus, in dem die KI eigenständig komplexe Aufgaben übernimmt. Dominierende Sprache: Python (10.500+).</li>
+      <li><strong>5 %</strong> der Mitarbeitenden erzeugen einen Großteil der Interaktionen — intensive Power-User statt Gleichverteilung.</li>
+      <li>Breite und Tiefe der KI-Nutzung der Mitarbeitenden <strong>korreliert mit der ihrer Führungskräfte</strong>.</li>
+    </ul>
+    <p class="big" style="margin-top:1.2rem">Befragung + Nutzungsdaten zusammen: Zeitmangel bremst die Breite — <span class="accent">aber wer einsteigt, liefert echte Effizienzgewinne</span> (30+ Tools, teils bereits an die IT übergeben).</p>
+  </section>
+
+  <!-- 15 BEITRÄGE -->
+  <section class="slide top">
+    <div class="kicker" style="margin-top:.4rem">Akt 3 · Antwort auf F2 — Beiträge für Forschung &amp; Praxis</div>
+    <h2>Vier Zusatzbedingungen, vier Handlungsempfehlungen</h2>
+    <div class="two" style="align-items:start">
+      <div>
+        <h3 class="accent">Zusatzbedingungen (über B1–B5 hinaus)</h3>
+        <ul>
+          <li><strong>Flächendeckender Buy-in + Qualifizierung des Führungsteams</strong> — ohne KI-kompetente Führungskräfte keine Flächendeckung.</li>
+          <li><strong>Strategische Ausrichtung auf Entlastung</strong> — Mitarbeitende bleiben verantwortlich, ihr Fachwissen zählt weiter.</li>
+          <li><strong>Kultur der Offenheit</strong> gegenüber neuen Ideen, Methoden und Tools.</li>
+          <li><strong>Fehlertoleranz &amp; psychologisch sichere Räume</strong> — experimentieren, bis es funktioniert.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="teal">Handlungsempfehlungen</h3>
+        <ul>
+          <li><strong>Tiefe KI-Kompetenz inhouse aufbauen</strong> (2–3 Personen im Fachbereich) — weniger Abhängigkeit, passgenaue Trainings.</li>
+          <li><strong>Kontinuierliches On-the-job-Lernen</strong> für Mitarbeitende <em>und</em> Führungskräfte.</li>
+          <li><strong>Freiraum direkt nach den Trainings</strong> — sonst versandet das Gelernte im Tagesgeschäft.</li>
+          <li><strong>Governance für Vibe Coding früh klären</strong>: Übergabe an die IT, Qualität, Nachvollziehbarkeit, Sicherheit.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">Erweiterung zu Ruess et al. (2024): Generative KI verschiebt den Partizipationsspielraum — Beschäftigte <em>erleben</em> KI nicht nur, sie <em>gestalten</em> per Vibe Coding eigenständig Lösungen.</p>
+  </section>
+
+  <!-- 16 LIMITATIONEN & AUSBLICK -->
+  <section class="slide">
+    <div class="kicker">Akt 3 · Ehrlichkeit zum Schluss</div>
+    <h2>Grenzen der Studie — und der nächste Zyklus</h2>
+    <div class="two" style="align-items:start">
+      <div>
+        <h3 class="warm">Limitationen</h3>
+        <ul>
+          <li>Einzelfallstudie in einem Bereich, der bereits eigene KI-Experten aufgebaut hatte — Generalisierbarkeit begrenzt.</li>
+          <li>Freiwillige Teilnahme → mögliche Verzerrung durch technikaffine Selbstselektion; keine Vergleichsgruppe.</li>
+          <li>Rückenwind durch BMW-Offenheitskultur und hohe mediale KI-Aufmerksamkeit.</li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="teal">Nächster Action-Research-Zyklus</h3>
+        <ul>
+          <li><strong>KI-Kompetenz der Führungskräfte als Zielvorgabe</strong> statt Freiwilligkeit — bei Mitarbeitenden bleibt es freiwillig, mit intensiver Sinnstiftung.</li>
+          <li><strong>Trainings noch aufgabenspezifischer</strong>; neue Wissensträger aus den Gruppen werden On-the-job-Trainer.</li>
+          <li>Schwerpunkt Use-Case-Findung: vom „Ich verstehe KI“ zum „Ich nutze KI für meine Aufgabe“.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- 17 SCHLUSS -->
+  <section class="slide title-wrap">
+    <div class="kicker">Fazit</div>
+    <div class="quote">Partizipation ist kein Selbstzweck — sie ist der Unterschied zwischen <span class="mark">KI auf Folien und KI im Tagesgeschäft.</span></div>
+    <ul style="max-width:60ch">
+      <li>Die fünf Bedingungen von Mehmood &amp; Farshchian tragen auch für generative KI — plus vier KI-spezifische Zusatzbedingungen.</li>
+      <li>Führung, die selbst vorlebt, Befähigung nah am Arbeitsalltag und echter Freiraum machen Mitarbeitende zu Gestaltern.</li>
+    </ul>
+    <div class="meta" style="margin-top:1.6rem">Michael Koch · Mark Schenkl — BMW Group · „Partizipative KI-Einführung im Produktdatenmanagement“, HMD 372 (Dez. 2026) · Fragen? mark.schenkl@bmw.de</div>
+  </section>
+
+</div>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter">1 / 18</div>
+<div class="nav">
+  <button id="prev" aria-label="zurück">‹</button>
+  <button id="next" aria-label="weiter">›</button>
+</div>
+
+<script>
+  const slides=[...document.querySelectorAll('.slide')];
+  const counter=document.getElementById('counter');
+  const progress=document.getElementById('progress');
+  let i=0;
+
+  const chapters=[
+    {label:'Start',i:0},{label:'Agenda',i:1},{label:'Warum?',i:2},
+    {label:'Blockaden',i:4},{label:'5 Bedingungen',i:5},{label:'Methode',i:6},
+    {label:'Maßnahmen',i:7},{label:'Führung',i:8},{label:'Befähigung',i:9},
+    {label:'Formate',i:10},{label:'Vibe Coding',i:11},
+    {label:'Wirkung',i:12},{label:'Evaluation',i:13},{label:'Nutzungsdaten',i:14},
+    {label:'Empfehlungen',i:15},{label:'Ausblick',i:16},{label:'Fazit',i:17}
+  ];
+  const navEl=document.getElementById('chapternav');
+  chapters.forEach(c=>{
+    const b=document.createElement('button');
+    b.textContent=c.label; b.dataset.i=c.i;
+    b.onclick=e=>{e.stopPropagation();show(c.i)};
+    navEl.appendChild(b);
+  });
+  const navBtns=[...navEl.querySelectorAll('button')];
+
+  function activeChapter(n){let idx=0;chapters.forEach((c,k)=>{if(n>=c.i)idx=k});return idx;}
+  function fitSlide(){
+    const sl=slides[i]; if(!sl)return;
+    sl.style.zoom='';
+    if(sl.classList.contains('fitslide'))return;
+    const need=sl.scrollHeight, have=sl.clientHeight;
+    if(need>have+2){sl.style.zoom=Math.max(.6,Math.floor(have/need*100)/100);}
+  }
+  window.addEventListener('resize',()=>fitSlide());
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach((s,k)=>s.classList.toggle('active',k===i));
+    slides[i].scrollTop=0;
+    counter.textContent=(i+1)+' / '+slides.length;
+    progress.style.width=((i+1)/slides.length*100)+'%';
+    const ac=activeChapter(i);
+    navBtns.forEach((b,k)=>b.classList.toggle('on',k===ac));
+    const on=navBtns[ac]; if(on&&on.scrollIntoView)on.scrollIntoView({inline:'center',block:'nearest'});
+    fitSlide();
+  }
+  const next=()=>show(i+1), prev=()=>show(i-1);
+  document.getElementById('next').onclick=e=>{e.stopPropagation();next()};
+  document.getElementById('prev').onclick=e=>{e.stopPropagation();prev()};
+  document.addEventListener('keydown',e=>{
+    if(['ArrowRight','ArrowDown',' ','PageDown'].includes(e.key)){e.preventDefault();next()}
+    else if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();prev()}
+    else if(e.key==='Home'){show(0)} else if(e.key==='End'){show(slides.length-1)}
+    else if(e.key==='f'||e.key==='F'){if(!document.fullscreenElement)document.documentElement.requestFullscreen();else document.exitFullscreen()}
+  });
+  document.querySelectorAll('.clickbox').forEach(el=>{
+    el.addEventListener('click',e=>{e.stopPropagation();show(parseInt(el.dataset.goto,10))});
+  });
+  document.getElementById('deck').addEventListener('click',e=>{
+    if(e.target.closest('.clickbox,.timeline,.tldetail,.nav,a,button,figure,table'))return;
+    (e.clientX>window.innerWidth/2)?next():prev();
+  });
+
+  // Blockaden-Kacheln
+  const detailsBlock={
+    unwissen:`<h3>Blockade 1 · Unwissenheit, nicht Widerstand</h3>
+      <ul>
+      <li>„Sie wollen nicht“ ist meist falsch: <strong>70 %</strong> der Beschäftigten wissen nicht, <em>wie</em> sie generative KI sinnvoll einsetzen können — Tendenz steigend, trotz wachsender Trainingsbudgets <span class="muted">(Utley 2026, 5.000 Antworten)</span>.</li>
+      <li>Nur <strong>8 %</strong> nutzen KI als Sparringspartner im iterativen Dialog — die Mehrheit bricht nach 1–2 Prompts ab und erlebt das Potenzial nie <span class="muted">(Utley 2026)</span>.</li>
+      <li>Nur <strong>5 %</strong> der Nutzer zeigen konsistent anspruchsvolles Nutzungsverhalten; Mensch-KI-Kollaboration verläuft meist als Einbahnstraße <span class="muted">(Hallman et al. 2026; Gomez et al. 2025)</span>.</li>
+      </ul>`,
+    ceiling:`<h3>Blockade 2 · Imagination Ceiling</h3>
+      <ul>
+      <li>Viele können sich KI nicht als <em>Teammitglied</em> vorstellen, weil sie sie nur als Automaten erlebt haben: Prompt rein, Output raus, fertig <span class="muted">(Utley 2026)</span>.</li>
+      <li>Diese eingeschränkte Vorstellungskraft blockiert Partizipation genauso wirkungsvoll wie bewusste Ablehnung — und erklärt, warum Potenzial-Verständnis allein nicht in Anwendung mündet.</li>
+      </ul>
+      <p class="muted">Gegenmittel in der Fallstudie: Live-Erlebnisse — Live-Coding, Team-Challenge, Erfolgsgeschichten von Kollegen.</p>`,
+    angst:`<h3>Blockade 3 · Existenzielle Ängste</h3>
+      <ul>
+      <li>Die Angst, durch KI den Arbeitsplatz oder die aufgebaute Expertise zu entwerten, ist präsent — <em>und nicht unbegründet</em>: Klarna reduzierte 2023–2024 von ca. 5.000 auf 3.000 Mitarbeitende, explizit KI-begründet <span class="muted">(CNBC 2025)</span>.</li>
+      <li>Partizipationsbereitschaft hängt maßgeblich von psychologischen Grundbedürfnissen ab — Investitionen in psychosoziale Readiness sind entscheidend <span class="muted">(Abhari 2025)</span>.</li>
+      </ul>
+      <p class="muted">Konsequenz in der Fallstudie: klare strategische Botschaft „KI entlastet, ersetzt nicht“ — Mitarbeitende bleiben in der Verantwortung.</p>`,
+    fatigue:`<h3>Blockade 4 · Überforderung &amp; Change Fatigue</h3>
+      <ul>
+      <li>Wöchentlich neue Modelle, Tools, Szenarien — das Gefühl permanenten Hinterherlaufens; der Lernaufwand passt kaum in den Arbeitsalltag.</li>
+      <li>Veränderungsbereitschaft fiel von <strong>74 % (2016) auf 43 % (2022)</strong>, während geplante Change-Initiativen pro Kopf von 2 auf 10 stiegen <span class="muted">(Gartner 2025; Ó Moráin 2023)</span>.</li>
+      <li>Widerstand zeigt sich als stille Nichtnutzung — in einer Unternehmensstudie stellten sich <strong>31 %</strong> (Gen Z: 41 %) aktiv gegen KI-Initiativen, jeder Zehnte manipulierte sogar Kennzahlen oder lieferte absichtlich schwache Ergebnisse <span class="muted">(Writer/Workplace Intelligence 2025)</span>.</li>
+      </ul>`,
+    mgmt:`<h3>Blockade 5 · Lücken auf Managementebene</h3>
+      <ul>
+      <li>KI-Adoption kann die <strong>psychologische Sicherheit</strong> senken — außer die Führung kommuniziert transparent, nimmt Bedenken ernst und schafft sichere Experimentierräume <span class="muted">(Kim et al. 2025)</span>.</li>
+      <li><strong>77 %</strong> der CEOs sehen eine neue KI-Geschäftsära — aber nur <strong>44 %</strong> halten die eigenen CIOs für hinreichend KI-kompetent; der Skills Gap der Führung wird systematisch unterschätzt <span class="muted">(Gartner CEO Survey 2025; Li et al. 2025)</span>.</li>
+      <li>Fast <strong>90 %</strong> der Unternehmen berichten bisher keinen messbaren Produktivitätseffekt — erwarten aber weiter große Sprünge: Diese Lücke demotiviert Teams mit unerreichbaren Zielen <span class="muted">(Fortune/WEF 2026; Gruda &amp; Aeon 2025)</span>.</li>
+      <li>Bis zu <strong>70 %</strong> aller Change-Initiativen scheitern an Widerstand oder fehlender Management-Unterstützung <span class="muted">(Cloud Security Alliance 2025)</span>.</li>
+      </ul>`
+  };
+  const tldetailBlock=document.getElementById('tldetailBlock');
+  document.querySelectorAll('#timelineBlock .tl').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.stopPropagation();
+      document.querySelectorAll('#timelineBlock .tl').forEach(x=>x.classList.remove('sel'));
+      el.classList.add('sel');
+      tldetailBlock.innerHTML=detailsBlock[el.dataset.key]||'';
+      tldetailBlock.scrollTop=0;
+    });
+  });
+
+  show(0);
+</script>
+</body>
+</html>

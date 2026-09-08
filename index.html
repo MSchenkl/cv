@@ -103,7 +103,7 @@
   th{color:var(--accent2);text-transform:uppercase;letter-spacing:.08em;font-size:.72rem}
   tbody tr:hover{background:rgba(77,163,255,.06)}
   .hl{color:var(--warm);font-weight:700}
-  .fftable td,.fftable th{padding:.4rem .6rem;font-size:clamp(.72rem,1.15vw,.98rem)}
+  .fftable td,.fftable th{padding:.3rem .55rem;font-size:clamp(.68rem,1.05vw,.92rem)}
   .fftable tbody td:first-child{font-weight:700;color:#fff}
   .fftable .sub{display:block;color:var(--muted);font-size:.7rem;font-weight:400;margin-top:.1rem}
   .fftable .now{color:var(--warm);font-weight:700}
@@ -124,6 +124,34 @@
   .two{display:grid;grid-template-columns:1fr 1fr;gap:2.2rem;align-items:center}
   .narrow{width:100%}
   @media(max-width:820px){.two,.compare{grid-template-columns:1fr}}
+
+  /* Zeitleisten: Detailkasten passt sich dynamisch der Resthöhe an und scrollt innen */
+  .fitslide{justify-content:flex-start;padding-bottom:56px}
+  .fitslide .timeline{flex:0 0 auto}
+  .fitslide .tldetail{flex:1 1 auto;min-height:120px;overflow-y:auto;scrollbar-width:thin;overscroll-behavior:contain;scrollbar-color:var(--line) transparent}
+  .tl .st{overflow-wrap:break-word;hyphens:auto}
+  /* Kompakt-Modus für niedrige Fenster (kleine Laptops, Beamer-Fenster) */
+  @media (max-height:820px){
+    .slide{padding-top:3.2vh}
+    .compare .vidbox{max-height:30vh}
+    .compare figcaption{font-size:.8rem;padding:.45rem .6rem}
+    .cards{gap:.7rem}
+    .card{padding:.95rem}
+    .card p{font-size:.92rem}
+    h2{margin-bottom:.9rem}
+    .fftable .sub{display:none}
+    .fftable td,.fftable th{padding:.26rem .5rem}
+  }
+  .yearchips{display:flex;flex-wrap:wrap;align-items:center;gap:.45rem;margin-bottom:1rem}
+  .yearchips .lbl{color:var(--muted);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-right:.25rem}
+  .yearchip{background:var(--card);border:1px solid var(--line);color:var(--ink);font:inherit;font-size:.85rem;font-weight:700;padding:.28rem .75rem;border-radius:999px;cursor:pointer;transition:.15s}
+  .yearchip:hover{border-color:var(--accent);transform:translateY(-1px)}
+  .yearchip.on{background:linear-gradient(135deg,rgba(77,163,255,.28),rgba(51,224,192,.22));border-color:var(--accent2);color:#fff}
+  .yeartops{margin-top:1.2rem;border-top:1px solid var(--line);padding-top:.95rem}
+  .yeartops .lbl{color:var(--muted);font-size:.74rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:.65rem}
+  .yeartops .yt{display:flex;gap:.7rem;align-items:baseline;margin-bottom:.5rem}
+  .yeartops .yt .yearchip{flex:0 0 auto}
+  .yeartops .yt p{font-size:clamp(.95rem,1.4vw,1.15rem);line-height:1.4}
 
   .progress{position:fixed;left:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s;z-index:30}
   .counter{position:fixed;right:16px;bottom:12px;color:var(--muted);font-size:.82rem;font-variant-numeric:tabular-nums;z-index:30}
@@ -151,7 +179,7 @@
     <div class="kicker">Zwei Dinge nehmt ihr heute mit</div>
     <div class="cards">
       <div class="card clickbox" data-goto="2"><h3>1 · Mein Weg</h3><p>Hauptschule → Realschule → FOS → FH → TU → CSC → BMW. <br> Warum das für mich genau richtig war.</p><div class="cta">▸ Zu Teil 1</div></div>
-      <div class="card clickbox" data-goto="6"><h3>2 · Eure Zukunft</h3><p>Die Chancen durch KI &amp; Vibe Coding — und warum „such dir was Sicheres“ heute der falsche Rat ist.</p><div class="cta">▸ Zu Teil 2</div></div>
+      <div class="card clickbox" data-goto="7"><h3>2 · Eure Zukunft</h3><p>Die Chancen durch KI &amp; Vibe Coding — und warum „such dir was Sicheres“ heute der falsche Rat ist.</p><div class="cta">▸ Zu Teil 2</div></div>
     </div>
     
   </section>
@@ -164,7 +192,7 @@
   </section>
 
   <!-- 5 TIMELINE (interaktiv) -->
-  <section class="slide top">
+  <section class="slide top fitslide">
     <div class="kicker" style="margin-top:.4rem">Ein Weg über viele Stationen — <span class="teal">klicke eine Station</span></div>
     <div class="timeline" id="timeline">
       <div class="tl" data-key="grundschule"><span class="go">▸</span><div class="yr">1981–85</div><div class="st">Grundschule</div><div class="dt">Kl. 1–4</div></div>
@@ -178,6 +206,24 @@
     </div>
     <div class="tldetail" id="tldetail">
       <p class="hintline">▸ Klicke auf eine Station, um die Geschichte dahinter zu sehen. <span class="muted"></span></p>
+    </div>
+  </section>
+
+  <!-- 5b ZEITLEISTE BMW (interaktiv, mit Jahres-Drilldown ab 2019) -->
+  <section class="slide top fitslide">
+    <div class="kicker" style="margin-top:.4rem">Zeitleiste BMW · 22 Jahre, 7 Stationen + Fazit — <span class="teal">klicke eine Station</span> · ab 2019 mit Jahres-Details <button class="yearchip" id="backToLife" style="margin-left:.6rem;text-transform:none;letter-spacing:0">◂ Lebensweg</button></div>
+    <div class="timeline" id="timelineBMW">
+      <div class="tl" data-key="einstieg"><span class="go">▸</span><div class="yr">2004–06</div><div class="st">BMW AG · Einstieg</div><div class="dt">IT-Projekte · Zentrale</div></div>
+      <div class="tl" data-key="bank"><span class="go">▸</span><div class="yr">2006–08</div><div class="st">BMW Bank</div><div class="dt">IT-Projektleiter DWH</div></div>
+      <div class="tl" data-key="dwh"><span class="go">▸</span><div class="yr">2008–12</div><div class="st">Qualität &amp; Prozesse</div><div class="dt">Spezialist Projekte · BI/DWH</div></div>
+      <div class="tl" data-key="baukasten"><span class="go">▸</span><div class="yr">2012–13</div><div class="st">Baukasten&shy;steuerung</div><div class="dt">Spezialist Projekte · PMT · KEP</div></div>
+      <div class="tl" data-key="produktdaten"><span class="go">▸</span><div class="yr">2013–17</div><div class="st">Produkt&shy;daten</div><div class="dt">Spezialist → Referent Projekte</div></div>
+      <div class="tl" data-key="experte"><span class="go">▸</span><div class="yr">2017–21</div><div class="st">Experte Gesamt&shy;fahrzeug</div><div class="dt">Expertenlaufbahn (AT) · <span class="teal">▾ 2019–20</span></div></div>
+      <div class="tl" data-key="leiter"><span class="go">▸</span><div class="yr">seit 2021</div><div class="st">Leiter Produkt&shy;kon&shy;fi&shy;gu&shy;ra&shy;tion</div><div class="dt">Führung · KI · <span class="teal">▾ 2021–25</span></div></div>
+      <div class="tl" data-key="fazit"><span class="go">▸</span><div class="yr">Fazit</div><div class="st">Was bleibt</div><div class="dt">Lektionen aus 22 Jahren</div></div>
+    </div>
+    <div class="tldetail" id="tldetailBMW">
+      <p class="hintline">▸ Klicke auf eine Station — vom Berufseinsteiger zur Führungskraft, mit Umwegen über eine Tochtergesellschaft und die Expertenlaufbahn. <span class="muted"></span></p>
     </div>
   </section>
 
@@ -382,9 +428,10 @@
   // chapters
   const chapters=[
     {label:'Start',i:0},{label:'Mein Weg',i:2},{label:'Zeitleiste',i:3},
-    {label:'Zukunft',i:5},{label:'Chancen',i:6},{label:'Daten',i:7},
-    {label:'Vibe Coding',i:9},{label:'Jobs',i:10},{label:'Jevons',i:11},
-    {label:'Ratschläge',i:12},{label:'Ausblick',i:14},{label:'Schluss',i:15}
+    {label:'Zeitleiste BMW',i:4},
+    {label:'Zukunft',i:6},{label:'Chancen',i:7},{label:'Daten',i:8},
+    {label:'Vibe Coding',i:10},{label:'Jobs',i:11},{label:'Jevons',i:12},
+    {label:'Ratschläge',i:13},{label:'Ausblick',i:15},{label:'Schluss',i:16}
   ];
   const navEl=document.getElementById('chapternav');
   chapters.forEach(c=>{
@@ -400,6 +447,18 @@
     chapters.forEach((c,k)=>{if(n>=c.i)idx=k});
     return idx;
   }
+  // Auto-Fit: Folien, die höher als das Fenster sind, minimal herunterskalieren
+  // (Zeitleisten-Folien mit .fitslide regeln das selbst über den scrollenden Detailkasten)
+  function fitSlide(){
+    const sl=slides[i]; if(!sl)return;
+    sl.style.zoom='';
+    if(sl.classList.contains('fitslide'))return;
+    const need=sl.scrollHeight, have=sl.clientHeight;
+    if(need>have+2){
+      sl.style.zoom=Math.max(.6,Math.floor(have/need*100)/100);
+    }
+  }
+  window.addEventListener('resize',()=>fitSlide());
   function show(n){
     i=Math.max(0,Math.min(slides.length-1,n));
     slides.forEach((s,k)=>s.classList.toggle('active',k===i));
@@ -409,6 +468,7 @@
     const ac=activeChapter(i);
     navBtns.forEach((b,k)=>b.classList.toggle('on',k===ac));
     const on=navBtns[ac]; if(on&&on.scrollIntoView)on.scrollIntoView({inline:'center',block:'nearest'});
+    fitSlide();
   }
   const next=()=>show(i+1), prev=()=>show(i-1);
   document.getElementById('next').onclick=e=>{e.stopPropagation();next()};
@@ -457,15 +517,9 @@
     csc:`<h3>Berufseinstieg · Computer Science Corporation</h3>
       <p>Schüchtern und unsicher — und trotzdem in die Beratung: bewusst meine <em>größte Schwäche</em> adressieren (Auftreten &amp; Verkaufen).</p>
       <p class="muted">Ich wollte viele Unternehmen kennenlernen. </p>`,
-    bmw:`<h3>Was ich bei BMW mache</h3>
-      <ul>
-      <li><strong>Rolle heute:</strong> Gruppenleiter im Produktdatenmanagement.</li>
-      <li><strong>Entsendung zu einer BMW Tochter: </strong>Führungsmanschaft bestand zum großen Teil aus ehemaligen Accenture-Beratern. Viel Druck, viele Burnouts - aber ich habe unglaublich viel gelernt.</li>
-      <li><strong>Alltag früher:</strong> sehr meeting-lastig — im Kern haben wir externe Dienstleister gesteuert: gesagt, was zu tun ist, und Ergebnisse kontrolliert.</li>
-      <li><strong>Alltag heute:</strong> dank KI &amp; Vibe Coding (und der Absatzkrise) brauchen wir viel weniger Externe und schaffen selbst wieder viel mehr — macht mir <em>deutlich mehr Spaß</em> als noch vor 4 Jahren.</li>
-      <li><strong>Was man braucht:</strong> in IT/KI privat am Ball bleiben („jeden Tag ändert sich die Welt“); als Führungskraft ist der Umgang mit Menschen der Schlüssel.</li>
-      <li><strong>Was ich liebe:</strong> die Freiheit, mein Team — und jedes Jahr ein anderes Auto zu fahren.</li></ul>
-      <p class="muted">Lektion: Firmen sind keine Familien, Arbeiten kann aber Spaß machen. </p>`
+    bmw:`<h3>BMW AG · seit 2004 — das eigene Kapitel</h3>
+      <p>22 Jahre, 7 Stationen: vom IT-Projektleiter über eine Entsendung zur BMW Bank und die Expertenlaufbahn bis zur Führungskraft — heute Leiter Produktkonfiguration, mit KI produktiv im Einsatz.</p>
+      <p style="margin-top:1.1rem"><button class="yearchip on" id="gotoBMW" style="font-size:1rem;padding:.45rem 1.1rem">▸ Zur BMW-Zeitleiste</button></p>`
   };
   // era icons: [bekanntestes Spiel, typischer IT-Gegenstand]
   const eras={
@@ -526,6 +580,238 @@
   });
 
   show(0);
+</script>
+
+<script>
+  // ===== Zeitleiste BMW (eigene Seite, unabhängig von der Haupt-Zeitleiste) =====
+  const detailsBMW={
+    einstieg:`<h3>Einstieg BMW AG · München · 01.01.2004</h3>
+      <ul>
+      <li>Nach vier Jahren Unternehmensberatung (CSC) der Wechsel in den Konzern: <strong>IT-Projekte in der Zentrale</strong> — Integration &amp; IT-Sicherheit.</li>
+      <li>Alltag: viel Koordination — Anforderungen klären, <em>externe Dienstleister steuern</em>, Ergebnisse kontrollieren.</li>
+      </ul>
+      <p class="muted">Vom Berater zum Konzern: endlich ein Produkt, das man anfassen kann.</p>`,
+    bank:`<h3>BMW Bank GmbH (Financial Services) · 11/2006 – 10/2008</h3>
+      <ul>
+      <li><strong>Entsendung</strong> zur Konzerntochter (BMW-Vertrag ruht, auf 3 Jahre angelegt) — Motivation: endlich <em>selbst eine Anwendung bauen</em>, statt nur zu steuern.</li>
+      <li><strong>IT-Projektleiter Data Warehouse:</strong> Einführung (2007) und Ausbau (2008) eines BI-Steuerungssystems für die Händler- &amp; Importeursfinanzierung, dazu Basel II &amp; Meldewesen — ca. <strong>1,5 Mio. € Budget</strong>, in Time &amp; Budget.</li>
+      <li>Kultur: stark von Ex-Beratern geprägt, kein Tarifvertrag, enormer Druck — steilste Lernkurve meiner Laufbahn.</li>
+      </ul>
+      <p class="muted">Hier habe ich unglaublich viel gelernt — auch eine Lektion fürs Leben, die im Fazit wartet.</p>`,
+    dwh:`<h3>Spezialist Projekte · Qualität &amp; Managementprozesse (EZ-12, später L5-94) · 11/2008 – 01/2012</h3>
+      <ul>
+      <li>Rückkehr in die BMW AG: <strong>Aufbau einer Business-Intelligence-Plattform (DWH)</strong> für das Entwicklungsressort.</li>
+      <li>IT-Projektleiter <strong>„gläserne Pipeline“</strong>: Termin-Transparenz über das gesamte Änderungs- &amp; Freigabemanagement — von der Maßnahme bis zum Wareneingang im Werk (ca. 750 T€ Budget).</li>
+      <li>Einer der ersten <em>agilen Piloten (Scrum)</em> im Entwicklungsressort.</li>
+      </ul>
+      <p class="muted">Abschlussbeurteilung: „hervorragend“ in allen Kategorien.</p>`,
+    baukasten:`<h3>Spezialist Projekte · Baukastensteuerung &amp; Projektmanagement (EL-3-P, später EG-B-P) · 02/2012 – 11/2013</h3>
+      <ul>
+      <li>Per innerbetrieblicher Bewerbung in die Baukasten-Organisation: Steuerung von <strong>Projekten &amp; Budgets</strong> im Themenfeld PMT (Prozesse, Methoden, Tools).</li>
+      <li>Kommunikation &amp; Change zum Thema <strong>Baukasten</strong>, Mitgestaltung des Komponentenentwicklungsprozesses (KEP).</li>
+      </ul>
+      <p class="muted">Nebenbei gelernt: Abteilungen werden bei Reorganisationen umbenannt — die Aufgabe (und dein Netzwerk) bleibt.</p>`,
+    produktdaten:`<h3>Spezialist → Referent Projekte · Produktdatenmanagement (EN-190, später EG-902) · 12/2013 – 03/2017</h3>
+      <ul>
+      <li>Wechsel ins <strong>Produktdatenmanagement</strong> — das Rückgrat der Fahrzeugentwicklung: Stücklisten, Änderungs- &amp; Freigabeprozesse für alle Baureihen.</li>
+      <li>Vom <strong>Spezialisten zum Referenten</strong> (2016) — mehr Verantwortung für ressortübergreifende Prozesse.</li>
+      </ul>
+      <p class="muted">Bis heute mein Themenfeld: Wer die Produktdaten beherrscht, versteht das ganze Auto.</p>`,
+    experte:`<h3>Experte Gesamtfahrzeug-Lösungen · EG-94 · 04/2017 – 03/2021</h3>
+      <ul>
+      <li><strong>Expertenlaufbahn:</strong> ab 04/2017 Experte „Gesamtfahrzeug (Lösungen)“ im außertariflichen Kreis (G8, ab 10/2018 G9 · Expert Level IV) — Karriere geht auch <em>ohne</em> Führungsverantwortung.</li>
+      <li><strong>Agile Transformation:</strong> Mitaufbau und Steuerung der Domäne Produktdatenmanagement — Vision, Themenpriorisierung, Budget- &amp; Ressourcensteuerung, Zusammenarbeitsmodell der Domänen; Mitgestaltung der neuen EG-9 Fachteamstruktur.</li>
+      <li><strong>Prozesse &amp; Projekte:</strong> Leitung Fachteam PMT (Freigabeprozesse), Weiterentwicklung Freigaberegelwerk, Rollout &amp; Abschluss „E-Baureihen-App“, Projektleitung Umstellung der Derivatsbezeichner (BMW &amp; MINI), weltweiter Rollout des Freigabeprozesses in den Werken, Hauptansprechpartner Revision.</li>
+      <li><strong>Selbst bauen statt beauftragen:</strong> 2020 eigenständig einen BI-Prototyp zur Messung der Bauteilevarianz entwickelt (QlikSense, Projekt KOM-NEXT) — der Vorläufer meiner heutigen „Selbermacher“-Linie.</li>
+      </ul>
+      <p class="muted">Expertenpfad und Führungspfad sind bei BMW gleichwertig — meine Brücke zur Führungsrolle.</p>`,
+    leiter:`<h3>Leiter Produktkonfiguration · EG-940 · seit 04/2021</h3>
+      <ul>
+      <li><strong>Führungsrolle:</strong> seit 01.04.2021 Gruppenleiter EG-940 (Planstelle „Leiter Produktkonfiguration“, Leadership Level IV) — eigenes Team, Budgetverantwortung, die Produktkonfiguration der BMW Group.</li>
+      <li><strong>Roter Faden:</strong> Altsysteme abschalten, manuelle Prozesse eliminieren, KI vom Piloten in die Fläche bringen — Motto: <em>Eigenleistung statt Fremdvergabe</em>.</li>
+      <li><strong>Führung in schwieriger Zeit:</strong> Abbau von fast 20 % der Planstellen transparent und fair gestaltet — Team-Zufriedenheit (HPO-Index) trotzdem bei herausragenden 88 %.</li>
+      </ul>
+      <p class="muted">Und das nächste Kapitel? KI noch tiefer in die Produktkonfiguration bringen — und weiter selber bauen.</p>`,
+    fazit:`<h3>Fazit · Was ich aus 22 Jahren BMW mitnehme</h3>
+      <ul>
+      <li><strong>Alltag früher:</strong> sehr meeting-lastig — im Kern haben wir externe Dienstleister gesteuert: gesagt, was zu tun ist, und Ergebnisse kontrolliert.</li>
+      <li><strong>Alltag heute:</strong> dank KI &amp; Vibe Coding (und der Absatzkrise) brauchen wir viel weniger Externe und schaffen selbst wieder viel mehr — macht mir <em>deutlich mehr Spaß</em> als noch vor 4 Jahren.</li>
+      <li><strong>Was man braucht:</strong> in IT/KI privat am Ball bleiben („jeden Tag ändert sich die Welt“); als Führungskraft ist der Umgang mit Menschen der Schlüssel.</li>
+      <li><strong>Was ich liebe:</strong> die Freiheit, mein Team — und jedes Jahr ein anderes Auto zu fahren.</li>
+      </ul>
+      <p class="muted">Lektion: Firmen sind keine Familien — Arbeiten kann trotzdem Spaß machen.</p>`
+  };
+  // Stations-Icons als Inline-SVG (Stil analog zu den Epochen-Bildern)
+  const erasBMW={
+    einstieg:[
+      {n:'BMW-Hochhaus „Vierzylinder“',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="36" y="24" width="11" height="44" rx="5.5" fill="#9db0cc"/><rect x="49" y="19" width="11" height="49" rx="5.5" fill="#c3d0e4"/><rect x="62" y="19" width="11" height="49" rx="5.5" fill="#c3d0e4"/><rect x="75" y="24" width="11" height="44" rx="5.5" fill="#9db0cc"/><g stroke="#0a1024" stroke-width="1"><line x1="36" y1="34" x2="86" y2="34"/><line x1="36" y1="44" x2="86" y2="44"/><line x1="36" y1="54" x2="86" y2="54"/></g></svg>`},
+      {n:'IT-Sicherheit & Integration',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><path d="M60 14 L82 22 V44 C82 58 60 68 60 68 C60 68 38 58 38 44 V22 Z" fill="#13213b" stroke="#4da3ff" stroke-width="3"/><rect x="52" y="38" width="16" height="14" rx="3" fill="#4da3ff"/><path d="M55 38 v-5 a5 5 0 0 1 10 0 v5" fill="none" stroke="#4da3ff" stroke-width="3"/><circle cx="60" cy="45" r="2.4" fill="#0a1024"/></svg>`}
+    ],
+    bank:[
+      {n:'BMW Bank · Basel II & Meldewesen',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><path d="M60 14 L94 30 H26 Z" fill="#9db0cc"/><rect x="32" y="33" width="8" height="26" fill="#c3d0e4"/><rect x="47" y="33" width="8" height="26" fill="#c3d0e4"/><rect x="62" y="33" width="8" height="26" fill="#c3d0e4"/><rect x="77" y="33" width="8" height="26" fill="#c3d0e4"/><rect x="26" y="61" width="68" height="7" fill="#9db0cc"/><text x="60" y="27" text-anchor="middle" font-size="10" font-weight="bold" fill="#0a1024">€</text></svg>`},
+      {n:'BI-Steuerungssystem Händlerfinanzierung',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="30" y="48" width="10" height="18" fill="#4da3ff"/><rect x="45" y="40" width="10" height="26" fill="#4da3ff"/><rect x="60" y="30" width="10" height="36" fill="#33e0c0"/><rect x="75" y="22" width="10" height="44" fill="#ffb454"/><polyline points="30,42 50,32 66,24 84,16" fill="none" stroke="#eaf1fb" stroke-width="2.5"/><circle cx="84" cy="16" r="3" fill="#eaf1fb"/></svg>`}
+    ],
+    dwh:[
+      {n:'Data Warehouse (BI-Plattform)',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><ellipse cx="60" cy="22" rx="24" ry="8" fill="#4da3ff"/><path d="M36 22 v14 a24 8 0 0 0 48 0 v-14" fill="#2f6ca8"/><path d="M36 36 v14 a24 8 0 0 0 48 0 v-14" fill="#26538a"/><ellipse cx="60" cy="36" rx="24" ry="8" fill="none" stroke="#0a1024" stroke-width="1.5"/><ellipse cx="60" cy="50" rx="24" ry="8" fill="none" stroke="#0a1024" stroke-width="1.5"/></svg>`},
+      {n:'„Gläserne Pipeline“ · Termin-Transparenz',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="18" y="36" width="84" height="12" rx="6" fill="none" stroke="#9db0cc" stroke-width="2"/><circle cx="32" cy="42" r="4" fill="#33e0c0"/><circle cx="50" cy="42" r="4" fill="#33e0c0"/><circle cx="68" cy="42" r="4" fill="#ffb454"/><path d="M84 42 h10 m-4 -4 l4 4 l-4 4" stroke="#eaf1fb" stroke-width="2.5" fill="none"/><path d="M88 58 h14 v10 h-14 z M91 58 v-5 h4 v5" fill="#9db0cc"/><g stroke="#26385c" stroke-width="1.5"><line x1="32" y1="30" x2="32" y2="24"/><line x1="50" y1="30" x2="50" y2="24"/><line x1="68" y1="30" x2="68" y2="24"/></g></svg>`}
+    ],
+    baukasten:[
+      {n:'Baukasten-Strategie',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><g stroke="#0a1024" stroke-width="1.5"><rect x="34" y="46" width="26" height="16" rx="2" fill="#4da3ff"/><rect x="60" y="46" width="26" height="16" rx="2" fill="#33e0c0"/><rect x="47" y="26" width="26" height="16" rx="2" fill="#ffb454"/><rect x="39" y="42" width="7" height="5" rx="1.5" fill="#4da3ff"/><rect x="52" y="42" width="7" height="5" rx="1.5" fill="#4da3ff"/><rect x="65" y="42" width="7" height="5" rx="1.5" fill="#33e0c0"/><rect x="78" y="42" width="7" height="5" rx="1.5" fill="#33e0c0"/><rect x="52" y="22" width="7" height="5" rx="1.5" fill="#ffb454"/><rect x="65" y="22" width="7" height="5" rx="1.5" fill="#ffb454"/></g></svg>`},
+      {n:'PMT · Prozesse, Methoden, Tools',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><g fill="#9db0cc"><rect x="56" y="18" width="8" height="48" rx="2" transform="rotate(0 60 42)"/><rect x="56" y="18" width="8" height="48" rx="2" transform="rotate(45 60 42)"/><rect x="56" y="18" width="8" height="48" rx="2" transform="rotate(90 60 42)"/><rect x="56" y="18" width="8" height="48" rx="2" transform="rotate(135 60 42)"/></g><circle cx="60" cy="42" r="15" fill="#9db0cc"/><circle cx="60" cy="42" r="7" fill="#0a1024"/></svg>`}
+    ],
+    produktdaten:[
+      {n:'Produktdaten · Stücklisten & Struktur',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><g stroke="#26385c" stroke-width="2"><line x1="60" y1="24" x2="34" y2="46"/><line x1="60" y1="24" x2="60" y2="52"/><line x1="60" y1="24" x2="86" y2="46"/><line x1="34" y1="46" x2="60" y2="52"/><line x1="86" y1="46" x2="60" y2="52"/></g><circle cx="60" cy="24" r="7" fill="#4da3ff"/><circle cx="34" cy="46" r="6" fill="#33e0c0"/><circle cx="86" cy="46" r="6" fill="#33e0c0"/><circle cx="60" cy="52" r="6" fill="#ffb454"/><circle cx="60" cy="68" r="4" fill="#9db0cc"/><line x1="60" y1="58" x2="60" y2="64" stroke="#26385c" stroke-width="2"/></svg>`},
+      {n:'Änderungs- & Freigabemanagement',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><path d="M42 16 h26 l10 10 v42 h-36 z" fill="#13213b" stroke="#9db0cc" stroke-width="2"/><path d="M68 16 v10 h10" fill="none" stroke="#9db0cc" stroke-width="2"/><g stroke="#26385c" stroke-width="2"><line x1="48" y1="36" x2="72" y2="36"/><line x1="48" y1="43" x2="72" y2="43"/><line x1="48" y1="50" x2="64" y2="50"/></g><circle cx="70" cy="58" r="9" fill="#33e0c0"/><path d="M66 58 l3 3 l6 -6" fill="none" stroke="#0a1024" stroke-width="2.5"/></svg>`}
+    ],
+    experte:[
+      {n:'Gesamtfahrzeug-Lösungen',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><path d="M22 56 q1 -8 12 -10 l10 -9 q4 -3 11 -3 h14 q9 0 15 7 l5 5 q9 2 9 8 v4 h-8 a8 8 0 0 0 -16 0 h-28 a8 8 0 0 0 -16 0 h-8 z" fill="#13213b" stroke="#4da3ff" stroke-width="2.5"/><circle cx="40" cy="58" r="6" fill="#9db0cc"/><circle cx="84" cy="58" r="6" fill="#9db0cc"/><circle cx="62" cy="43" r="2.5" fill="#33e0c0"/><circle cx="76" cy="47" r="2.5" fill="#33e0c0"/><line x1="62" y1="43" x2="76" y2="47" stroke="#33e0c0" stroke-width="1.5"/></svg>`},
+      {n:'Agile Transformation · Domäne PDM',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><path d="M60 20 a22 22 0 1 1 -20 12" fill="none" stroke="#33e0c0" stroke-width="4" stroke-linecap="round"/><path d="M40 24 v10 h10" fill="none" stroke="#33e0c0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="60" cy="42" r="6" fill="#ffb454"/></svg>`}
+    ],
+    leiter:[
+      {n:'ProCAT · KI-Chatbot produktiv',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="34" y="26" width="52" height="34" rx="10" fill="#13213b" stroke="#4da3ff" stroke-width="2.5"/><line x1="60" y1="26" x2="60" y2="17" stroke="#4da3ff" stroke-width="2.5"/><circle cx="60" cy="14" r="3.5" fill="#4da3ff"/><circle cx="49" cy="42" r="4.5" fill="#33e0c0"/><circle cx="71" cy="42" r="4.5" fill="#33e0c0"/><path d="M50 52 q10 6 20 0" fill="none" stroke="#9db0cc" stroke-width="2.5" stroke-linecap="round"/><path d="M46 60 l-6 8 v-8 z" fill="#13213b" stroke="#4da3ff" stroke-width="2"/><path d="M92 22 l2 5 5 2 -5 2 -2 5 -2 -5 -5 -2 5 -2 z" fill="#ffb454"/></svg>`},
+      {n:'Führung · eigenes Team',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><circle cx="60" cy="24" r="8" fill="#ffb454"/><path d="M46 44 a14 12 0 0 1 28 0 z" fill="#ffb454"/><g stroke="#26385c" stroke-width="2"><line x1="60" y1="46" x2="34" y2="58"/><line x1="60" y1="46" x2="60" y2="58"/><line x1="60" y1="46" x2="86" y2="58"/></g><g fill="#9db0cc"><circle cx="34" cy="60" r="5"/><circle cx="60" cy="60" r="5"/><circle cx="86" cy="60" r="5"/><path d="M26 74 a9 8 0 0 1 16 0 z"/><path d="M52 74 a9 8 0 0 1 16 0 z"/><path d="M78 74 a9 8 0 0 1 16 0 z"/></g></svg>`}
+    ],
+    fazit:[
+      {n:'Was ich liebe',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><path d="M60 66 C36 50 30 36 38 26 C44 19 55 20 60 30 C65 20 76 19 82 26 C90 36 84 50 60 66 Z" fill="#ff5d7a"/></svg>`},
+      {n:'Kompass · dranbleiben &amp; Menschen führen',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><circle cx="60" cy="42" r="24" fill="none" stroke="#4da3ff" stroke-width="3"/><path d="M60 24 L67 42 L60 60 L53 42 Z" fill="#33e0c0"/><circle cx="60" cy="42" r="3.5" fill="#eaf1fb"/><line x1="60" y1="14" x2="60" y2="19" stroke="#4da3ff" stroke-width="2.5"/></svg>`}
+    ]
+  };
+  function eraRowBMW(key){
+    const arr=erasBMW[key]; if(!arr)return '';
+    return '<div class="eraimgs">'+arr.map(it=>
+      `<figure class="eraimg" title="${it.n}">${it.s}<span class="cap">${it.n}</span></figure>`
+    ).join('')+'</div>';
+  }
+  // Drilldown: Stationen mit Portfolio-Jahren zeigen Jahres-Chips im Detailkasten
+  const stationYears={experte:['2019','2020'],leiter:['2021','2022','2023','2024','2025']};
+  const tldetailBMW=document.getElementById('tldetailBMW');
+  let bmwStation=null;
+  // Top-Themen pro Portfolio-Jahr (Feld „Zielerreichung/Leistungsergebnisse“) für die Stations-Übersicht
+  const yearTops={
+    '2019':'Agile Transformation der Domäne PDM operationalisiert · Freigaberegelwerk &amp; Leitung Fachteam PMT · Rollout „E-Baureihen-App“',
+    '2020':'Domänensteuerung mit voller IT-Mittel-Transparenz · weltweiter Rollout Freigabeprozess (SBAW/ProAn, 7 Revisionspunkte geschlossen) · eigener QlikSense-Prototyp Variantenmanagement',
+    '2021':'Start als Gruppenleiter · Produktkonfiguration Neue Klasse (NCAR) inkl. neuer Derivats-Nomenklatur (erste seit 1968) · Mainframe-Ablösung IMS→DB2 &amp; ~20 Mio. € Hebel Bauabweichungen',
+    '2022':'ModulOrg.Next konzipiert &amp; umgesetzt · CMMD neu aufgestellt, erste Machine-Learning-Ansätze · Beauftragungs-/Homologationsebene &amp; MHE-Welt eingeführt',
+    '2023':'Erste KI produktiv (BTRV-Vorhersage) · erster eigener GenAI-Chatbot · Zukunftsprogramm PSD.NEXT aufgesetzt',
+    '2024':'ProCAT &amp; Q-Kompass-Chatbot in BMW-weiter Integrationsumgebung · KI-PoC Genteil-Vorhersage bewertet · PSD.NEXT-Cluster gestartet',
+    '2025':'Produktiv-GoLive ProCAT (GPT-4.5, ohne externes Budget) · Nacharbeitsquote 90 % → &lt;25 % durch eigene PowerApps · MHE-GoLive Korea/USA (Mainframe-Einsparung)'
+  };
+  function yearTopsBlock(st){
+    const ys=stationYears[st]; if(!ys)return '';
+    return '<div class="yeartops"><div class="lbl">Top-Themen aus den Jahres-Portfolios — Jahr anklicken für alle Details</div>'+
+      ys.map(y=>`<div class="yt"><button class="yearchip" data-year="${y}">${y}</button><p>${yearTops[y]||''}</p></div>`).join('')+
+      '</div>';
+  }
+  function chipRowBMW(st,activeYear){
+    const ys=stationYears[st]; if(!ys)return '';
+    return '<div class="yearchips"><span class="lbl">Erfolge im Detail</span>'+
+      `<button class="yearchip${!activeYear?' on':''}" data-year="">Überblick</button>`+
+      ys.map(y=>`<button class="yearchip${activeYear===y?' on':''}" data-year="${y}">${y}</button>`).join('')+
+      '</div>';
+  }
+  function renderBMW(st,year){
+    bmwStation=st;
+    if(year){
+      tldetailBMW.innerHTML=chipRowBMW(st,year)+(detailsPofo['p'+year]||'');
+    }else{
+      tldetailBMW.innerHTML=chipRowBMW(st,null)+(detailsBMW[st]||'')+yearTopsBlock(st)+eraRowBMW(st);
+    }
+    tldetailBMW.scrollTop=0;
+  }
+  document.querySelectorAll('#timelineBMW .tl').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.stopPropagation();
+      document.querySelectorAll('#timelineBMW .tl').forEach(x=>x.classList.remove('sel'));
+      el.classList.add('sel');
+      renderBMW(el.dataset.key,null);
+    });
+  });
+  tldetailBMW.addEventListener('click',e=>{
+    const b=e.target.closest('.yearchip'); if(!b)return;
+    e.stopPropagation();
+    renderBMW(bmwStation,b.dataset.year||null);
+  });
+  // Übergang Lebensweg ⇄ BMW-Zeitleiste
+  document.getElementById('tldetail').addEventListener('click',e=>{
+    if(e.target.closest('#gotoBMW')){e.stopPropagation();show(4);}
+  });
+  const backBtn=document.getElementById('backToLife');
+  if(backBtn)backBtn.addEventListener('click',e=>{e.stopPropagation();show(3);});
+
+
+  // ===== BMW Erfolge im Detail: ein Eintrag pro Portfolio-Jahr 2019–2025 =====
+  const detailsPofo={
+    p2019:`<h3>2019 · Experte Gesamtfahrzeug-Lösungen (EG-94) — Agile Transformation &amp; Freigabeprozesse</h3>
+      <ul>
+      <li><strong>Agile Transformation der Domäne Produktdatenmanagement:</strong> Domänen- und Produktarbeit operationalisiert; das Zusammenarbeitsmodell zwischen den Domänen sowie Domäne/Initiative konzipiert, abgestimmt und verbindlich vereinbart.</li>
+      <li><strong>ItO-Prozesse (Freigabe):</strong> Leitung des Fachteams PMT und methodische Führung des PMT-Netzwerks bei EG-9; Freigaberegelwerk fortgeschrieben und die Verfahrensanweisung Freigabe für Kooperationsfahrzeuge erweitert; Netzwerkrunde Freigabe neu ausgerichtet.</li>
+      <li><strong>Produktstammdaten:</strong> Vergabe neuer Entwicklungsbezeichnungen gesteuert; Rollout und Projektabschluss der „E-Baureihen-App“.</li>
+      <li><strong>Krisenfest:</strong> Vorgehen für verspätete Produktionsfreigaben vereinbart, Migration und Nacharbeit erfolgreich koordiniert.</li>
+      <li><strong>Steuerung:</strong> Budget- und Planstellen-Steuerung der Abteilung und der Domäne PDM auf Ziel; überjährige Planungsprognose erarbeitet.</li>
+      <li><strong>Extras:</strong> Hauptansprechpartner für Revisionsthemen bei EG-94; Klärung Bauabweichungszuschläge und rechtlicher Rahmen Freigabeprozess Alpina.</li>
+      </ul>
+      <p class="muted">Rolle: Experte „Gesamtfahrzeug (Lösungen)“, Expert Level IV.</p>`,
+    p2020:`<h3>2020 · Experte Gesamtfahrzeug-Lösungen (EG-94) — Domänensteuerung &amp; erster selbst gebauter Prototyp</h3>
+      <ul>
+      <li><strong>Domäne PDM gesteuert:</strong> Domain-Vision fortgeschrieben und mit der EG-9-Strategie abgeglichen; Themenpriorisierung im Budgeteckwert verankert; vollständige Transparenz über alle IT-Mittel (inkl. Wartung &amp; Betrieb) hergestellt; Finanzierungslücke iPDM mit Controlling und Programmleitung gelöst.</li>
+      <li><strong>Projektleitung mit Wirkung:</strong> Reibungslose Leitung des Projekts zur Umstellung der Derivatsbezeichner bei BMW und MINI (GENESYS).</li>
+      <li><strong>Weltweiter Rollout:</strong> Umstellung des SBAW-Prozesses auf den ItO-Freigabeprozess inkl. weltweitem Rollout über alle betroffenen Abteilungen — der neue Bauabweichungsprozess schloss sieben offene Revisionspunkte (QUISS).</li>
+      <li><strong>Selbst gebaut:</strong> Komplett eigenständige Entwicklung eines Prototyps für das Variantenmanagement auf Basis des Generischen Teils (QlikSense, Projekt KOM-NEXT) — inkl. automatisierter wöchentlicher Datenversorgung. In der ersten Jahreshälfte dafür selbst in QlikSense eingearbeitet.</li>
+      <li><strong>Organisation:</strong> Aufbau und Transition der neuen EG-9-Fachteamstruktur 2021 mitgestaltet.</li>
+      </ul>
+      <p class="muted">Der QlikSense-Prototyp war mein Wendepunkt: nicht mehr nur steuern — wieder selbst bauen.</p>`,
+    p2021:`<h3>2021 · Leiter Produktkonfiguration (EG-940) — Start der Führungsrolle &amp; Neue Klasse</h3>
+      <ul>
+      <li><strong>Führungsrolle:</strong> Übernahme der Gruppenleitung EG-940 zum 1. April — offizielle Planstelle „Leiter Produktkonfiguration“ (Leadership Level IV); Produkt-Owner-Rolle sauber aus der Leitungsfunktion ausgegliedert.</li>
+      <li><strong>Neue Klasse (NCAR):</strong> Produktstammdaten und Produktstruktur für die NCAR-Architektur befähigt; Motorrad-Generik in die Produktstruktur-Governance integriert; Modulorganisation 21.1 umgesetzt.</li>
+      <li><strong>Historischer Schritt:</strong> Überarbeitung der BMW Derivats-Nomenklatur inkl. neuer Syntax und Semantik — die erste neue Systematik seit 1968 (E03).</li>
+      <li><strong>Technologie-Ablösung:</strong> In CMMD/MatrX die hierarchische Mainframe-Datenhaltung (IMS) durch relationale Technologie (DB2) ersetzt; zentralen Materialstamm für internationale Umfänge befähigt (u. a. China).</li>
+      <li><strong>Digital für alle:</strong> Tool „VIZ Regelvisualisierung“ gemeinsam mit FG produktiv für alle BMW-Mitarbeiter bereitgestellt; Schnittstellen für frühe Produktstammdaten (EARL/BOA) geöffnet; Projekt dPDM abgeschlossen; Energiespeicher als eigenes Produkt in der Hierarchie implementiert.</li>
+      <li><strong>Extrameile mit Hebel:</strong> Vorstands-Vorlage zur Optimierung der Bauabweichungen — Wirkungsbeitrag zur Kostenreduzierung von 50 auf ca. 30 Mio. €.</li>
+      </ul>
+      <p class="muted">Erstes Jahr als Führungskraft (Leadership Level IV) — und gleich die Architektur-Generation der Zukunft.</p>`,
+    p2022:`<h3>2022 · Leiter Produktkonfiguration — Produktstruktur, Materialstamm &amp; ModulOrg.Next</h3>
+      <ul>
+      <li><strong>Governance ausgebaut:</strong> Weiterentwicklung von Modul-Organisation und Produktstruktur PKW sowie des Regelwerks zur Produktstammdatenpflege; ModulOrg.Next konzipiert und umgesetzt; „Produktstammdaten.NEXT“ im Steuerkreis bestätigt.</li>
+      <li><strong>Neue Strukturen eingeführt:</strong> Beauftragungs- und Homologationsebene sowie die „MHE-Welt“ eingeführt — strategische, ressortübergreifende Allianzen im Netzwerk Produktstammdaten (fach- und IT-seitig).</li>
+      <li><strong>Produktarbeit gebündelt:</strong> Zusammenarbeit mit den Initiativen iPDM (inkl. NCAR-Befähigung), APPROVE, CES/PPS, Connected Engineering und APOLLO im Produkt „Product Master Data“.</li>
+      <li><strong>Zentraler Materialstamm (CMMD):</strong> Neuaufstellung und Vermessung; fachliche Konzeption der Verteilfunktion; Anlage &amp; Verwaltung aller neun genutzten Sachnummernarten; Entflechtung verwendungsneutraler und -spezifischer Attribute; Befähigung China; erste Machine-Learning-Ansätze.</li>
+      <li><strong>Produktstruktur:</strong> Befähigung der Gen6-Antriebsarchitektur; Energiespeicher als eigenständige Produkthierarchie im SAP-PDM-Verbund; phasengerechte Terminierung der Produktstammdaten mit Release; Trennung Technik/Vertrieb bei Farbsachnummern; Verantwortung L-Kennzeichen-App geregelt.</li>
+      <li><strong>Eigenentwicklung gestartet:</strong> ModulOrg.Next-App gemeinsam mit FG-41 in Eigenleistung begonnen.</li>
+      </ul>
+      <p class="muted">Konsolidierungsjahr: Strukturen und Datenqualität als Fundament für die KI-Schritte danach.</p>`,
+    p2023:`<h3>2023 · Leiter Produktkonfiguration — erste KI produktiv &amp; PSD.NEXT aufgesetzt</h3>
+      <ul>
+      <li><strong>Erste KI im Produktivbetrieb:</strong> KI-gestützte Vorhersage der Teile-Klassifizierung (BTRV) produktiv verfügbar — weitere Attribute (Gefahrgut-Kennzeichen) in Umsetzung.</li>
+      <li><strong>Generative AI:</strong> Erster eigener Chatbot auf GenAI-Basis entwickelt — mit einem internationalen Team; parallel Selbststudium Generative AI &amp; Knowledge Graphs. Der Grundstein für ProCAT.</li>
+      <li><strong>PSD.NEXT:</strong> Projektaufstellung im iPDM-Steuerungsboard bestätigt — das Zukunftsprogramm für die Produktstammdaten.</li>
+      <li><strong>Group-Standard:</strong> Festlegung der Entwicklungsbaureihenbezeichner PKW &amp; Motorrad konzernweit abgestimmt und veröffentlicht (TEREG).</li>
+      <li><strong>Lieferobjekte:</strong> BusinessHub-Release in der HLK abgeschlossen und in die Linie übergeben; neue Logic Services für die Werkstückliste; Grundbefähigung BOA; Schnittstellen EARL-TAM und BOA-VRM konzipiert und bestätigt; Projektabschluss HSA-Tool; CMMD „Functional Ready“ (Farb-, Doppel- &amp; BEMI-Sachnummern, Suche).</li>
+      <li><strong>Prozessklärung auf Top-Ebene:</strong> Zusammenspiel MHE/BHE konzipiert und im HAL-Kamingespräch vereinbart; Template-Lösung evaluiert und Empfehlung im HAL-Steuerkreis PSD verabschiedet.</li>
+      <li><strong>Team-Turnaround:</strong> Projektteam CMMD aus einer schwierigen Phase geführt und neu formiert — Termine und Budgets wieder präzise eingehalten.</li>
+      </ul>
+      <p class="muted">Das Jahr, in dem aus „KI ausprobieren“ „KI liefern“ wurde.</p>`,
+    p2024:`<h3>2024 · Leiter Produktkonfiguration — KI-PoCs, PSD.NEXT-Cluster &amp; ProCAT im Test</h3>
+      <ul>
+      <li><strong>KI-Proof-of-Concepts:</strong> KI-PoC zur Genteil-Vorhersage erfolgreich bewertet; ProCAT und Q-Kompass-Chatbot in der BMW-weiten Integrationsumgebung bereitgestellt.</li>
+      <li><strong>Prozessverantwortung ausgebaut:</strong> Transition der Prozessverantwortung ItO.05.01.01 (Produktstruktur managen) zu EG-94 ausgestaltet und beschlossen; Kennzahl PS-Durchhaltegrad erneuert; Rechtevergabe im HAL-Prozess verankert.</li>
+      <li><strong>PSD.NEXT-Cluster gestartet:</strong> erste Ergebnisse geliefert — Durchgängigkeit der Grundausstattungen bis in den Vertrieb, Release-Befähigung der Logic Services abgeschlossen.</li>
+      <li><strong>Produktstruktur:</strong> GENERIK-Erweiterung für die Klasse ANTRIEB_MMG (sortenreine M*/F*-Trennung); Unterstützung der OKA-Ablöse (Prüf-Weiche/CCG, Baubarkeitsprüfung PuK/OKA); Prozessklärung HSA-Pflege.</li>
+      <li><strong>Connected Engineering:</strong> BOA-VRM-Schnittstelle implementiert; TOS-Korfu-Integration bestätigt und gestartet.</li>
+      <li><strong>Strategisch:</strong> EG-8/9-Grobkonzept zur Multisourcing-Steuerung Hochvoltspeicher; Mitarbeit an den Nordsternen „Data Driven Services“ und „Flexible Produktstammdaten“.</li>
+      </ul>
+      <p class="muted">Volle Zielerreichung — und die KI-Projekte aus 2023 reifen Richtung Serienbetrieb.</p>`,
+    p2025:`<h3>2025 · Leiter Produktkonfiguration — ProCAT-GoLive, messbare KI-Effekte &amp; KI-Boost</h3>
+      <ul>
+      <li><strong>ProCAT produktiv:</strong> GoLive des Produktkonfigurations-Chatbots (GPT-4.5-Basis) inkl. Integration in GAIA — ohne externes Budget realisiert.</li>
+      <li><strong>Messbarer KI-Effekt:</strong> Nacharbeitsquote der Änderungsanträge von 90 % auf unter 25 % gesenkt — durch Entfall manueller Prozesse und in Eigenleistung erstellte PowerApps; Genteil-Vorhersage produktiv für das Pilot-SE-Team in MatrX.</li>
+      <li><strong>Altsysteme abgelöst:</strong> GoLive der MHE-Pflege in PIP-Vehicle in Korea &amp; USA (OKA-Ablöse, Einsparung von Mainframe-Kosten); Verwaltungstool GeneriX produktiv; EARL/TAM-Schnittstelle für vorläufige Typschlüssel.</li>
+      <li><strong>Prozesse:</strong> ItO.05.01.01 in neuer Stage-Logik veröffentlicht; Modulreorg 25.2 umgesetzt; Kennzahl PS-Durchhaltegrad geschärft; HSA-Statuskonzept; Release-Befähigung für Rolls-Royce.</li>
+      <li><strong>KI in die Breite:</strong> ItO-Gamechanger „Änderungs- &amp; Freigabemanagement“ aufgesetzt; EG-9 „KI-Boost“ mitgestaltet — Freaky Friday, Mitarbeiterqualifikation, KI-Roadmap; Analyse zur KI-optimierten Auslastung der Logic Services.</li>
+      <li><strong>Führung:</strong> Abbau von 2,5 Planstellen (fast 20 %) transparent und empathisch gestaltet — HPO-Team-Index trotzdem bei herausragenden 88 %.</li>
+      </ul>
+      <p class="muted">KI läuft bei uns produktiv — nicht nur auf Folien. Und das Team ist dabei stärker geworden.</p>`
+  };
 </script>
 </body>
 </html>
