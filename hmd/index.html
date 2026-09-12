@@ -4,6 +4,11 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Partizipative KI-Einführung im Produktdatenmanagement — Koch & Schenkl</title>
+<meta name="description" content="Fachvortrag zur HMD-372-Fallstudie der BMW Group: Wie partizipative Mechanismen — Führung als Enabler, vierstufige Qualifizierung, Lernformate und Vibe Coding — die Einführung generativer KI tragen.">
+<meta property="og:title" content="Partizipative KI-Einführung im Produktdatenmanagement">
+<meta property="og:description" content="Mitarbeitende als aktive Gestalter der KI-Transformation — Fallstudie BMW Group (Koch & Schenkl, HMD 372).">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mschenkl.github.io/cv/hmd/">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -158,6 +163,32 @@
   .nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:30}
   .nav button{background:var(--card);border:1px solid var(--line);color:var(--ink);width:38px;height:30px;border-radius:9px;cursor:pointer;font-size:1rem}
   .nav button:hover{border-color:var(--accent)}
+
+  /* Review-Runde 2: Links, Fokus, A11y, Eval-Zeilen, Nutzungs-Kette, Mobil */
+  a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+  a:hover{color:var(--accent2)}
+  button.tl{font:inherit;text-align:left;color:var(--ink);width:auto}
+  :focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
+  .visually-hidden{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .evalrows{margin-top:1rem;display:flex;flex-direction:column;gap:.6rem}
+  .evalrow{display:flex;gap:1.1rem;align-items:baseline;background:var(--card);border:1px solid var(--line);border-left:3px solid var(--accent2);border-radius:12px;padding:.65rem 1rem}
+  .evalrow .kpi{flex:0 0 104px;text-align:right;font-size:clamp(1.3rem,2.4vw,1.9rem);font-weight:900;color:var(--warm);font-variant-numeric:tabular-nums}
+  .evalrow p{font-size:clamp(.92rem,1.45vw,1.12rem);line-height:1.45}
+  .chainrow{display:flex;flex-wrap:wrap;align-items:stretch;gap:.5rem;margin:1rem 0 1.2rem}
+  .chainrow .ch{flex:1 1 140px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:.7rem .9rem;text-align:center}
+  .chainrow .ch b{display:block;font-size:clamp(1.3rem,2.4vw,2rem);color:var(--accent);font-weight:900}
+  .chainrow .ch span{color:var(--muted);font-size:.85rem}
+  .chainrow .ar{align-self:center;color:var(--accent2);font-size:1.5rem;font-weight:800}
+  @media (prefers-reduced-motion:reduce){.slide{animation:none}}
+  @media (max-width:700px){
+    .chapternav button{display:none}
+    .chapternav button.major{display:inline-block}
+    .fftable thead{display:none}
+    .fftable tbody tr{display:block;border-bottom:1px solid var(--line);padding:.5rem 0}
+    .fftable tbody td{display:block;padding:.14rem .2rem;border-bottom:none}
+    .evalrow{flex-direction:column;gap:.15rem}
+    .evalrow .kpi{text-align:left;flex:none}
+  }
 </style>
 </head>
 <body>
@@ -167,7 +198,7 @@
 <div class="deck" id="deck">
 
   <!-- 0 TITEL -->
-  <section class="slide title-wrap">
+  <section id="start" class="slide title-wrap">
     <div class="kicker">Fachvortrag · HMD Praxis der Wirtschaftsinformatik · Heft 372 „Partizipation“</div>
     <h1 style="font-size:clamp(2rem,4.6vw,3.8rem)">Partizipative KI-Einführung im Produktdatenmanagement</h1>
     <div class="sub"><strong>Mitarbeitende als aktive Gestalter der KI-Transformation</strong></div>
@@ -176,7 +207,7 @@
   </section>
 
   <!-- 1 AGENDA -->
-  <section class="slide">
+  <section id="agenda" class="slide">
     <div class="kicker">Agenda · drei Akte</div>
     <div class="cards">
       <div class="card clickbox" data-goto="2"><h3>1 · Warum Partizipation?</h3><p>Warum die meisten KI-Einführungen scheitern: Blockaden bei Mitarbeitenden und Management — und der theoretische Rahmen.</p><div class="cta">▸ Zu Akt 1</div></div>
@@ -186,14 +217,14 @@
   </section>
 
   <!-- 2 DIVIDER 1 -->
-  <section class="slide divider">
+  <section id="warum" class="slide divider">
     <div class="num">01</div>
     <h1 style="margin-top:1rem">Warum Partizipation?</h1>
-    <p class="lead" style="margin-top:1rem">Nicht die Technik ist der Engpass der KI-Transformation — <em>sondern der Mensch.</em></p>
+    <p class="lead" style="margin-top:1rem">Technik allein trägt die KI-Transformation nicht — <em>entscheidend ist das Zusammenspiel von Menschen, Führung und Organisation.</em></p>
   </section>
 
   <!-- 3 AUSGANGSLAGE -->
-  <section class="slide">
+  <section id="ausgangslage" class="slide">
     <div class="kicker">Akt 1 · Ausgangslage</div>
     <h2>Viele Unternehmen scheitern an der KI-Einführung</h2>
     <ul>
@@ -206,14 +237,14 @@
   </section>
 
   <!-- 4 BLOCKADEN (interaktiv) -->
-  <section class="slide top fitslide">
+  <section id="blockaden" class="slide top fitslide">
     <div class="kicker" style="margin-top:.4rem">Akt 1 · Warum Mitarbeitende (nicht) mitmachen — <span class="teal">klicke eine Blockade</span></div>
     <div class="timeline" id="timelineBlock">
-      <div class="tl" data-key="unwissen"><span class="go">▸</span><div class="yr">Blockade 1</div><div class="st">Unwissenheit, nicht Widerstand</div><div class="dt">70 % wissen nicht wie</div></div>
-      <div class="tl" data-key="ceiling"><span class="go">▸</span><div class="yr">Blockade 2</div><div class="st">Imagination Ceiling</div><div class="dt">KI nur als Automat erlebt</div></div>
-      <div class="tl" data-key="angst"><span class="go">▸</span><div class="yr">Blockade 3</div><div class="st">Existenzielle Ängste</div><div class="dt">Arbeitsplatz · Expertise</div></div>
-      <div class="tl" data-key="fatigue"><span class="go">▸</span><div class="yr">Blockade 4</div><div class="st">Überforderung &amp; Change Fatigue</div><div class="dt">Tempo · Zeitmangel</div></div>
-      <div class="tl" data-key="mgmt"><span class="go">▸</span><div class="yr">Blockade 5</div><div class="st">Lücken im Management</div><div class="dt">Skills Gap · Mythen</div></div>
+      <button type="button" class="tl" data-key="unwissen"><span class="go">▸</span><div class="yr">Blockade 1</div><div class="st">Unwissenheit, nicht Widerstand</div><div class="dt">70 % wissen nicht wie</div></button>
+      <button type="button" class="tl" data-key="ceiling"><span class="go">▸</span><div class="yr">Blockade 2</div><div class="st">Imagination Ceiling</div><div class="dt">KI nur als Automat erlebt</div></button>
+      <button type="button" class="tl" data-key="angst"><span class="go">▸</span><div class="yr">Blockade 3</div><div class="st">Existenzielle Ängste</div><div class="dt">Arbeitsplatz · Expertise</div></button>
+      <button type="button" class="tl" data-key="fatigue"><span class="go">▸</span><div class="yr">Blockade 4</div><div class="st">Überforderung &amp; Change Fatigue</div><div class="dt">Tempo · Zeitmangel</div></button>
+      <button type="button" class="tl" data-key="mgmt"><span class="go">▸</span><div class="yr">Blockade 5</div><div class="st">Lücken im Management</div><div class="dt">Skills Gap · Mythen</div></button>
     </div>
     <div class="tldetail" id="tldetailBlock">
       <p class="hintline">▸ Fünf Blockaden, die Partizipation verhindern — belegt aus der aktuellen Literatur. Klicke eine Kachel. <span class="muted"></span></p>
@@ -221,11 +252,12 @@
   </section>
 
   <!-- 5 FÜNF BEDINGUNGEN -->
-  <section class="slide">
+  <section id="bedingungen" class="slide">
     <div class="kicker">Akt 1 · Theoretischer Rahmen</div>
     <h2>Fünf Bedingungen effektiver Partizipation <span class="muted" style="font-size:.6em">(Mehmood &amp; Farshchian 2023)</span></h2>
     <table class="fftable">
-      <thead><tr><th>Nr.</th><th>Bedingung</th><th>Kurzbeschreibung</th></tr></thead>
+      <caption class="visually-hidden">Fünf Bedingungen effektiver Mitarbeiterpartizipation nach Mehmood und Farshchian (2023)</caption>
+      <thead><tr><th scope="col">Nr.</th><th scope="col">Bedingung</th><th scope="col">Kurzbeschreibung</th></tr></thead>
       <tbody>
         <tr><td>B1</td><td>Transparente &amp; vertrauenswürdige Strategieentwicklung</td><td>Mitarbeitende kennen und verstehen den strategischen Rahmen der Transformation — und vertrauen ihm.</td></tr>
         <tr><td>B2</td><td>Kommunikation &amp; Zusammenarbeit</td><td>Funktionierende Kommunikationskanäle und Zusammenarbeit über Hierarchieebenen hinweg.</td></tr>
@@ -238,7 +270,7 @@
   </section>
 
   <!-- 6 FORSCHUNGSDESIGN -->
-  <section class="slide top">
+  <section id="methode" class="slide top">
     <div class="kicker" style="margin-top:.4rem">Akt 1 · Forschungsfragen &amp; Methode</div>
     <h2>Action Research: Forschen durch Gestalten</h2>
     <div class="two" style="align-items:start">
@@ -270,14 +302,14 @@
   </section>
 
   <!-- 7 DIVIDER 2 -->
-  <section class="slide divider">
+  <section id="massnahmen" class="slide divider">
     <div class="num">02</div>
     <h1 style="margin-top:1rem">Die Maßnahmen</h1>
     <p class="lead" style="margin-top:1rem">Top-down-Rahmen + Bottom-up-Befähigung — <em>bewusst kombiniert.</em></p>
   </section>
 
   <!-- 8 FÜHRUNG ALS ENABLER -->
-  <section class="slide">
+  <section id="fuehrung" class="slide">
     <div class="kicker">Akt 2 · Maßnahme 1</div>
     <h2>Führung als Enabler — über alle Ebenen</h2>
     <ul>
@@ -286,10 +318,11 @@
       <li><strong>Konkrete Instrumente:</strong> KI-Slot in jedem Mitarbeiter-Forum · „Prompt der Woche“ im Führungskreis (Mitarbeitende zeigen dem Management ihre KI-Lösungen) · Zielvereinbarung „5 KI-Use-Cases je Abteilung erproben“ — <em>welche</em>, entscheiden die Teams selbst · je Gruppe eine benannte KI-Ansprechperson.</li>
     </ul>
     <p class="note">Beobachtung aus der Fallstudie: Die Beteiligung war dort am höchsten, wo Abteilungsleiter selbst intensiv mit KI-Tools arbeiteten und regelmäßig darüber berichteten.</p>
+    <p class="note">Transparenz: Trainings und individuelle KI-Nutzung sind freiwillig. „5 Use Cases je Abteilung“ ist ein organisatorisches Erkundungsziel — kein persönliches Leistungsziel; die KI-Ansprechpartner sind KI-erfahrene, hilfsbereite Kolleginnen und Kollegen.</p>
   </section>
 
   <!-- 9 BEFÄHIGUNG -->
-  <section class="slide top">
+  <section id="befaehigung" class="slide top">
     <div class="kicker" style="margin-top:.4rem">Akt 2 · Maßnahme 2</div>
     <h2>Befähigung: vier Stufen statt Gießkanne</h2>
     <p class="lead">Reine Wissensvermittlung reicht nicht — drei psychologische Grundbedürfnisse müssen erfüllt sein: <strong>Kompetenz erleben, Verbundenheit, Autonomie</strong> <span class="muted">(Hermann et al. 2026)</span>.</p>
@@ -299,23 +332,24 @@
       <div class="card"><h3>3 · Beherrschen</h3><p>Eigene Use Cases umsetzen, Potenziale &amp; Aufwände bewerten, Daten aufbereiten. <span class="hl">14 %</span>.</p></div>
       <div class="card"><h3>4 · Experte</h3><p>KI-Systeme &amp; -Agenten von Konzeption bis Integration entwickeln, Verantwortung übernehmen. <span class="hl">5 %</span>.</p></div>
     </div>
-    <p class="big" style="margin-top:1.2rem">Bisher <span class="accent">~135 von 350</span> Mitarbeitenden freiwillig geschult — von <span class="accent">internen KI-Experten</span> mit Beispielen aus dem echten Arbeitsalltag, flankiert von einem Experten-Netzwerk.</p>
+    <p class="note">Prozentwerte: Selbsteinschätzung der KI-interessierten Mitarbeitenden in der Bedarfsumfrage der Planungsphase — nicht aller ~350 Beschäftigten des Bereichs.</p>
+    <p class="big" style="margin-top:.9rem">Bisher <span class="accent">~135 von 350</span> Mitarbeitenden freiwillig geschult — von <span class="accent">internen KI-Experten</span> mit Beispielen aus dem echten Arbeitsalltag, flankiert von einem Experten-Netzwerk.</p>
   </section>
 
   <!-- 10 LERNFORMATE -->
-  <section class="slide top">
+  <section id="formate" class="slide top">
     <div class="kicker" style="margin-top:.4rem">Akt 2 · Maßnahme 3</div>
     <h2>Lernformate mit Erlebnisfaktor</h2>
     <div class="cards">
       <div class="card"><h3>freaKI frAIday</h3><p>Ganztägiges Präsenzformat alle ~2 Monate: externe Impulse, Live-Coding, Breakout-Sessions, offener KI-Help-Desk, Kurzvorträge der Abteilungsleiter. <span class="hl">Durchgängig ausgebucht</span> — inzwischen Anfragen aus anderen Bereichen.</p></div>
       <div class="card"><h3>AI@Work</h3><p>Eine Stunde pro Quartal, online: Mitarbeitende zeigen in 5–10-Minuten-Vorträgen, wie sie z. B. repetitive Aufgaben KI-gestützt automatisiert haben. Erreicht je Session <span class="hl">~30 %</span> des Bereichs.</p></div>
-      <div class="card"><h3>KI-Team-Challenge</h3><p>Teambuilding „Wer ist es?“: Teams bauen per Vibe Coding in <em>einer</em> Session eine funktionierende KI-Anwendung. Alle 3 Pilotteams erfolgreich; Materialien als <span class="hl">Open Source</span> veröffentlicht (Schenkl 2025).</p></div>
+      <div class="card"><h3>KI-Team-Challenge</h3><p>Teambuilding „Wer ist es?“: Teams bauen per Vibe Coding in <em>einer</em> Session eine funktionierende KI-Anwendung. Alle 3 Pilotteams erfolgreich; Materialien als <a href="https://github.com/MSchenkl/KI-Team-Challenge" target="_blank" rel="noopener noreferrer"><span class="hl">Open Source</span> auf GitHub</a> veröffentlicht (Schenkl 2025).</p></div>
     </div>
     <p class="note">Der Leitgedanke: KI-Impulse nah an den konkreten Arbeitsaufgaben verankern — Live-Erlebnisse durchbrechen das Imagination Ceiling, Regelmäßigkeit wirkt der Überforderung entgegen.</p>
   </section>
 
   <!-- 11 VIBE CODING -->
-  <section class="slide">
+  <section id="vibe-coding" class="slide">
     <div class="kicker">Akt 2 · Maßnahme 4</div>
     <h2>Vibe Coding: Autonomie für den Fachbereich</h2>
     <div class="two" style="align-items:start">
@@ -332,7 +366,7 @@
         <ul>
           <li>100 % Vibe-Coding-Funktion ≠ 100 % <strong>IT-Produktreife</strong>: Authentisierung, Schnittstellen, Monitoring, Recovery.</li>
           <li>Minuten-Iterationen passen nicht zu klassischen <strong>Sprint-Prozessen</strong> — es braucht eigene Governance-Regeln.</li>
-          <li>Der Vibe Coder bleibt <strong>nach dem Deployment in der Verantwortung</strong> — Abgabe bei „80 % fertig“ hat sich als Risiko erwiesen.</li>
+          <li><strong>Fachliche Mitverantwortung und Übergabe an die IT müssen klar geregelt werden</strong> — eine zu frühe Übergabe bei ca. 80 % Fertigstellung hat sich als Risiko erwiesen; wie lange die Verantwortung gilt und wie die Übergabe erfolgt, ist noch offen.</li>
         </ul>
       </div>
     </div>
@@ -340,72 +374,73 @@
   </section>
 
   <!-- 12 DIVIDER 3 -->
-  <section class="slide divider">
+  <section id="ergebnisse" class="slide divider">
     <div class="num">03</div>
     <h1 style="margin-top:1rem">Ergebnisse &amp;<br>Empfehlungen</h1>
     <p class="lead" style="margin-top:1rem">Ehrliche Evaluation statt Erfolgsfolklore — <em>inklusive der Defizite.</em></p>
   </section>
 
   <!-- 13 EVALUATION -->
-  <section class="slide top">
-    <div class="kicker" style="margin-top:.4rem">Akt 3 · Wirksamkeitsanalyse (175 von ~350 Mitarbeitenden)</div>
+  <section id="evaluation" class="slide top">
+    <div class="kicker" style="margin-top:.4rem">Akt 3 · Wirksamkeitsanalyse — 175 Teilnehmende (freiwillig, anonym); die Anzahl der Antwortenden variiert je Frage</div>
     <h2>Die fünf Bedingungen im Realitätstest</h2>
-    <table class="fftable">
-      <thead><tr><th>Bedingung</th><th>Zentrale Befunde</th><th>Erkenntnis</th></tr></thead>
-      <tbody>
-        <tr><td>B1 Strategie</td><td><span class="now">58 %</span> ausreichend informiert · <span class="now">70 %</span> verstehen das Warum</td><td>Übertragbar — aber bei KI-Tempo eine Daueraufgabe, kein Meilenstein</td></tr>
-        <tr><td>B2 Kommunikation</td><td><span class="now">62 %</span> kennen ihre KI-Ansprechpartner</td><td>Übertragbar — Infrastruktur etabliert und bekannt</td></tr>
-        <tr><td>B3 Anreize</td><td><span class="now">67 %</span> in Schulungen · <span class="now">58 %</span> nutzen KI aktiv · <span class="now">57 %</span> finden (noch) keinen Use Case</td><td>Vom Lernen zum Anwenden bleibt eine Hürde — Imagination Ceiling</td></tr>
-        <tr><td>B4 Wissen</td><td>nur <span class="now">38 %</span> fanden Trainings praxisnah · <span class="now">49 %</span> kennen ihren Kompetenzbedarf</td><td>KI-Lernen wird kontinuierlich &amp; „on the job“ — statische Schulungen veralten</td></tr>
-        <tr><td>B5 Balance</td><td>Zeitmangel wird von manchen Mitarbeitenden als Hindernis genannt</td><td>Tagesgeschäft verhindert nicht den Einstieg, hemmt aber die Vertiefung</td></tr>
-      </tbody>
-    </table>
+    <div class="evalrows">
+      <div class="evalrow"><div class="kpi">58&thinsp;%</div><p><strong>B1 Strategie:</strong> fühlen sich ausreichend informiert — und 70&thinsp;% verstehen, warum KI für ihre Aufgabe wichtig ist. <span class="muted">Übertragbar, aber beim KI-Tempo eine Daueraufgabe.</span></p></div>
+      <div class="evalrow"><div class="kpi">62&thinsp;%</div><p><strong>B2 Kommunikation:</strong> kennen ihre KI-Ansprechpartner. <span class="muted">Die Kommunikationsinfrastruktur ist etabliert und bekannt.</span></p></div>
+      <div class="evalrow"><div class="kpi">57&thinsp;%</div><p><strong>B3 Anreize:</strong> finden (noch) keinen Use Case im eigenen Bereich — trotz 67&thinsp;% Schulungsteilnahme und 58&thinsp;% aktiver Nutzung. <span class="muted">Vom Lernen zum Anwenden bleibt die Hürde: Imagination Ceiling.</span></p></div>
+      <div class="evalrow"><div class="kpi">38&thinsp;%</div><p><strong>B4 Wissen:</strong> fanden die Trainings praxisnah; nur 49&thinsp;% kennen ihren Kompetenzbedarf. <span class="muted">KI-Lernen wird kontinuierlich &amp; „on the job“ — statische Schulungen veralten.</span></p></div>
+      <div class="evalrow"><div class="kpi">Zeit</div><p><strong>B5 Balance:</strong> Zeitmangel wird von manchen Mitarbeitenden als Hindernis genannt. <span class="muted">Das Tagesgeschäft verhindert nicht den Einstieg, hemmt aber die Vertiefung.</span></p></div>
+    </div>
     <p class="big" style="margin-top:1rem"><strong>Antwort auf F1:</strong> Alle fünf Bedingungen sind übertragbar — <span class="accent">drei davon (Anreize, Wissen, Balance) brauchen KI-spezifische Erweiterungen.</span></p>
   </section>
 
   <!-- 14 NUTZUNGSDATEN -->
-  <section class="slide">
+  <section id="nutzungsdaten" class="slide">
     <div class="kicker">Akt 3 · Nutzungsdaten als Validierung</div>
-    <h2>Wer den Einstieg schafft, nutzt KI auf hohem Niveau</h2>
+    <h2>Wer den Einstieg findet, nutzt KI auf hohem Niveau</h2>
+    <div class="chainrow">
+      <div class="ch"><b>~350</b><span>Mitarbeitende im Bereich (keine IT-Abteilung)</span></div><div class="ar">→</div>
+      <div class="ch"><b>24&thinsp;%</b><span>nutzen den KI-Coding-Assistenten aktiv</span></div><div class="ar">→</div>
+      <div class="ch"><b>17.400</b><span>Interaktionen, davon &gt;17.100 im Agent Mode</span></div><div class="ar">→</div>
+      <div class="ch"><b>30+</b><span>Tools aus dem Fachbereich, teils an die IT übergeben</span></div>
+    </div>
     <ul>
-      <li><strong>24 %</strong> der ~350 Mitarbeitenden nutzen den KI-Coding-Assistenten aktiv — bemerkenswert für einen Bereich, der <em>keine</em> IT-Abteilung ist.</li>
-      <li><strong>17.400 Interaktionen</strong> während der Beobachtungsphase, davon über <strong>17.100 im Agent Mode</strong> — dem dialogischen Modus, in dem die KI eigenständig komplexe Aufgaben übernimmt. Dominierende Sprache: Python (10.500+).</li>
-      <li><strong>5 %</strong> der Mitarbeitenden erzeugen einen Großteil der Interaktionen — intensive Power-User statt Gleichverteilung.</li>
-      <li>Breite und Tiefe der KI-Nutzung der Mitarbeitenden <strong>korreliert mit der ihrer Führungskräfte</strong>.</li>
+      <li>Dominierende Sprache ist <strong>Python</strong> (10.500+ Interaktionen) — niedrige Einstiegshürde für Datenanalyse, Automatisierung und Vibe Coding.</li>
+      <li><strong>5&thinsp;%</strong> der Mitarbeitenden erzeugen einen Großteil der Interaktionen — intensive Power-User statt Gleichverteilung.</li>
+      <li>Die Beobachtungen <strong>deuten auf einen Zusammenhang</strong> zwischen der KI-Nutzung der Führungskräfte und der Nutzung in ihren Teams hin.</li>
     </ul>
-    <p class="big" style="margin-top:1.2rem">Befragung + Nutzungsdaten zusammen: Zeitmangel und fehlende Use Cases bremsen noch die Breite — <span class="accent">wer einsteigt, nutzt KI intensiv und entwickelt konkrete Werkzeuge</span> (30+ Tools, teils bereits an die IT übergeben).</p>
-    <p class="note">Datenschutz: Die Nutzungsdaten wurden ausschließlich automatisch protokolliert sowie anonymisiert und aggregiert ausgewertet.</p>
+    <p class="big" style="margin-top:1.1rem">Wer den Einstieg findet, <span class="accent">nutzt KI intensiv und entwickelt konkrete Werkzeuge</span> — die betrieblichen Effekte wurden nicht kausal gemessen.</p>
+    <p class="note">Datenschutz: Die Nutzungsdaten wurden ausschließlich anonymisiert und aggregiert ausgewertet; es erfolgte keine personenbezogene Leistungs- oder Verhaltenskontrolle.</p>
   </section>
 
-  <!-- 15 BEITRÄGE -->
-  <section class="slide top">
-    <div class="kicker" style="margin-top:.4rem">Akt 3 · Antwort auf F2 — Beiträge für Forschung &amp; Praxis</div>
-    <h2>Vier Zusatzbedingungen, vier Handlungsempfehlungen</h2>
-    <div class="two" style="align-items:start">
-      <div>
-        <h3 class="accent">Zusatzbedingungen (über B1–B5 hinaus)</h3>
-        <ul>
-          <li><strong>Flächendeckender Buy-in + Qualifizierung des Führungsteams</strong> — ohne KI-kompetente Führungskräfte keine Flächendeckung.</li>
-          <li><strong>Strategische Ausrichtung auf Entlastung</strong> — Mitarbeitende bleiben verantwortlich, ihr Fachwissen zählt weiter.</li>
-          <li><strong>Kultur der Offenheit</strong> gegenüber neuen Ideen, Methoden und Tools.</li>
-          <li><strong>Fehlertoleranz &amp; psychologisch sichere Räume</strong> — experimentieren, bis es funktioniert.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="teal">Handlungsempfehlungen</h3>
-        <ul>
-          <li><strong>Tiefe KI-Kompetenz inhouse aufbauen</strong> (2–3 Personen im Fachbereich) — weniger Abhängigkeit, passgenaue Trainings.</li>
-          <li><strong>Kontinuierliches On-the-job-Lernen</strong> für Mitarbeitende <em>und</em> Führungskräfte.</li>
-          <li><strong>Freiraum direkt nach den Trainings</strong> — sonst versandet das Gelernte im Tagesgeschäft.</li>
-          <li><strong>Governance für Vibe Coding früh klären</strong>: Übergabe an die IT, Qualität, Nachvollziehbarkeit, Sicherheit.</li>
-        </ul>
-      </div>
-    </div>
+  <!-- 15 ZUSATZBEDINGUNGEN -->
+  <section id="zusatzbedingungen" class="slide">
+    <div class="kicker">Akt 3 · Antwort auf F2 — Beitrag zur Forschung</div>
+    <h2>Vier KI-spezifische Zusatzbedingungen</h2>
+    <ul>
+      <li><strong>Flächendeckender Buy-in + Qualifizierung des Führungsteams</strong> — ohne engagierte, KI-kompetente Führungskräfte keine Flächendeckung.</li>
+      <li><strong>Strategische Ausrichtung auf Entlastung statt Ersatz</strong> — Mitarbeitende bleiben verantwortlich; ihr Fachwissen, ihre Erfahrung und ihr Urteilsvermögen zählen weiter.</li>
+      <li><strong>Kultur der Offenheit</strong> gegenüber neuen Ideen, Methoden und Tools — bei Mitarbeitenden <em>und</em> Führungskräften.</li>
+      <li><strong>Fehlertoleranz &amp; psychologisch sichere Räume</strong> — experimentieren und optimieren dürfen, bis es funktioniert.</li>
+    </ul>
     <p class="note">Generative KI verschiebt den Partizipationsspielraum: Beschäftigte <em>erleben</em> KI nicht nur — sie <em>gestalten</em> per Vibe Coding eigenständig Lösungen (vgl. partizipative Vorgehensmodelle wie Ruess et al. 2024).</p>
   </section>
 
+  <!-- 16 HANDLUNGSEMPFEHLUNGEN -->
+  <section id="empfehlungen" class="slide">
+    <div class="kicker">Akt 3 · Beitrag für die Praxis</div>
+    <h2>Vier Handlungsempfehlungen</h2>
+    <ul>
+      <li><strong>Tiefe KI-Kompetenz inhouse aufbauen</strong> (2–3 Personen im Fachbereich) — reduziert Abhängigkeiten und Kosten, ermöglicht passgenaue, aufgabenspezifische Trainings.</li>
+      <li><strong>Kontinuierliches On-the-job-Lernen</strong> für Mitarbeitende <em>und</em> Führungskräfte — nur so hält man mit dem KI-Tempo Schritt.</li>
+      <li><strong>Freiraum direkt nach den Trainings</strong> — sonst versandet das Gelernte im Tagesgeschäft, bevor eigene Use Cases entstehen.</li>
+      <li><strong>Governance für Vibe Coding früh klären</strong> — Übergabe an die IT, Qualität, Nachvollziehbarkeit und Sicherheit, um Chancen und Risiken auszubalancieren.</li>
+    </ul>
+    <p class="note">Alle Empfehlungen sind an die jeweilige Unternehmenssituation anzupassen.</p>
+  </section>
+
   <!-- 16 LIMITATIONEN & AUSBLICK -->
-  <section class="slide">
+  <section id="ausblick" class="slide">
     <div class="kicker">Akt 3 · Ehrlichkeit zum Schluss</div>
     <h2>Grenzen der Studie — und der nächste Zyklus</h2>
     <div class="two" style="align-items:start">
@@ -430,43 +465,43 @@
   </section>
 
   <!-- 17 SCHLUSS -->
-  <section class="slide title-wrap">
+  <section id="fazit" class="slide title-wrap">
     <div class="kicker">Fazit</div>
     <div class="quote">Partizipation ist kein Selbstzweck — sie ist der Unterschied zwischen <span class="mark">KI auf Folien und KI im Tagesgeschäft.</span></div>
     <ul style="max-width:60ch">
       <li>Die fünf Bedingungen von Mehmood &amp; Farshchian tragen auch für generative KI — plus vier KI-spezifische Zusatzbedingungen.</li>
       <li>Führung, die selbst vorlebt, Befähigung nah am Arbeitsalltag und echter Freiraum machen Mitarbeitende zu Gestaltern.</li>
     </ul>
-    <div class="meta" style="margin-top:1.6rem">Michael Koch · Mark Schenkl — BMW Group · „Partizipative KI-Einführung im Produktdatenmanagement“, HMD 372 (Dez. 2026) · Fragen? mark.schenkl@bmw.de</div>
+    <div class="meta" style="margin-top:1.6rem">Michael Koch · Mark Schenkl — BMW Group · „Partizipative KI-Einführung im Produktdatenmanagement“, HMD 372 (Dez. 2026) · Fragen? <a href="mailto:mark.schenkl@bmw.de">mark.schenkl@bmw.de</a></div>
   </section>
 
   <!-- 18 QUELLEN -->
-  <section class="slide top">
+  <section id="quellen" class="slide top">
     <div class="kicker" style="margin-top:.4rem">Anhang · Quellen (Auswahl — vollständiges Literaturverzeichnis im Artikel)</div>
     <h2>Literatur</h2>
     <div style="columns:2;column-gap:2.6rem;font-size:.86rem;color:var(--muted);line-height:1.5">
-      <p style="margin-bottom:.55rem">Abhari K (2025) Employee Participation in Digital Transformation. Information &amp; Management 62:104212.</p>
+      <p style="margin-bottom:.55rem"><a href="https://doi.org/10.1016/j.im.2025.104212" target="_blank" rel="noopener noreferrer">Abhari K (2025) Employee Participation in Digital Transformation. Information &amp; Management 62:104212.</a></p>
       <p style="margin-bottom:.55rem">Bouquet C, Wright CJ, Nolan J (2026) Match Your AI Strategy to Your Organization's Reality. Harvard Business Review 104(1).</p>
-      <p style="margin-bottom:.55rem">Breiter K, Lohmann T, Stahl B et al. (2025) Generative KI in der Finanzbranche … am Beispiel der DZ BANK AG. HMD 62:1212–1230.</p>
+      <p style="margin-bottom:.55rem"><a href="https://doi.org/10.1365/s40702-025-01166-8" target="_blank" rel="noopener noreferrer">Breiter K, Lohmann T, Stahl B et al. (2025) Generative KI in der Finanzbranche … am Beispiel der DZ BANK AG. HMD 62:1212–1230.</a></p>
       <p style="margin-bottom:.55rem">Cieslak O, Valor C (2024) Navigating Digital Transformation: Employee Resistance and Organizational Change. Cogent Business &amp; Management 11(1).</p>
-      <p style="margin-bottom:.55rem">Cloud Security Alliance (2025) Navigating the Human Factor: Addressing Employee Resistance to AI Adoption.</p>
-      <p style="margin-bottom:.55rem">CNBC (2025) Klarna CEO says AI helped company shrink workforce by 40 %. 14.05.2025.</p>
-      <p style="margin-bottom:.55rem">Fortune/WEF (2026) Thousands of CEOs admit AI had no impact on employment or productivity. Fortune, 19.04.2026.</p>
-      <p style="margin-bottom:.55rem">Gartner (2025) CEOs Believe Their Executive Teams Lack AI Savviness. Pressemitteilung, 06.05.2025.</p>
-      <p style="margin-bottom:.55rem">Gomez C et al. (2025) Human-AI collaboration is not very collaborative yet. Frontiers in Computer Science 6:1521066.</p>
+      <p style="margin-bottom:.55rem"><a href="https://cloudsecurityalliance.org/artifacts/navigating-the-human-factor" target="_blank" rel="noopener noreferrer">Cloud Security Alliance (2025) Navigating the Human Factor: Addressing Employee Resistance to AI Adoption.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://www.cnbc.com/2025/05/14/klarna-ceo-says-ai-helped-company-shrink-workforce-by-40percent.html" target="_blank" rel="noopener noreferrer">CNBC (2025) Klarna CEO says AI helped company shrink workforce by 40 %. 14.05.2025.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://fortune.com/article/why-do-thousands-of-ceos-believe-ai-not-having-impact-productivity-employment-study/" target="_blank" rel="noopener noreferrer">Fortune/WEF (2026) Thousands of CEOs admit AI had no impact on employment or productivity. Fortune, 19.04.2026.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://www.gartner.com/en/newsroom/press-releases/2025-05-06-gartner-survey-reveals-that-ceos-believe-their-executive-teams-lack-ai-savviness" target="_blank" rel="noopener noreferrer">Gartner (2025) CEOs Believe Their Executive Teams Lack AI Savviness. Pressemitteilung, 06.05.2025.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://doi.org/10.3389/fcomp.2024.1521066" target="_blank" rel="noopener noreferrer">Gomez C et al. (2025) Human-AI collaboration is not very collaborative yet. Frontiers in Computer Science 6:1521066.</a></p>
       <p style="margin-bottom:.55rem">Gruda D, Aeon B (2025) Seven Myths about AI and Productivity. California Management Review.</p>
-      <p style="margin-bottom:.55rem">Hallman N, Kowaleski Z, Puvvada A, Schmidt JJ (2026) What the Best AI Users Do Differently. Harvard Business Review, März–April 2026.</p>
+      <p style="margin-bottom:.55rem"><a href="https://hbr.org/2026/03/what-the-best-ai-users-do-differently-and-how-to-level-up-all-of-your-employees" target="_blank" rel="noopener noreferrer">Hallman N, Kowaleski Z, Puvvada A, Schmidt JJ (2026) What the Best AI Users Do Differently. Harvard Business Review, März–April 2026.</a></p>
       <p style="margin-bottom:.55rem">Hermann E, Puntoni S, Morewedge CK (2026) Why Gen AI Feels So Threatening to Workers. Harvard Business Review 104(2):98–107.</p>
-      <p style="margin-bottom:.55rem">Kim B-J, Kim M-J, Lee J (2025) The dark side of artificial intelligence adoption. Humanities and Social Sciences Communications 12:704.</p>
+      <p style="margin-bottom:.55rem"><a href="https://doi.org/10.1057/s41599-025-05040-2" target="_blank" rel="noopener noreferrer">Kim B-J, Kim M-J, Lee J (2025) The dark side of artificial intelligence adoption. Humanities and Social Sciences Communications 12:704.</a></p>
       <p style="margin-bottom:.55rem">Lewin K (1946) Action Research and Minority Problems. Journal of Social Issues 2(4):34–46.</p>
-      <p style="margin-bottom:.55rem">Li J, Zhu F, Hua P (2025) Overcoming the Organizational Barriers to AI Adoption. Harvard Business Review, November 2025.</p>
-      <p style="margin-bottom:.55rem">Mehmood H, Farshchian BA (2023) Exploring conditions for employee participation in digital transformation. ACIS 2023 Proceedings, Paper 31.</p>
-      <p style="margin-bottom:.55rem">Ó Moráin C (2023) Employees Are Losing Patience with Change Initiatives. Harvard Business Review, Mai 2023.</p>
-      <p style="margin-bottom:.55rem">Ruess P, Staffa A, Kreutz A et al. (2024) KI in betrieblichen Prozessen: Vorgehensmodell zur partizipativen Gestaltung. HMD 61:485–502.</p>
-      <p style="margin-bottom:.55rem">S&amp;P Global Market Intelligence (2025) Generative AI shows rapid growth but yields mixed results. 27.10.2025.</p>
-      <p style="margin-bottom:.55rem">Schenkl M (2025) KI-Team-Challenge: Workshop-Material für Vibe-Coding-Teambuilding. Open Source, github.com/MSchenkl/KI-Team-Challenge.</p>
-      <p style="margin-bottom:.55rem">Utley J (2026) The Imagination Ceiling: Why 70 % of Your People Are Stuck on AI. 31.01.2026.</p>
-      <p style="margin-bottom:.55rem">Writer, Workplace Intelligence (2025) Enterprise AI Adoption Report 2025: Key Findings.</p>
+      <p style="margin-bottom:.55rem"><a href="https://hbr.org/2025/11/overcoming-the-organizational-barriers-to-ai-adoption" target="_blank" rel="noopener noreferrer">Li J, Zhu F, Hua P (2025) Overcoming the Organizational Barriers to AI Adoption. Harvard Business Review, November 2025.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://aisel.aisnet.org/acis2023/31/" target="_blank" rel="noopener noreferrer">Mehmood H, Farshchian BA (2023) Exploring conditions for employee participation in digital transformation. ACIS 2023 Proceedings, Paper 31.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://hbr.org/2023/05/employees-are-losing-patience-with-change-initiatives" target="_blank" rel="noopener noreferrer">Ó Moráin C (2023) Employees Are Losing Patience with Change Initiatives. Harvard Business Review, Mai 2023.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://doi.org/10.1365/s40702-024-01049-4" target="_blank" rel="noopener noreferrer">Ruess P, Staffa A, Kreutz A et al. (2024) KI in betrieblichen Prozessen: Vorgehensmodell zur partizipativen Gestaltung. HMD 61:485–502.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://www.spglobal.com/market-intelligence/en/news-insights/research/2025/10/generative-ai-shows-rapid-growth-but-yields-mixed-results" target="_blank" rel="noopener noreferrer">S&amp;P Global Market Intelligence (2025) Generative AI shows rapid growth but yields mixed results. 27.10.2025.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://github.com/MSchenkl/KI-Team-Challenge" target="_blank" rel="noopener noreferrer">Schenkl M (2025) KI-Team-Challenge: Workshop-Material für Vibe-Coding-Teambuilding. Open Source, github.com/MSchenkl/KI-Team-Challenge.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://www.jeremyutley.com/blog/the-imagination-ceiling" target="_blank" rel="noopener noreferrer">Utley J (2026) The Imagination Ceiling: Why 70 % of Your People Are Stuck on AI. 31.01.2026.</a></p>
+      <p style="margin-bottom:.55rem"><a href="https://writer.com/blog/enterprise-ai-adoption-survey-press-release/" target="_blank" rel="noopener noreferrer">Writer, Workplace Intelligence (2025) Enterprise AI Adoption Report 2025: Key Findings.</a></p>
     </div>
   </section>
 
@@ -486,17 +521,19 @@
   let i=0;
 
   const chapters=[
-    {label:'Start',i:0},{label:'Agenda',i:1},{label:'Warum?',i:2},
+    {label:'Start',i:0,major:1},{label:'Agenda',i:1},{label:'Warum?',i:2,major:1},
     {label:'Blockaden',i:4},{label:'5 Bedingungen',i:5},{label:'Methode',i:6},
-    {label:'Maßnahmen',i:7},{label:'Führung',i:8},{label:'Befähigung',i:9},
+    {label:'Maßnahmen',i:7,major:1},{label:'Führung',i:8},{label:'Befähigung',i:9},
     {label:'Formate',i:10},{label:'Vibe Coding',i:11},
-    {label:'Ergebnisse',i:12},{label:'Evaluation',i:13},{label:'Nutzungsdaten',i:14},
-    {label:'Empfehlungen',i:15},{label:'Ausblick',i:16},{label:'Fazit',i:17},{label:'Quellen',i:18}
+    {label:'Ergebnisse',i:12,major:1},{label:'Evaluation',i:13},{label:'Nutzungsdaten',i:14},
+    {label:'Zusatzbedingungen',i:15},{label:'Empfehlungen',i:16},{label:'Ausblick',i:17},
+    {label:'Fazit',i:18,major:1},{label:'Quellen',i:19}
   ];
   const navEl=document.getElementById('chapternav');
   chapters.forEach(c=>{
     const b=document.createElement('button');
     b.textContent=c.label; b.dataset.i=c.i;
+    if(c.major)b.classList.add('major');
     b.onclick=e=>{e.stopPropagation();show(c.i)};
     navEl.appendChild(b);
   });
@@ -518,8 +555,9 @@
     counter.textContent=(i+1)+' / '+slides.length;
     progress.style.width=((i+1)/slides.length*100)+'%';
     const ac=activeChapter(i);
-    navBtns.forEach((b,k)=>b.classList.toggle('on',k===ac));
+    navBtns.forEach((b,k)=>{b.classList.toggle('on',k===ac);if(k===ac)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current');});
     const on=navBtns[ac]; if(on&&on.scrollIntoView)on.scrollIntoView({inline:'center',block:'nearest'});
+    if(slides[i].id)history.replaceState(null,'','#'+slides[i].id);
     fitSlide();
   }
   const next=()=>show(i+1), prev=()=>show(i-1);
@@ -584,7 +622,25 @@
     });
   });
 
-  show(0);
+  // Wischgesten (mobil)
+  let _tx=null,_ty=null;
+  document.addEventListener('touchstart',e=>{_tx=e.touches[0].clientX;_ty=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',e=>{
+    if(_tx===null)return;
+    const dx=e.changedTouches[0].clientX-_tx, dy=e.changedTouches[0].clientY-_ty;
+    if(Math.abs(dx)>60&&Math.abs(dx)>1.5*Math.abs(dy)){dx<0?next():prev();}
+    _tx=null;
+  },{passive:true});
+
+  // Start: Folie aus URL-Hash (z. B. #evaluation), sonst Titel
+  window.addEventListener('hashchange',()=>{
+    const h=location.hash.slice(1);
+    const k=slides.findIndex(sl=>sl.id===h);
+    if(k>=0&&k!==i)show(k);
+  });
+  const _h=location.hash.slice(1);
+  const _start=_h?slides.findIndex(sl=>sl.id===_h):-1;
+  show(_start>=0?_start:0);
 </script>
 </body>
 </html>
