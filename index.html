@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Abi, was dann? — Mark Schenkl</title>
+<title>Mark Schenkl — Werdegang</title>
+<meta name="description" content="Werdegang von Mark Schenkl: Leiter zentrale Produktstammdaten bei der BMW Group. Interaktive Zeitleiste, Schwerpunkte in Generativer KI, Produktdaten und Lösungsarchitektur.">
+<meta property="og:type" content="profile">
+<meta property="og:title" content="Mark Schenkl — Werdegang">
+<meta property="og:description" content="Leiter zentrale Produktstammdaten bei der BMW Group. 20+ Jahre Produktdaten, Architektur und KI im Produktivbetrieb — als interaktive Zeitleiste.">
+<meta property="og:image" content="https://mschenkl.github.io/cv/preview.jpg">
+<meta property="og:url" content="https://mschenkl.github.io/cv/">
+<meta name="twitter:card" content="summary_large_image">
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
 
@@ -92,7 +99,7 @@
   /* cards */
   .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1rem;margin-top:1.3rem}
   .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:1.3rem}
-  .card h3{color:var(--accent)}
+  .card h3{color:var(--accent);overflow-wrap:break-word;hyphens:auto}
   .card p{color:var(--muted);font-size:1rem}
   .clickbox{cursor:pointer;transition:.18s;position:relative}
   .clickbox:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
@@ -158,42 +165,53 @@
   .nav{position:fixed;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:.5rem;z-index:30}
   .nav button{background:var(--card);border:1px solid var(--line);color:var(--ink);width:38px;height:30px;border-radius:9px;cursor:pointer;font-size:1rem}
   .nav button:hover{border-color:var(--accent)}
+
+  /* Karten, die auf eine andere Seite führen */
+  .linkcard{display:block;text-decoration:none;color:inherit;cursor:pointer;transition:.18s}
+  .linkcard:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 10px 30px rgba(0,0,0,.35)}
+  .linkcard .cta{margin-top:.9rem;color:var(--accent2);font-weight:700;font-size:.9rem}
+  .linkcard h3{color:var(--accent)}
+  .linkcard p{color:var(--muted);font-size:1rem}
+  .skillrow{color:var(--muted);font-size:.92rem;margin-top:.55rem;line-height:1.5}
+  .contact{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.4rem}
+  .contact a{display:inline-flex;align-items:center;gap:.5rem;background:var(--card);border:1px solid var(--line);
+    border-radius:999px;padding:.6rem 1.2rem;color:var(--ink);text-decoration:none;font-weight:700;transition:.15s}
+  .contact a:hover{border-color:var(--accent);transform:translateY(-2px)}
 </style>
 </head>
 <body>
 
-<nav class="chapternav" id="chapternav"><span class="brandmini">Abi, was dann?</span></nav>
+<nav class="chapternav" id="chapternav"><span class="brandmini">Mark Schenkl</span></nav>
 
 <div class="deck" id="deck">
 
-  <!-- 1 TITLE -->
+  <!-- 1 TITEL -->
   <section class="slide title-wrap">
-    <div class="kicker">Elternvortrag · MTG München</div>
-    <h1>Abi —<br>was dann?</h1>
-    <div class="sub">Mein Weg in die Informatik: Bildungsweg, Karriere bei BMW und warum KI (Vibe Coding) die Softwareentwicklung demokratisiert.</div>
-    <div class="meta">Mark Schenkl · BMW AG </div>
+    <div class="kicker">Werdegang · Lebenslauf</div>
+    <h1>Mark<br>Schenkl</h1>
+    <div class="sub">Leiter zentrale Produktstammdaten · BMW Group, München.<br>
+      Produktdaten, Lösungsarchitektur und Generative KI im Produktivbetrieb.</div>
+    <div class="meta">Diplom-Informatiker (TU München) · über 20 Jahre BMW Group</div>
+    <p class="note" style="margin-top:1.6rem">▸ Zwei interaktive Zeitleisten: Bildungsweg und 22 Jahre BMW — Station anklicken für Details. Oben die Kapitel, unten die Pfeiltasten.</p>
   </section>
 
-  <!-- ROADMAP -->
-  <section class="slide">
-    <div class="kicker">Zwei Dinge nehmt ihr heute mit</div>
+  <!-- 2 KURZPROFIL -->
+  <section class="slide top">
+    <div class="kicker" style="margin-top:.4rem">Kurzprofil</div>
+    <h2>Produktdaten, Architektur — und <span class="accent">KI, die produktiv läuft</span></h2>
+    <p class="lead">Informatiker und Führungskraft mit über 20 Jahren BMW Group. Mein Team verantwortet Produktstruktur-Governance, zentrale Produktstammdaten sowie Konfigurations- und Logikservices über alle BMW-Fahrzeugprogramme.</p>
     <div class="cards">
-      <div class="card clickbox" data-goto="2"><h3>1 · Mein Weg</h3><p>Hauptschule → Realschule → FOS → FH → TU → CSC → BMW. <br> Warum das für mich genau richtig war.</p><div class="cta">▸ Zu Teil 1</div></div>
-      <div class="card clickbox" data-goto="7"><h3>2 · Eure Zukunft</h3><p>Die Chancen durch KI &amp; Vibe Coding — und warum „such dir was Sicheres“ heute der falsche Rat ist.</p><div class="cta">▸ Zu Teil 2</div></div>
+      <div class="card"><h3>KI im Produktivbetrieb</h3><p>ProCAT, einen Produktkonfigurations-Chatbot auf GPT-4.5-Basis, mit dem Team von der Idee bis in den Produktivbetrieb gebracht — vollständig in Eigenleistung, ohne externes Budget.</p></div>
+      <div class="card"><h3>Messbarer Nutzen</h3><p>ML-basierte Vorhersage produktiv gesetzt: die Nacharbeitsquote bei Änderungsanträgen sank von rund 90 % auf unter 25 %.</p></div>
+      <div class="card"><h3>Transformation im Großen</h3><p>PSD.NEXT initiiert, ein strategisches Produktdaten-Programm, und die bereichsübergreifende KI-Enablement-Initiative mitgestaltet — Roadmap, Qualifizierung, Hands-on-Formate.</p></div>
     </div>
-    
-  </section>
-
-  <!-- 4 DIVIDER 1 -->
-  <section class="slide divider">
-    <div class="num">01</div>
-    <h1 style="margin-top:1rem">Mein Weg</h1>
-    <p class="lead" style="margin-top:1rem">Ich wusste lange nur, was ich <em>nicht</em> will. Das Interesse an IT wurde mein Kompass.</p>
+    <p class="big" style="margin-top:1.3rem">Ich übersetze zwischen Entwicklungsteams, IT und Steuerkreisen — <span class="accent">vom technischen Detail bis zum Management-Nutzen.</span></p>
+    <p class="note">Evaluation-first und bewusst einfache Lösungen statt Over-Engineering.</p>
   </section>
 
   <!-- 5 TIMELINE (interaktiv) -->
   <section class="slide top fitslide">
-    <div class="kicker" style="margin-top:.4rem">Ein Weg über viele Stationen — <span class="teal">klicke eine Station</span></div>
+    <div class="kicker" style="margin-top:.4rem">Bildungsweg &amp; Berufseinstieg 1981–2004 — <span class="teal">klicke eine Station</span></div>
     <div class="timeline" id="timeline">
       <div class="tl" data-key="grundschule"><span class="go">▸</span><div class="yr">1981–85</div><div class="st">Grundschule</div><div class="dt">Kl. 1–4</div></div>
       <div class="tl" data-key="hauptschule"><span class="go">▸</span><div class="yr">1985–87</div><div class="st">Hauptschule</div><div class="dt">Kl. 5–6</div></div>
@@ -212,7 +230,7 @@
 
   <!-- 5b ZEITLEISTE BMW (interaktiv, mit Jahres-Drilldown ab 2019) -->
   <section class="slide top fitslide">
-    <div class="kicker" style="margin-top:.4rem">Zeitleiste BMW · 22 Jahre, 7 Stationen + Fazit — <span class="teal">klicke eine Station</span> · ab 2019 mit Jahres-Details <button class="yearchip" id="backToLife" style="margin-left:.6rem;text-transform:none;letter-spacing:0">◂ Lebensweg</button></div>
+    <div class="kicker" style="margin-top:.4rem">Zeitleiste BMW · 22 Jahre, 7 Stationen + Fazit — <span class="teal">klicke eine Station</span> · ab 2019 mit Jahres-Details <button class="yearchip" id="backToLife" style="margin-left:.6rem;text-transform:none;letter-spacing:0">◂ Bildungsweg</button></div>
     <div class="timeline" id="timelineBMW">
       <div class="tl" data-key="einstieg"><span class="go">▸</span><div class="yr">2004–06</div><div class="st">BMW AG · Einstieg</div><div class="dt">IT-Projekte · Zentrale</div></div>
       <div class="tl" data-key="bank"><span class="go">▸</span><div class="yr">2006–08</div><div class="st">BMW Bank</div><div class="dt">IT-Projektleiter DWH</div></div>
@@ -228,193 +246,98 @@
     </div>
   </section>
 
-  <!-- TAKEAWAY 1 -->
-  <section class="slide">
-    <div class="kicker">Take-away · Teil 1</div>
-    <div class="quote">Mein Weg war vielleicht nicht der direkteste — <span class="mark">aber kein Umweg.</span></div>
-    <ul>
-        <li>Entscheidend war, einem echten Interesse zu folgen — und Menschen um mich zu haben, die höhere Ziele hatten als ich.</li>
-        <li>Was ich tats&auml;chlich anders machen w&uuml;rde, wenn ich nochmal von vorne anfangen k&ouml;nnte: <em>mir mehr und höhere Ziele setzen.</em></li>
-    </ul>
-  </section>
-
-  <!-- DIVIDER 2 -->
-  <section class="slide divider">
-    <div class="num">02</div>
-    <h1 style="margin-top:1rem">Was auf euch<br>zukommt</h1>
-    <p class="lead" style="margin-top:1rem"> <em>Die Chancen mit KI.</em></p>
-  </section>
-
-  <!-- 13 CHANCEN -->
+  <!-- 5 SCHWERPUNKTE -->
   <section class="slide top">
-    <div class="kicker" style="margin-top:.4rem">Wo gerade Großes entsteht</div>
-    <h2>Die Chancen zuerst</h2>
-    <div class="cards">
-      <div class="card"><h3>Software für alle</h3><p>Demokratisierung der Entwicklung durch Vibe Coding.</p></div>
-      <div class="card"><h3>Medizin &amp; Biotechnologie</h3><p>Heilung bisher unheilbarer Krankheiten, Krebs, Alzheimer &amp; Parkinson, personalisierte Medizin. Medikamente in Monaten statt Jahren. Bsp.: AlphaFold, KI-Antikörper, neue Antibiotika.</p></div>
-      <div class="card"><h3>Wissenschaftliche Forschung</h3><p>KI als Co-Wissenschaftler: Hypothesen entwickeln, Millionen Studien auswerten, Simulationen &amp; Experimente planen — neue Materialien, Batterien und Medikamente schneller.</p></div>
-      <div class="card"><h3>Energie</h3><p>Kernfusion, intelligente Stromnetze, bessere Batterien, effizientere Solar- &amp; Windparks — davon profitiert praktisch jede Industrie.</p></div>
-      <div class="card"><h3>Bildung</h3><p>Ein persönlicher KI-Lehrer für jeden: eigenes Tempo, beliebig oft erklärt, in jeder Sprache, fast kostenlos — Bildung weltweit demokratisiert.</p></div>
+    <div class="kicker" style="margin-top:.4rem">Schwerpunkte</div>
+    <h2>Wo ich fachlich zu Hause bin</h2>
+    <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(380px,1fr))">
+      <div class="card"><h3>Generative &amp; Agentic AI</h3>
+        <p>LLM-Anwendungen im Unternehmenskontext — von der Idee bis in den Produktivbetrieb.</p>
+        <div class="skillrow">Chatbots · Knowledge Graphs · Machine Learning · Evaluation &amp; Qualitätssicherung · KI-Strategie und Enablement</div></div>
+      <div class="card"><h3>Produktdaten &amp; Konfiguration</h3>
+        <p>Der fachliche Kern: wie ein Fahrzeug beschrieben, konfiguriert und freigegeben wird.</p>
+        <div class="skillrow">Produktstruktur-Governance · zentrale Stammdaten · Konfigurations- und Logikservices · PDM/PLM · Freigabeprozesse</div></div>
+      <div class="card"><h3>Architektur &amp; Integration</h3>
+        <p>Gewachsene Systemlandschaften weiterentwickeln, ohne den Betrieb zu gefährden.</p>
+        <div class="skillrow">Schnittstellen &amp; ressortübergreifende Vereinbarungen · Migrationen bis zur Mainframe-Ablösung · Datenqualität · internationale Rollouts</div></div>
+      <div class="card"><h3>Python &amp; Datenprodukte</h3>
+        <p>Selbst bauen statt nur beauftragen — Prototypen, die es bis in die Fläche schaffen.</p>
+        <div class="skillrow">Python · Business Intelligence &amp; Data Warehouse · Automatisierung · Prototyping</div></div>
+      <div class="card"><h3>Führung &amp; Transformation</h3>
+        <p>Teams befähigen, Veränderung tragfähig machen.</p>
+        <div class="skillrow">Gruppenleitung · agile Transformation · Change-Management · Mentoring und Personalentwicklung · Qualifizierungsformate</div></div>
     </div>
-    <p class="big" style="margin-top:1.3rem">Das ist eure Welt — <span class="accent">und ihr könnt sie mitgestalten.</span></p>
   </section>
 
-  <!-- 14 DATA A -->
-  <section class="slide">
-    <div class="kicker">Die Daten dahinter · 1/2</div>
-    <h2>KI verändert Strukturen — Beispiel FinTech</h2>
+  <!-- 6 QUALIFIKATION -->
+  <section class="slide top">
+    <div class="kicker" style="margin-top:.4rem">Qualifikation</div>
+    <h2>Ausbildung &amp; Zertifikate</h2>
+    <h3 style="margin-top:1.1rem;color:var(--accent)">Ausbildung</h3>
     <table>
-      <thead><tr><th>Unternehmen</th><th>Personal</th><th>Rolle von KI</th><th>Effekt auf Gehälter</th></tr></thead>
+      <thead><tr><th>Zeitraum</th><th>Abschluss</th><th>Institution</th></tr></thead>
       <tbody>
-        <tr><td>Block (Square)</td><td>~4.000 Entlassungen (~40 %)</td><td>KI → kleinere, produktivere Teams</td><td class="hl">Retention bis ~+75 % für Schlüsselkräfte</td></tr>
-        <tr><td>Klarna</td><td>5.527 (2022) → ~2.900 (2025)</td><td>KI ersetzt nicht nachbesetzte Stellen</td><td class="hl">Ø ~126k $ → ~203k $ (~+60 %)</td></tr>
+        <tr><td>1994–1999</td><td><strong>Diplom-Informatiker (Univ.)</strong><br><span class="muted">Vertiefung Rechnernetze &amp; IT-Sicherheit · Nebenfach Theoretische Medizin</span></td><td>Technische Universität München</td></tr>
+        <tr><td>1993–1994</td><td>Vordiplom Informatik</td><td>Hochschule München</td></tr>
+        <tr><td>1991–1993</td><td>Fachhochschulreife, Ausbildungsrichtung Technik</td><td>FOS Kaufbeuren</td></tr>
       </tbody>
     </table>
-    <p class="note">Ehrlich: Klarna räumte später ein, dass zu radikaler KI-Ersatz die Servicequalität senkte — und stellt wieder Menschen ein.</p>
-  </section>
-
-  <!-- 15 DATA B -->
-  <section class="slide">
-    <div class="kicker">Die Daten dahinter · 2/2</div>
-    <h2>Wer KI beherrscht, verdient mehr</h2>
+    <h3 style="margin-top:1.6rem;color:var(--accent)">Zertifikate &amp; Weiterbildung</h3>
     <table>
-      <thead><tr><th>Studie</th><th>Auswirkung</th><th>Gehaltseffekt</th></tr></thead>
+      <thead><tr><th>Jahr</th><th>Zertifikat</th><th>Aussteller</th></tr></thead>
       <tbody>
-        <tr><td>Exotec (2025)</td><td>49 % der Lagerarbeiter: Lohn ↑ durch Automatisierung</td><td>+ Beförderungschancen</td></tr>
-        <tr><td>Gusto · KI-Rechenzentren</td><td>Facharbeiter verdienen mehr</td><td class="hl">+7,1 % Median · +20 % Klempner</td></tr>
-        <tr><td>MIT (Autor &amp; Thompson)</td><td>Zahl der Buchhalter −⅓</td><td class="hl">reale Stundenlöhne ~+40 %</td></tr>
-        <tr><td>Dallas Fed (2026)</td><td>KI-Sektoren schrumpfen leicht</td><td>Löhne +16,7 % vs. +7,5 % national</td></tr>
-        <tr><td>Google/Ipsos (2026)</td><td>nur 5 % sind „AI-fluent“</td><td class="hl">4,5× höhere Chance auf mehr Lohn</td></tr>
+        <tr><td class="hl">2025</td><td>Generative AI for Business Leaders</td><td>Udacity</td></tr>
+        <tr><td class="hl">2023</td><td>Knowledge Graphs — Foundations and Applications</td><td>openHPI · Hasso-Plattner-Institut</td></tr>
+        <tr><td>2007</td><td>Intensivkurs Betriebswirtschaftslehre und betriebliches Management</td><td>IWW · Institut an der FernUniversität in Hagen</td></tr>
+        <tr><td>2003</td><td>CISSP — Certified Information Systems Security Professional <span class="muted">(gültig bis 2012)</span></td><td>(ISC)²</td></tr>
+        <tr><td>2003</td><td>CompTIA Security+</td><td>CompTIA</td></tr>
       </tbody>
     </table>
-    <p class="big" style="margin-top:1rem"><span class="accent">Die gute Nachricht: Wer lernt, mit KI zu arbeiten, hat die besten Karten.</span></p>
+    <p class="note">Sprachen: Deutsch (Muttersprache), Englisch (verhandlungssicher).</p>
   </section>
 
-  <!-- 16 VIBE CODING -->
+  <!-- 7 VERÖFFENTLICHUNGEN -->
   <section class="slide top">
-    <div class="kicker" style="margin-top:.4rem">Vibe Coding</div>
-    <h2>Programmieren ist keine &quot;Geheimwissen&quot; mehr</h2>
-    <p class="lead">Fachanwender beschreiben in natürlicher Sprache, was sie brauchen — die KI baut die Software. Was früher ein Team über <strong>Wochen</strong> baute, entsteht heute in <strong>Stunden</strong>.</p>
-    <div class="compare">
-      <figure>
-        <div class="vidbox">
-          <img src="vibe_retro_rennspiel.png" alt="Retro-Rennspiel" onerror="this.closest('.vidbox').classList.add('missing')">
-          <span class="fallback">Bild fehlt:<br>vibe_retro_rennspiel.png</span>
-        </div>
-        <figcaption><b>1990 </b> · Lotus Esprit Turbo Challenge aus meiner Kindheit — 2 Profi Entwickler ca. 12 Monate</figcaption>
-      </figure>
-      <figure>
-        <div class="vidbox">
-          <video src="vibe_sohn_bmw_m4.mp4" autoplay loop muted playsinline poster="vibe_sohn_bmw_m4.png"></video>
-        </div>
-        <figcaption><b>Heute</b> · „BMW M4 GT3 EVO" — mein 11-jähriger Sohn selbst per Vibe Coding mit Fable in 4 Wochen &quot;bauen lassen&quot;</figcaption>
-      </figure>
-    </div>
-    <p class="big" style="margin-top:1rem"><span class="accent">Jeder kann sich heute seine eigene Anwendung selbst bauen — ohne Vorwissen, mit minimalem Budget. </span></p>
-    <p><a href="https://jschenkl.github.io/bmw-m4-3d-spiel/" target="_blank" rel="noopener noreferrer">Github JSchenkl</a>
-    <br><a href="https://zumblerush.toolhub.fun" target="_blank" rel="noopener noreferrer">Brawl Game ASchenkl</a>
-  </p>
-  </section>
-
-  <!-- 17 KARPATHY -->
-  <section class="slide">
-    <div class="narrow">
-      <div class="kicker">Die Landkarte · karpathy.ai/jobs</div>
-      <h2>Hohe KI-Betroffenheit ≠ „Job weg“</h2>
-      <p class="lead">342 Berufe, 143 Mio. Jobs (US-Daten). Kachelgröße = Beschäftigung, Farbe = KI-Betroffenheit.</p>
-      <ul>
-        <li><strong>Callcenter-Mitarbeiter 9/10</strong> — niemand will „mehr davon“, Nachfrage wird zurückgehen.</li>
-        <li><strong>Software-Entwickler 9/10</strong> — Nachfrage kann trotzdem <em>steigen</em>.</li>
-        <li><a href="https://karpathy.ai/jobs/" target="_blank" rel="noopener noreferrer">US Job Market Visualizer</a></li>
-      </ul>
+    <div class="kicker" style="margin-top:.4rem">Veröffentlichungen &amp; Formate</div>
+    <h2>Was ich darüber hinaus mache</h2>
+    <p class="lead">Wissen weiterzugeben ist Teil der Arbeit — als Fachbeitrag, als Vortrag und als Format zum Mitmachen.</p>
+    <div class="cards" style="grid-template-columns:repeat(auto-fit,minmax(320px,1fr))">
+      <a class="card linkcard" href="hmd/" target="_blank" rel="noopener">
+        <h3>Fachbeitrag · Partizipative KI-Einführung</h3>
+        <p>Mitarbeitende als aktive Gestalter der KI-Transformation im Produktdatenmanagement — Ansatz, Maßnahmen und ehrliche Ergebnisse aus der Praxis.</p>
+        <div class="cta">▸ Zur Aufbereitung des Artikels</div>
+      </a>
+      <a class="card linkcard" href="abi/" target="_blank" rel="noopener">
+        <h3>Vortrag · „Abi — was dann?“</h3>
+        <p>Elternvortrag am Gymnasium zur Berufsorientierung: mein Weg in die Informatik und was KI für die Berufswahl der nächsten Generation bedeutet.</p>
+        <div class="cta">▸ Zur Präsentation</div>
+      </a>
+      <a class="card linkcard" href="https://github.com/MSchenkl/KI-Team-Challenge" target="_blank" rel="noopener">
+        <h3>Open Source · KI-Team-Challenge</h3>
+        <p>Ein Workshopformat, das Teams ohne Vorkenntnisse spielerisch an Generative KI heranführt — Notebook, Anleitung und Evaluationsvorlage frei verfügbar.</p>
+        <div class="cta">▸ Zum Repository</div>
+      </a>
     </div>
   </section>
 
-  <!-- 18 JEVONS -->
-  <section class="slide">
-    <div class="kicker">Mehr Effizienz erzeugt mehr Nachfrage · Jevons-Paradoxon</div>
-    <h2>Effizienter → billiger → <span class="accent">mehr</span>, nicht weniger</h2>
-    <p class="lead">Als James Watt die Dampfmaschine um <strong>1770</strong> effizienter machte, erwartete man weniger Kohleverbrauch. Ökonom William Stanley Jevons beobachtete <strong>1865</strong> das Gegenteil: Weil Kohlekraft billiger wurde, setzte man sie überall ein — der Verbrauch <em>explodierte</em>.</p>
-    <p class="big" style="margin-top:1.3rem">KI macht Coden billiger → also wird <span class="accent">mehr</span> Software gebaut, nicht weniger.</p>
-    <p class="note">Der Bedarf an Menschen für Architektur, Integration und Kundenabstimmung bleibt.</p>
-  </section>
-
-  <!-- 19 RAT 1 -->
-  <section class="slide">
-    <div class="kicker">Praktischer Rat · 1</div>
-    <h2>Der Burggraben der reinen Software ist weg</h2>
-    <ul>
-      <li>Reiner Code ist heute leicht kopier- und reproduzierbar.</li>
-      <li>Beleg: <strong>Morningstar</strong> halbierte 2026 den „Moat“ großer Softwarefirmen von 20 auf 10 Jahre; <strong>S&amp;P Global</strong> schreibt Papiere dazu; das „SaaS-Premium“ ist vorbei.</li>
-      
-    </ul>
-    <p></p>
-    <p class="note">Krisensicherer = <span class="accent">physisches Produkt / Dienstleistung + Software.</span> — das kopiert man nicht einfach mit <em>Vibe-Coding.</em></p>
-  </section>
-
-  <!-- 20 RAT 2 -->
-  <section class="slide">
-    <div class="kicker">Praktischer Rat · 2</div>
-    <h2>Gegen das Mittelmaß</h2>
-    <p class="lead" style="margin-top:1.3rem">
-      <ul><li>Geht nicht nach &quot;womit verdient man viel Geld&quot; oder &quot;was ist ein sicherer Job&quot;. </li><li>Sucht, was euch <em>fesselt</em> — und werdet darin richtig gut.</li></ul>
-    </p>
-    <p class="lead" style="margin-top:1.3rem">Denn Mittelmaß wird über kurz oder lang von KI ersetzt. <span class="accent">Spitze wird nur, wer für seine Sache brennt.</span></p>
-  </section>
-
-  <!-- FACTFULNESS INTRO -->
-  <section class="slide top">
-    <div class="kicker" style="margin-top:.4rem">Bevor wir zum Schluss kommen · Factfulness (Hans Rosling)</div>
-    <h2>Die Welt wird besser — und kaum jemand merkt es</h2>
-    <p class="lead">Die meisten Menschen sehen die Welt zu <strong>negativ</strong>. In Roslings 13-Fragen-Quiz schneiden Menschen im Schnitt schlechter ab als ein Schimpanse, der zufällig rät — Schuld ist unser eingebauter <em>Negativitäts-Instinkt</em>.</p>
-    <p class="big" style="margin-top:1rem;margin-bottom:.5rem">Die Welt kann <span class="accent">gleichzeitig schlecht sein UND besser werden</span>:</p>
-    <table class="fftable">
-      <thead><tr><th>Thema</th><th>Früher</th><th>Mitte</th><th>Heute</th><th>Trend</th></tr></thead>
-      <tbody>
-        <tr><td>Extreme Armut<span class="sub">Anteil in extremer Armut</span></td><td>1800: 85 %</td><td>1997: 29 %</td><td class="now">2024: 10 %</td><td class="trend">▼</td></tr>
-        <tr><td>Kindersterblichkeit<span class="sub">Tod vor dem 5. Geburtstag</span></td><td>1800: 44 %</td><td>1990: 9,3 %</td><td class="now">2024: 3,7 %</td><td class="trend">▼</td></tr>
-        <tr><td>Lebenserwartung<span class="sub">Jahre, weltweit</span></td><td>1800: 30</td><td>1950: 45</td><td class="now">2024: 73</td><td class="trend">▲</td></tr>
-        <tr><td>Alphabetisierung<span class="sub">Erwachsene, lesen &amp; schreiben</span></td><td>1800: 10 %</td><td>1950: 40 %</td><td class="now">2024: 88 %</td><td class="trend">▲</td></tr>
-        <tr><td>Impfungen<span class="sub">Einjährige mit ≥1 Impfung</span></td><td>1980: 22 %</td><td>—</td><td class="now">2024: 89 %</td><td class="trend">▲</td></tr>
-        <tr><td>Zugang zu Strom<span class="sub">mit Elektrizität</span></td><td>1990: 71 %</td><td>—</td><td class="now">2023: 92 %</td><td class="trend">▲</td></tr>
-        <tr><td>Naturkatastrophen<span class="sub">Tote/Jahr (10-J-Schnitt)</span></td><td>1930er: 970.000</td><td>1970er: 100.000</td><td class="now">2010er: 45.000</td><td class="trend">▼</td></tr>
-        <tr><td>HIV-Neuinfektionen<span class="sub">pro Jahr, weltweit</span></td><td>1995: 3,3 Mio.</td><td>2017: 1,8 Mio.</td><td class="now">2024: 1,3 Mio.</td><td class="trend">▼</td></tr>
-        <tr><td>Geburtenrate<span class="sub">Kinder pro Frau</span></td><td>1800: 6,0</td><td>1965: 5,0</td><td class="now">2024: 2,2</td><td class="trend">▼</td></tr>
-        <tr><td>Sauberes Trinkwasser<span class="sub">sicher gemanagt</span></td><td>2015: 68 %</td><td>—</td><td class="now">2024: 74 %</td><td class="trend">▲</td></tr>
-      </tbody>
-    </table>
-    <p class="note">Langfrist-Werte aus Gapminder/Factfulness; aktuelle Zahlen 2023–2024 geprüft. Jeder Pfeil = positive Entwicklung.</p>
-  </section>
-
-  <!-- UNTERGANGSPROPHETEN -->
-  <section class="slide">
-    <div class="kicker">Untergangspropheten sind nicht neu</div>
-    <h2>Untergangspropheten sind nicht neu — <span class="accent">recht behalten haben sie nie.</span> </h2>
-    <p class="lead">Florenz, 1490er: Der Mönch <strong>Savonarola</strong> elektrisierte die Stadt mit Weltuntergangs-Predigten, mobilisierte Jugendbanden und verbrannte 1497 im „Fegefeuer der Eitelkeiten“ Bücher, Kunst und Instrumente. Schon 1498 kippte die Stimmung — er selbst und seine engsten Anhänger wurden hingerichtet.</p>
-    <p class="big" style="margin-top:1.4rem"><span class="accent"><em>Habt keine Angst vor der Zukunft: denkt positiv, seht die Chancen, setzt euch Ziele — und geht hinaus in die Welt.</em></span></p>
-  </section>
-
-  <!-- DANKE -->
+  <!-- 8 KONTAKT -->
   <section class="slide title-wrap">
-    <div class="kicker">Danke</div>
-    <h1>Fragen?</h1>
-    <div style="display:flex;gap:2.5rem;flex-wrap:wrap;margin-top:1.6rem;align-items:flex-start">
-      <figure style="margin:0;text-align:center">
-        <img src="qr.png" alt="QR-Code zur Präsentation" style="width:min(260px,30vw);height:auto;border-radius:14px;background:#fff;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)">
-        <figcaption style="margin-top:.7rem;color:var(--muted)">Präsentation<br><span class="accent">mschenkl.github.io/cv</span></figcaption>
-      </figure>
-      <figure style="margin:0;text-align:center">
-        <img src="feedback_qr.png" alt="QR-Code zum Feedback" style="width:min(260px,30vw);height:auto;border-radius:14px;background:#fff;padding:12px;box-shadow:0 10px 30px rgba(0,0,0,.35)">
-        <figcaption style="margin-top:.7rem;color:var(--muted)">Feedback · 2 Min., anonym<br><span class="teal">Danke fürs Mitmachen!</span></figcaption>
-      </figure>
+    <div class="kicker">Kontakt</div>
+    <h1>Sprechen wir<br>darüber.</h1>
+    <div class="sub">Ich freue mich über Austausch zu KI in der Entwicklung, zu Produktdaten — und dazu, wie sich KI sicher, zuverlässig und mit echtem Nutzen einsetzen lässt.</div>
+    <div class="contact">
+      <a href="https://www.linkedin.com/in/mark-schenkl-84842b134/" target="_blank" rel="noopener">▸ LinkedIn</a>
+      <a href="https://github.com/MSchenkl" target="_blank" rel="noopener">▸ GitHub</a>
+      <a href="abi/" target="_blank" rel="noopener">▸ Vortrag „Abi — was dann?“</a>
+      <a href="hmd/" target="_blank" rel="noopener">▸ Fachbeitrag KI-Einführung</a>
     </div>
-    <div class="meta" style="margin-top:1.4rem">Mark Schenkl · mark@schenkl.de</div>
+    <div class="meta" style="margin-top:1.8rem">Mark Schenkl · München</div>
   </section>
 
 </div>
 
 <div class="progress" id="progress"></div>
-<div class="counter" id="counter">1 / 17</div>
+<div class="counter" id="counter">1 / 8</div>
 <div class="nav">
   <button id="prev" aria-label="zurück">‹</button>
   <button id="next" aria-label="weiter">›</button>
@@ -428,11 +351,9 @@
 
   // chapters
   const chapters=[
-    {label:'Start',i:0},{label:'Mein Weg',i:2},{label:'Zeitleiste',i:3},
-    {label:'Zeitleiste BMW',i:4},
-    {label:'Zukunft',i:6},{label:'Chancen',i:7},{label:'Daten',i:8},
-    {label:'Vibe Coding',i:10},{label:'Jobs',i:11},{label:'Jevons',i:12},
-    {label:'Ratschläge',i:13},{label:'Ausblick',i:15},{label:'Schluss',i:16}
+    {label:'Start',i:0},{label:'Kurzprofil',i:1},{label:'Bildungsweg',i:2},
+    {label:'Zeitleiste BMW',i:3},{label:'Schwerpunkte',i:4},{label:'Qualifikation',i:5},
+    {label:'Veröffentlichungen',i:6},{label:'Kontakt',i:7}
   ];
   const navEl=document.getElementById('chapternav');
   chapters.forEach(c=>{
@@ -523,7 +444,7 @@
       <p class="muted">Ich wollte viele Unternehmen kennenlernen. </p>`,
     bmw:`<h3>BMW AG · seit 2004 — das eigene Kapitel</h3>
       <p>22 Jahre, 7 Stationen: vom IT-Projektleiter über eine Entsendung zur BMW Bank und die Expertenlaufbahn bis zur Führungskraft — heute Leiter zentrale Produktstammdaten, mit KI produktiv im Einsatz.</p>
-      <p style="margin-top:1.1rem"><button class="yearchip on" id="gotoBMW" style="font-size:1rem;padding:.45rem 1.1rem">▸ Zur BMW-Zeitleiste</button></p>`
+      <p style="margin-top:1.1rem"><button class="yearchip on" id="gotoBMW" style="font-size:1rem;padding:.45rem 1.1rem">▸ Weiter zur BMW-Zeitleiste</button></p>`
   };
   // era icons: [bekanntestes Spiel, typischer IT-Gegenstand]
   const eras={
@@ -552,8 +473,8 @@
       {n:'HP-UNIX-Workstation',f:'hp_unix_workstation.jpg',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="26" y="20" width="46" height="34" rx="3" fill="#cdbfa3"/><rect x="31" y="25" width="36" height="24" fill="#12304a"/><rect x="45" y="54" width="8" height="6" fill="#b7a988"/><rect x="36" y="60" width="26" height="4" rx="2" fill="#b7a988"/><rect x="80" y="26" width="14" height="34" rx="2" fill="#cdbfa3"/><circle cx="87" cy="32" r="1.6" fill="#7a6f57"/></svg>`}
     ],
     zivi:[
-      {n:'Y2K – Jahr-2000-Umstellung',f:'y2k.png',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="30" y="18" width="60" height="50" rx="6" fill="#13213b" stroke="#4da3ff" stroke-width="2"/><rect x="30" y="18" width="60" height="14" rx="6" fill="#4da3ff"/><text x="60" y="29" text-anchor="middle" font-size="9" font-weight="bold" fill="#0a1024">31.12.1999</text><text x="60" y="56" text-anchor="middle" font-size="18" font-weight="900" fill="#ffb454">Y2K</text></svg>`},
-      {n:'Rechenzentrum · Röntgendiagnostik',f:'roentgen.png',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="22" y="20" width="46" height="34" rx="3" fill="#20283b" stroke="#26385c" stroke-width="1.5"/><rect x="27" y="25" width="36" height="24" fill="#042610"/><g stroke="#3cff8e" stroke-width="2"><line x1="31" y1="32" x2="55" y2="32"/><line x1="31" y1="39" x2="47" y2="39"/></g><rect x="36" y="54" width="18" height="4" fill="#20283b"/><rect x="80" y="22" width="20" height="20" rx="4" fill="#13213b" stroke="#ff5d7a" stroke-width="2"/><path d="M90 26 v12 M84 32 h12" stroke="#ff5d7a" stroke-width="3" stroke-linecap="round"/><rect x="78" y="48" width="24" height="16" rx="2" fill="#20283b"/><g stroke="#9db0cc" stroke-width="1.5"><line x1="82" y1="52" x2="98" y2="52"/><line x1="82" y1="56" x2="98" y2="56"/><line x1="82" y1="60" x2="92" y2="60"/></g></svg>`}
+      {n:'Y2K – Jahr-2000-Umstellung',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="30" y="18" width="60" height="50" rx="6" fill="#13213b" stroke="#4da3ff" stroke-width="2"/><rect x="30" y="18" width="60" height="14" rx="6" fill="#4da3ff"/><text x="60" y="29" text-anchor="middle" font-size="9" font-weight="bold" fill="#0a1024">31.12.1999</text><text x="60" y="56" text-anchor="middle" font-size="18" font-weight="900" fill="#ffb454">Y2K</text></svg>`},
+      {n:'Rechenzentrum · Röntgendiagnostik',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><rect x="22" y="20" width="46" height="34" rx="3" fill="#20283b" stroke="#26385c" stroke-width="1.5"/><rect x="27" y="25" width="36" height="24" fill="#042610"/><g stroke="#3cff8e" stroke-width="2"><line x1="31" y1="32" x2="55" y2="32"/><line x1="31" y1="39" x2="47" y2="39"/></g><rect x="36" y="54" width="18" height="4" fill="#20283b"/><rect x="80" y="22" width="20" height="20" rx="4" fill="#13213b" stroke="#ff5d7a" stroke-width="2"/><path d="M90 26 v12 M84 32 h12" stroke="#ff5d7a" stroke-width="3" stroke-linecap="round"/><rect x="78" y="48" width="24" height="16" rx="2" fill="#20283b"/><g stroke="#9db0cc" stroke-width="1.5"><line x1="82" y1="52" x2="98" y2="52"/><line x1="82" y1="56" x2="98" y2="56"/><line x1="82" y1="60" x2="92" y2="60"/></g></svg>`}
     ],
     csc:[
       {n:'Die Sims (2000)',f:'die_sims.png',s:`<svg viewBox="0 0 120 84"><rect width="120" height="84" rx="8" fill="#0a1024"/><path d="M60 18 L78 42 L60 66 L42 42 Z" fill="#2fbf2f"/><path d="M60 27 L70 42 L60 57 L50 42 Z" fill="#7ff07f"/></svg>`},
@@ -567,7 +488,9 @@
   function eraRow(key){
     const arr=eras[key]; if(!arr)return '';
     return '<div class="eraimgs">'+arr.map(it=>
-      `<figure class="eraimg" title="${it.n}"><img src="epochen_bilder/${it.f}" alt="${it.n}" onerror="this.classList.add('imgfail')"><span class="svgfb">${it.s}</span><span class="cap">${it.n}</span></figure>`
+      it.f
+        ? `<figure class="eraimg" title="${it.n}"><img src="epochen_bilder/${it.f}" alt="${it.n}" onerror="this.classList.add('imgfail')"><span class="svgfb">${it.s}</span><span class="cap">${it.n}</span></figure>`
+        : `<figure class="eraimg" title="${it.n}">${it.s}<span class="cap">${it.n}</span></figure>`
     ).join('')+'</div>';
   }
 
@@ -741,10 +664,10 @@
   });
   // Übergang Lebensweg ⇄ BMW-Zeitleiste
   document.getElementById('tldetail').addEventListener('click',e=>{
-    if(e.target.closest('#gotoBMW')){e.stopPropagation();show(4);}
+    if(e.target.closest('#gotoBMW')){e.stopPropagation();show(3);}
   });
   const backBtn=document.getElementById('backToLife');
-  if(backBtn)backBtn.addEventListener('click',e=>{e.stopPropagation();show(3);});
+  if(backBtn)backBtn.addEventListener('click',e=>{e.stopPropagation();show(2);});
 
 
   // ===== BMW Erfolge im Detail: ein Eintrag pro Portfolio-Jahr 2019–2025 =====
