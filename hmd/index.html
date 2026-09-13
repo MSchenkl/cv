@@ -557,7 +557,7 @@
     const ac=activeChapter(i);
     navBtns.forEach((b,k)=>{b.classList.toggle('on',k===ac);if(k===ac)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current');});
     const on=navBtns[ac]; if(on&&on.scrollIntoView)on.scrollIntoView({inline:'center',block:'nearest'});
-    if(slides[i].id)history.replaceState(null,'','#'+slides[i].id);
+    if(slides[i].id){try{history.replaceState(null,'','#'+slides[i].id);}catch(e){/* Sandbox/Preview ohne History-Zugriff */}}
     fitSlide();
   }
   const next=()=>show(i+1), prev=()=>show(i-1);
