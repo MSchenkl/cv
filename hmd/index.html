@@ -179,6 +179,9 @@
   .chainrow .ch b{display:block;font-size:clamp(1.3rem,2.4vw,2rem);color:var(--accent);font-weight:900}
   .chainrow .ch span{color:var(--muted);font-size:.85rem}
   .chainrow .ar{align-self:center;color:var(--accent2);font-size:1.5rem;font-weight:800}
+  .vibefig{margin:1rem 0 .3rem}
+  .vibefig svg{display:block;width:100%;max-width:880px;height:auto}
+  .vibefig figcaption{color:var(--muted);font-size:.85rem;margin-top:.35rem}
   @media (prefers-reduced-motion:reduce){.slide{animation:none}}
   @media (max-width:700px){
     .chapternav button{display:none}
@@ -627,38 +630,153 @@
 
   // Vibe-Coding-Kacheln
   const detailsVibe={
-    vwarum:`<h3>Warum Vibe Coding funktioniert</h3>
+    vwarum:`<h3>Warum Vibe Coding funktioniert: der Specification Gap entfällt</h3>
+      <figure class="vibefig"><svg viewBox="0 0 880 210" role="img" aria-label="Vergleich klassischer Weg über Spezifikation und Entwicklungsteam in Wochen gegenüber direktem KI-Dialog in Minuten">
+        <text x="16" y="26" fill="#9db0cc" font-size="13" font-weight="700" letter-spacing="2">KLASSISCH</text>
+        <rect x="16" y="38" width="150" height="46" rx="10" fill="#13213b" stroke="#26385c" stroke-width="2"/><text x="91" y="66" text-anchor="middle" fill="#eaf1fb" font-size="15" font-weight="700">Fachexperte</text>
+        <path d="M172 61 h56" stroke="#9db0cc" stroke-width="2.5" marker-end="url(#varr)"/>
+        <rect x="234" y="38" width="168" height="46" rx="10" fill="#13213b" stroke="#26385c" stroke-width="2"/><text x="318" y="59" text-anchor="middle" fill="#eaf1fb" font-size="14" font-weight="700">Spezifikation</text><text x="318" y="76" text-anchor="middle" fill="#9db0cc" font-size="11">User Story · Übergabe</text>
+        <path d="M296 30 l14 -16 m-7 8 l12 2" stroke="#ffb454" stroke-width="2.5" fill="none"/>
+        <text x="356" y="22" fill="#ffb454" font-size="12" font-weight="700">Gap: Domänenwissen geht verloren</text>
+        <path d="M408 61 h56" stroke="#9db0cc" stroke-width="2.5" marker-end="url(#varr)"/>
+        <rect x="470" y="38" width="168" height="46" rx="10" fill="#13213b" stroke="#26385c" stroke-width="2"/><text x="554" y="66" text-anchor="middle" fill="#eaf1fb" font-size="15" font-weight="700">Entwicklungsteam</text>
+        <path d="M644 61 h56" stroke="#9db0cc" stroke-width="2.5" marker-end="url(#varr)"/>
+        <rect x="706" y="38" width="150" height="46" rx="10" fill="#13213b" stroke="#26385c" stroke-width="2"/><text x="781" y="66" text-anchor="middle" fill="#eaf1fb" font-size="15" font-weight="700">Lösung</text>
+        <text x="781" y="100" text-anchor="middle" fill="#9db0cc" font-size="12">nach Wochen bis Monaten</text>
+        <text x="16" y="140" fill="#33e0c0" font-size="13" font-weight="700" letter-spacing="2">VIBE CODING</text>
+        <rect x="16" y="152" width="150" height="46" rx="10" fill="#13213b" stroke="#33e0c0" stroke-width="2"/><text x="91" y="180" text-anchor="middle" fill="#eaf1fb" font-size="15" font-weight="700">Fachexperte</text>
+        <path d="M172 168 h130 m0 14 h-130" stroke="#33e0c0" stroke-width="2.5" marker-end="url(#varrt)"/>
+        <path d="M302 182 h-130" stroke="#33e0c0" stroke-width="0" />
+        <rect x="308" y="152" width="150" height="46" rx="10" fill="#13213b" stroke="#33e0c0" stroke-width="2"/><text x="383" y="175" text-anchor="middle" fill="#eaf1fb" font-size="15" font-weight="700">KI-Agent</text><text x="383" y="191" text-anchor="middle" fill="#9db0cc" font-size="11">Dialog · Iteration</text>
+        <path d="M464 175 h56" stroke="#33e0c0" stroke-width="2.5" marker-end="url(#varrt)"/>
+        <rect x="526" y="152" width="150" height="46" rx="10" fill="#13213b" stroke="#33e0c0" stroke-width="2"/><text x="601" y="180" text-anchor="middle" fill="#eaf1fb" font-size="15" font-weight="700">Lösung</text>
+        <text x="726" y="180" fill="#33e0c0" font-size="14" font-weight="800">in Minuten</text>
+        <defs>
+          <marker id="varr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#9db0cc"/></marker>
+          <marker id="varrt" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#33e0c0"/></marker>
+        </defs>
+      </svg></figure>
       <ul>
-      <li><strong>Der Specification Gap entfällt:</strong> Fachanwender wissen präzise, welches Problem zu lösen ist — können es aber kaum formal spezifizieren. Im direkten KI-Dialog fließt das Domänenwissen (Fachsprache, implizites Regelwissen, Sonderfälle) unmittelbar in die Lösung, ohne fehleranfällige Übergabe an Dritte.</li>
-      <li><strong>Fachliche Gedanken werden direkt zu Lösungen:</strong> schnelle Prototypen, hoher Erkenntnisgewinn — deutlich kürzere Schleifen als über klassische Übergaben.</li>
-      <li><strong>Tempo:</strong> Kleine Teams mit Entscheidungsspielraum und direktem Zugang zur Fachdomäne iterieren in Minuten statt Wochen — Erkenntnisse, die klassisch Monate bräuchten.</li>
-      <li><strong>Niedrige Hürde:</strong> Die Anwendungen laufen zunächst auf dem eigenen Laptop — sofortiges Ergebnis, ohne Infrastruktur-Vorleistung.</li>
+      <li><strong>Domänenwissen bleibt in der Schleife:</strong> Fachsprache, implizites Regelwissen und Sonderfälle fließen direkt in die Lösung — keine fehleranfällige Übergabe.</li>
+      <li><strong>Tempo:</strong> Kleine Teams mit Entscheidungsspielraum iterieren in Minuten — Erkenntnisse, die klassisch Monate bräuchten. Der Einstieg gelingt auf dem eigenen Laptop.</li>
       </ul>`,
-    vweg:`<h3>Der Weg zum Vibe Coder: Privat → Beruf → Deep Dive</h3>
+    vweg:`<h3>Der Weg zum Vibe Coder: drei Stationen</h3>
+      <figure class="vibefig"><svg viewBox="0 0 880 200" role="img" aria-label="Drei Stationen: privat ausprobieren, beruflich pilotieren, Deep Dive">
+        <rect x="10" y="16" width="250" height="150" rx="14" fill="#13213b" stroke="#4da3ff" stroke-width="2"/>
+        <text x="26" y="44" fill="#4da3ff" font-size="20" font-weight="900">01</text>
+        <path d="M118 58 l17 -14 l17 14 v22 h-34 z" fill="none" stroke="#4da3ff" stroke-width="2.5"/><rect x="129" y="66" width="8" height="14" fill="#4da3ff"/>
+        <text x="135" y="108" text-anchor="middle" fill="#eaf1fb" font-size="16" font-weight="800">PRIVAT</text>
+        <text x="135" y="128" text-anchor="middle" fill="#9db0cc" font-size="12">zuhause ausprobieren</text>
+        <text x="135" y="150" text-anchor="middle" fill="#33e0c0" font-size="11.5">kein Risiko · sofort Ergebnis</text>
+        <path d="M266 91 h40" stroke="#33e0c0" stroke-width="3" marker-end="url(#warr)"/>
+        <rect x="312" y="16" width="250" height="150" rx="14" fill="#13213b" stroke="#4da3ff" stroke-width="2"/>
+        <text x="328" y="44" fill="#4da3ff" font-size="20" font-weight="900">02</text>
+        <rect x="420" y="46" width="34" height="34" rx="3" fill="none" stroke="#4da3ff" stroke-width="2.5"/><g fill="#4da3ff"><rect x="426" y="52" width="6" height="6"/><rect x="441" y="52" width="6" height="6"/><rect x="426" y="64" width="6" height="6"/><rect x="441" y="64" width="6" height="6"/></g>
+        <text x="437" y="108" text-anchor="middle" fill="#eaf1fb" font-size="16" font-weight="800">BERUF</text>
+        <text x="437" y="128" text-anchor="middle" fill="#9db0cc" font-size="12">kleines Pilotthema umsetzen</text>
+        <text x="437" y="150" text-anchor="middle" fill="#33e0c0" font-size="11.5">vom Spielprojekt zum Nutzen</text>
+        <path d="M568 91 h40" stroke="#33e0c0" stroke-width="3" marker-end="url(#warr)"/>
+        <rect x="614" y="16" width="250" height="150" rx="14" fill="#13213b" stroke="#4da3ff" stroke-width="2"/>
+        <text x="630" y="44" fill="#4da3ff" font-size="20" font-weight="900">03</text>
+        <circle cx="732" cy="58" r="14" fill="none" stroke="#4da3ff" stroke-width="2.5"/><path d="M742 68 l12 12" stroke="#4da3ff" stroke-width="3" stroke-linecap="round"/>
+        <text x="739" y="108" text-anchor="middle" fill="#eaf1fb" font-size="16" font-weight="800">DEEP DIVE</text>
+        <text x="739" y="128" text-anchor="middle" fill="#9db0cc" font-size="12">unter die Haube schauen</text>
+        <text x="739" y="150" text-anchor="middle" fill="#33e0c0" font-size="11.5">vom Anwender zum KI-Versteher</text>
+        <defs><marker id="warr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#33e0c0"/></marker></defs>
+      </svg></figure>
       <ul>
-      <li><strong>01 · Privat ausprobieren:</strong> zuhause mit Alltagsideen starten — eine Smart-Home-Steuerung, eine kleine eigene App, gern gemeinsam mit den Kindern. Niedrige Hürde, kein Risiko, sofort ein Ergebnis.</li>
-      <li><strong>02 · Beruflich pilotieren:</strong> ein kleines, isoliertes Thema aus dem eigenen Aufgabengebiet wählen und per Vibe Coding umsetzen — vom Spielprojekt zum echten Nutzen im Tagesgeschäft, bis hin zur Integration in bestehende Systeme.</li>
-      <li><strong>03 · Deep Dive:</strong> unter die Haube schauen — einen eigenen KI-Agenten aufsetzen und verstehen, wie Agent-Harness, Prompt-Aufbau und Context Window zusammenspielen: vom Anwender zum KI-Versteher.</li>
+      <li><strong>01 Privat:</strong> mit Alltagsideen starten (Smart Home, eine kleine eigene App — gern mit den Kindern) · <strong>02 Beruf:</strong> ein isoliertes Thema aus dem eigenen Aufgabengebiet pilotieren, bis zur Integration in bestehende Systeme · <strong>03 Deep Dive:</strong> eigenen KI-Agenten aufsetzen, Agent-Harness, Prompt-Aufbau und Context Window verstehen.</li>
       <li><strong>Die Werkzeuge stehen bereit</strong> (z. B. VS Code mit GitHub Copilot, OpenCode, Claude Code): „Du brauchst kein Informatikstudium — nur Neugier und einen ersten Prompt.“</li>
       </ul>
       <p class="muted">Praxis-Leitfaden aus dem KI-Enablement des Unternehmensbereichs — ergänzend zum Fachbeitrag.</p>`,
     vgrenzen:`<h3>Die Grenzen: 100 % Funktion sind nicht 100 % Produktreife</h3>
+      <figure class="vibefig"><svg viewBox="0 0 880 230" role="img" aria-label="Eisberg: sichtbare Funktion über der Wasserlinie, darunter die unsichtbaren Anforderungen der Unternehmens-IT">
+        <path d="M275 88 L365 10 L455 88 Z" fill="#13213b" stroke="#33e0c0" stroke-width="2.5"/>
+        <text x="365" y="76" text-anchor="middle" fill="#33e0c0" font-size="13.5" font-weight="800">100 % Funktion</text>
+        <text x="520" y="40" fill="#eaf1fb" font-size="14" font-weight="700">sichtbar: das Tool läuft auf dem Laptop</text>
+        <path d="M0 94 q30 -10 60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0 t60 0" fill="none" stroke="#4da3ff" stroke-width="2.5"/>
+        <path d="M255 100 L475 100 L520 212 L205 212 Z" fill="#0d1830" stroke="#26385c" stroke-width="2"/>
+        <g fill="#9db0cc" font-size="12.5">
+          <text x="360" y="124" text-anchor="middle">Authentisierung · Berechtigungen</text>
+          <text x="360" y="146" text-anchor="middle">Schnittstellenverträge · Logging &amp; Monitoring</text>
+          <text x="360" y="168" text-anchor="middle">Recovery · Performance · Resilienz</text>
+          <text x="360" y="190" text-anchor="middle">Unternehmens- &amp; Prozess-Spezifika</text>
+        </g>
+        <text x="560" y="130" fill="#ffb454" font-size="14" font-weight="700">unsichtbar: was die</text>
+        <text x="560" y="150" fill="#ffb454" font-size="14" font-weight="700">Unternehmens-IT zusätzlich</text>
+        <text x="560" y="170" fill="#ffb454" font-size="14" font-weight="700">braucht</text>
+      </svg></figure>
       <ul>
-      <li><strong>Was der „Laptop-Lösung“ fehlt:</strong> Authentisierung, Berechtigungen, Schnittstellenverträge, Logging &amp; Monitoring, Recovery — die Anforderungen einer Unternehmens-IT-Infrastruktur.</li>
-      <li><strong>Unkontrollierte Entscheidungsdelegation:</strong> Das LLM trifft autonome technische (Fehl-)Entscheidungen — etwa „Best Guesses“ bei Schnittstellenaufrufen; Architekturfragen zu Performance, Resilienz und Fehlerverhalten bleiben unbeantwortet.</li>
-      <li><strong>Fehlender Unternehmenskontext:</strong> Das LLM kennt die internen System- und Prozessspezifika nicht — Integration in die Unternehmens-IT ist mehr als eine funktionierende PC-Lösung.</li>
-      </ul>
-      <p class="muted">Der Erfolg auf dem eigenen Rechner ist der Anfang — nicht das Ende des Weges.</p>`,
+      <li><strong>Unkontrollierte Entscheidungsdelegation:</strong> Das LLM trifft autonome technische (Fehl-)Entscheidungen — etwa „Best Guesses“ bei Schnittstellenaufrufen — und kennt die internen System- und Prozessspezifika nicht.</li>
+      <li><strong>Konsequenz:</strong> Der Erfolg auf dem eigenen Rechner ist der Anfang des Weges, nicht das Ende.</li>
+      </ul>`,
     vgovernance:`<h3>Governance: das Tandem aus Vibe Coder und IT</h3>
+      <figure class="vibefig"><svg viewBox="0 0 880 220" role="img" aria-label="Tandem-Fahrrad mit Vibe Coder vorne und IT-Experte hinten, unterwegs zum Unternehmensprodukt">
+        <line x1="20" y1="185" x2="860" y2="185" stroke="#26385c" stroke-width="2"/>
+        <circle cx="180" cy="160" r="42" fill="none" stroke="#9db0cc" stroke-width="4"/><circle cx="470" cy="160" r="42" fill="none" stroke="#9db0cc" stroke-width="4"/>
+        <path d="M180 160 L265 100 L390 100 L470 160 M265 100 L300 160 M390 100 L360 160 M300 160 L360 160 M180 160 L232 92 M470 160 L438 92" stroke="#4da3ff" stroke-width="4" fill="none" stroke-linecap="round"/>
+        <line x1="214" y1="92" x2="250" y2="92" stroke="#4da3ff" stroke-width="4" stroke-linecap="round"/><line x1="420" y1="92" x2="456" y2="92" stroke="#4da3ff" stroke-width="4" stroke-linecap="round"/>
+        <circle cx="300" cy="160" r="7" fill="#33e0c0"/><circle cx="360" cy="160" r="7" fill="#33e0c0"/>
+        <circle cx="255" cy="52" r="13" fill="#ffb454"/><path d="M255 65 L255 100 M255 74 L232 92 M255 74 L276 88" stroke="#ffb454" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <circle cx="428" cy="52" r="13" fill="#33e0c0"/><path d="M428 65 L428 100 M428 74 L406 90 M428 74 L450 92" stroke="#33e0c0" stroke-width="4" stroke-linecap="round" fill="none"/>
+        <text x="255" y="28" text-anchor="middle" fill="#ffb454" font-size="14" font-weight="800">Vibe Coder</text>
+        <text x="428" y="28" text-anchor="middle" fill="#33e0c0" font-size="14" font-weight="800">IT-Experte</text>
+        <text x="180" y="212" text-anchor="middle" fill="#9db0cc" font-size="12">Domänenwissen</text>
+        <text x="470" y="212" text-anchor="middle" fill="#9db0cc" font-size="12">Architektur &amp; Betrieb</text>
+        <path d="M540 160 h120" stroke="#33e0c0" stroke-width="3" marker-end="url(#tarr)" stroke-dasharray="7 6"/>
+        <rect x="672" y="128" width="186" height="60" rx="12" fill="#13213b" stroke="#33e0c0" stroke-width="2"/>
+        <text x="765" y="153" text-anchor="middle" fill="#eaf1fb" font-size="14" font-weight="800">Unternehmens-</text>
+        <text x="765" y="172" text-anchor="middle" fill="#eaf1fb" font-size="14" font-weight="800">produkt</text>
+        <defs><marker id="tarr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" fill="#33e0c0"/></marker></defs>
+      </svg></figure>
       <ul>
-      <li><strong>Tandem-Prinzip:</strong> Bei der Integration in die Unternehmens-Infrastruktur arbeiten Vibe Coder und IT-Experte zusammen — das Zusammenspiel zwischen Fachbereich und IT wird derzeit gemeinsam mit der zentralen IT definiert.</li>
-      <li><strong>Neue Prozesse nötig:</strong> Klassische Entwicklungsprozesse mit Sprint-Planung passen nicht zu Iterationszyklen von Minuten — zugleich müssen Qualität, Nachvollziehbarkeit und IT-Sicherheit gewährleistet bleiben.</li>
-      <li><strong>Verantwortung klar regeln:</strong> Eine zu frühe Übergabe bei ca. 80 % Fertigstellung hat sich als Risiko erwiesen — die verbleibenden 20 % (Randfälle, Fehlerbehandlung, Integration) brauchen tiefes fachliches Anwendungswissen; wie lange die Mitverantwortung gilt, ist noch offen.</li>
+      <li><strong>Gemeinsam treten:</strong> Bei der Integration in die Infrastruktur arbeiten Vibe Coder und IT-Experte im Tandem — das Zusammenspiel zwischen Fachbereich und IT wird derzeit mit der zentralen IT definiert.</li>
+      <li><strong>Neue Regeln nötig:</strong> Sprint-Prozesse passen nicht zu Minuten-Iterationen; Qualität, Nachvollziehbarkeit und IT-Sicherheit müssen trotzdem gewährleistet sein. Eine zu frühe Übergabe bei ca. 80 % Fertigstellung hat sich als Risiko erwiesen — die letzten 20 % brauchen Domänenwissen.</li>
       </ul>`,
     vergebnis:`<h3>Ergebnis: Software aus dem Fachbereich heraus</h3>
+      <figure class="vibefig"><svg viewBox="0 0 880 190" role="img" aria-label="Mosaik aus über 30 Tools, ein Teil bereits an die IT übergeben">
+        <g>
+          <rect x="20" y="22" width="46" height="28" rx="6" fill="#33e0c0" fill-opacity="0.9" stroke="#33e0c0" stroke-width="1.5"/>
+          <rect x="82" y="22" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="144" y="22" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="206" y="22" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="268" y="22" width="46" height="28" rx="6" fill="#33e0c0" fill-opacity="0.9" stroke="#33e0c0" stroke-width="1.5"/>
+          <rect x="330" y="22" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="392" y="22" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="454" y="22" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="20" y="62" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="82" y="62" width="46" height="28" rx="6" fill="#33e0c0" fill-opacity="0.9" stroke="#33e0c0" stroke-width="1.5"/>
+          <rect x="144" y="62" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="206" y="62" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="268" y="62" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="330" y="62" width="46" height="28" rx="6" fill="#33e0c0" fill-opacity="0.9" stroke="#33e0c0" stroke-width="1.5"/>
+          <rect x="392" y="62" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="454" y="62" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="20" y="102" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="82" y="102" width="46" height="28" rx="6" fill="#33e0c0" fill-opacity="0.9" stroke="#33e0c0" stroke-width="1.5"/>
+          <rect x="144" y="102" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="206" y="102" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="268" y="102" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="330" y="102" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="392" y="102" width="46" height="28" rx="6" fill="#33e0c0" fill-opacity="0.9" stroke="#33e0c0" stroke-width="1.5"/>
+          <rect x="454" y="102" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="20" y="142" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="82" y="142" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="144" y="142" width="46" height="28" rx="6" fill="#33e0c0" fill-opacity="0.9" stroke="#33e0c0" stroke-width="1.5"/>
+          <rect x="206" y="142" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="268" y="142" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="330" y="142" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="392" y="142" width="46" height="28" rx="6" fill="#1d2f52" fill-opacity="1" stroke="#4da3ff" stroke-width="1.5"/>
+          <rect x="454" y="142" width="46" height="28" rx="6" fill="#33e0c0" fill-opacity="0.9" stroke="#33e0c0" stroke-width="1.5"/>
+        </g>
+        <text x="560" y="78" fill="#eaf1fb" font-size="40" font-weight="900">30+</text>
+        <text x="560" y="104" fill="#9db0cc" font-size="14">Tools von Fachkräften</text>
+        <text x="560" y="124" fill="#9db0cc" font-size="14">ohne Informatikausbildung</text>
+        <rect x="558" y="142" width="13" height="13" rx="3" fill="#33e0c0"/>
+        <text x="580" y="153" fill="#9db0cc" font-size="12.5">bereits an die IT übergeben (Betrieb &amp; Wartung)</text>
+      </svg></figure>
       <ul>
-      <li><strong>Über 30 Tools</strong> haben Fachkräfte ohne Informatikausbildung entwickelt — meist gegen die eigenen „Zeitfresser“ und Pain Points; ein Teil ist bereits an die IT für Betrieb und Wartung übergeben.</li>
-      <li><strong>Autonomie als Wirkung:</strong> Mitarbeitende wählen selbst, welchen Prozessschritt sie verbessern und welches Tool sie bauen — Gestaltungsspielraum statt reiner Tool-Nutzung.</li>
+      <li><strong>Gegen die eigenen „Zeitfresser“:</strong> Mitarbeitende wählen selbst, welchen Prozessschritt sie verbessern und welches Tool sie bauen — Autonomie und Gestaltungsspielraum statt reiner Tool-Nutzung.</li>
       <li><strong>Einordnung:</strong> Die Nutzungsdaten im Ergebnisteil zeigen, wie intensiv die Einsteiger arbeiten — die betrieblichen Effekte wurden nicht kausal gemessen.</li>
       </ul>`
   };
