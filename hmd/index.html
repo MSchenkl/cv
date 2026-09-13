@@ -360,29 +360,19 @@
     </ul>
   </section>
 
-  <!-- 12 VIBE CODING -->
-  <section id="vibe-coding" class="slide">
-    <div class="kicker">Fallstudie · Maßnahme 5</div>
-    <h2>Vibe Coding: Autonomie für den Fachbereich</h2>
-    <div class="two" style="align-items:start">
-      <div>
-        <h3 class="teal">Was es bringt</h3>
-        <ul>
-          <li><strong>30+ Tools</strong> von Fachkräften <em>ohne Informatikausbildung</em> entwickelt — meist gegen die eigenen „Zeitfresser“.</li>
-          <li>Löst den <strong>Specification Gap</strong>: Der Fachexperte entwickelt im direkten KI-Dialog und bringt sein Domänenwissen unmittelbar ein.</li>
-          <li>Iterationszyklen in <strong>Minuten statt Wochen</strong> — Erkenntnisgewinn, der klassisch Monate bräuchte.</li>
-        </ul>
-      </div>
-      <div>
-        <h3 class="warm">Wo die Grenzen liegen</h3>
-        <ul>
-          <li>100 % Vibe-Coding-Funktion ≠ 100 % <strong>IT-Produktreife</strong>: Authentisierung, Schnittstellen, Monitoring, Recovery.</li>
-          <li>Minuten-Iterationen passen nicht zu klassischen <strong>Sprint-Prozessen</strong> — es braucht eigene Governance-Regeln.</li>
-          <li><strong>Fachliche Mitverantwortung und Übergabe an die IT müssen klar geregelt werden</strong> — eine zu frühe Übergabe bei ca. 80 % Fertigstellung hat sich als Risiko erwiesen; wie lange die Verantwortung gilt und wie die Übergabe erfolgt, ist noch offen.</li>
-        </ul>
-      </div>
+  <!-- 12 VIBE CODING (interaktiv) -->
+  <section id="vibe-coding" class="slide top fitslide">
+    <div class="kicker" style="margin-top:.4rem">Fallstudie · Maßnahme 5 · Vibe Coding: Autonomie für den Fachbereich — <span class="teal">klicke ein Thema</span></div>
+    <div class="timeline" id="timelineVibe">
+      <button type="button" class="tl" data-key="vwarum"><span class="go">▸</span><div class="yr">Prinzip</div><div class="st">Warum es funktioniert</div><div class="dt">Specification Gap · Tempo</div></button>
+      <button type="button" class="tl" data-key="vweg"><span class="go">▸</span><div class="yr">Einstieg</div><div class="st">Der Weg zum Vibe Coder</div><div class="dt">Privat → Beruf → Deep Dive</div></button>
+      <button type="button" class="tl" data-key="vgrenzen"><span class="go">▸</span><div class="yr">Grenzen</div><div class="st">Funktion ≠ Produktreife</div><div class="dt">Architektur · Sicherheit</div></button>
+      <button type="button" class="tl" data-key="vgovernance"><span class="go">▸</span><div class="yr">Governance</div><div class="st">Tandem mit der IT</div><div class="dt">Verantwortung · Übergabe</div></button>
+      <button type="button" class="tl" data-key="vergebnis"><span class="go">▸</span><div class="yr">Ergebnis</div><div class="st">30+ Tools im Einsatz</div><div class="dt">Aus dem Fachbereich heraus</div></button>
     </div>
-    <p class="note">Aktuell wird gemeinsam mit der zentralen IT daran gearbeitet, diese Lücken zu schließen — um die Skalierungschancen des Vibe Coding sicher zu nutzen.</p>
+    <div class="tldetail" id="tldetailVibe">
+      <p class="hintline">▸ Fachkräfte ohne Informatikausbildung entwickeln Software im Dialog mit einem KI-Agenten — Prinzip, Einstieg, Grenzen, Governance und Ergebnis im Detail. <span class="muted"></span></p>
+    </div>
   </section>
 
   <!-- 12 DIVIDER 3 -->
@@ -632,6 +622,54 @@
       el.classList.add('sel');
       tldetailBlock.innerHTML=detailsBlock[el.dataset.key]||'';
       tldetailBlock.scrollTop=0;
+    });
+  });
+
+  // Vibe-Coding-Kacheln
+  const detailsVibe={
+    vwarum:`<h3>Warum Vibe Coding funktioniert</h3>
+      <ul>
+      <li><strong>Der Specification Gap entfällt:</strong> Fachanwender wissen präzise, welches Problem zu lösen ist — können es aber kaum formal spezifizieren. Im direkten KI-Dialog fließt das Domänenwissen (Fachsprache, implizites Regelwissen, Sonderfälle) unmittelbar in die Lösung, ohne fehleranfällige Übergabe an Dritte.</li>
+      <li><strong>Fachliche Gedanken werden direkt zu Lösungen:</strong> schnelle Prototypen, hoher Erkenntnisgewinn — deutlich kürzere Schleifen als über klassische Übergaben.</li>
+      <li><strong>Tempo:</strong> Kleine Teams mit Entscheidungsspielraum und direktem Zugang zur Fachdomäne iterieren in Minuten statt Wochen — Erkenntnisse, die klassisch Monate bräuchten.</li>
+      <li><strong>Niedrige Hürde:</strong> Die Anwendungen laufen zunächst auf dem eigenen Laptop — sofortiges Ergebnis, ohne Infrastruktur-Vorleistung.</li>
+      </ul>`,
+    vweg:`<h3>Der Weg zum Vibe Coder: Privat → Beruf → Deep Dive</h3>
+      <ul>
+      <li><strong>01 · Privat ausprobieren:</strong> zuhause mit Alltagsideen starten — eine Smart-Home-Steuerung, eine kleine eigene App, gern gemeinsam mit den Kindern. Niedrige Hürde, kein Risiko, sofort ein Ergebnis.</li>
+      <li><strong>02 · Beruflich pilotieren:</strong> ein kleines, isoliertes Thema aus dem eigenen Aufgabengebiet wählen und per Vibe Coding umsetzen — vom Spielprojekt zum echten Nutzen im Tagesgeschäft, bis hin zur Integration in bestehende Systeme.</li>
+      <li><strong>03 · Deep Dive:</strong> unter die Haube schauen — einen eigenen KI-Agenten aufsetzen und verstehen, wie Agent-Harness, Prompt-Aufbau und Context Window zusammenspielen: vom Anwender zum KI-Versteher.</li>
+      <li><strong>Die Werkzeuge stehen bereit</strong> (z. B. VS Code mit GitHub Copilot, OpenCode, Claude Code): „Du brauchst kein Informatikstudium — nur Neugier und einen ersten Prompt.“</li>
+      </ul>
+      <p class="muted">Praxis-Leitfaden aus dem KI-Enablement des Unternehmensbereichs — ergänzend zum Fachbeitrag.</p>`,
+    vgrenzen:`<h3>Die Grenzen: 100 % Funktion sind nicht 100 % Produktreife</h3>
+      <ul>
+      <li><strong>Was der „Laptop-Lösung“ fehlt:</strong> Authentisierung, Berechtigungen, Schnittstellenverträge, Logging &amp; Monitoring, Recovery — die Anforderungen einer Unternehmens-IT-Infrastruktur.</li>
+      <li><strong>Unkontrollierte Entscheidungsdelegation:</strong> Das LLM trifft autonome technische (Fehl-)Entscheidungen — etwa „Best Guesses“ bei Schnittstellenaufrufen; Architekturfragen zu Performance, Resilienz und Fehlerverhalten bleiben unbeantwortet.</li>
+      <li><strong>Fehlender Unternehmenskontext:</strong> Das LLM kennt die internen System- und Prozessspezifika nicht — Integration in die Unternehmens-IT ist mehr als eine funktionierende PC-Lösung.</li>
+      </ul>
+      <p class="muted">Der Erfolg auf dem eigenen Rechner ist der Anfang — nicht das Ende des Weges.</p>`,
+    vgovernance:`<h3>Governance: das Tandem aus Vibe Coder und IT</h3>
+      <ul>
+      <li><strong>Tandem-Prinzip:</strong> Bei der Integration in die Unternehmens-Infrastruktur arbeiten Vibe Coder und IT-Experte zusammen — das Zusammenspiel zwischen Fachbereich und IT wird derzeit gemeinsam mit der zentralen IT definiert.</li>
+      <li><strong>Neue Prozesse nötig:</strong> Klassische Entwicklungsprozesse mit Sprint-Planung passen nicht zu Iterationszyklen von Minuten — zugleich müssen Qualität, Nachvollziehbarkeit und IT-Sicherheit gewährleistet bleiben.</li>
+      <li><strong>Verantwortung klar regeln:</strong> Eine zu frühe Übergabe bei ca. 80 % Fertigstellung hat sich als Risiko erwiesen — die verbleibenden 20 % (Randfälle, Fehlerbehandlung, Integration) brauchen tiefes fachliches Anwendungswissen; wie lange die Mitverantwortung gilt, ist noch offen.</li>
+      </ul>`,
+    vergebnis:`<h3>Ergebnis: Software aus dem Fachbereich heraus</h3>
+      <ul>
+      <li><strong>Über 30 Tools</strong> haben Fachkräfte ohne Informatikausbildung entwickelt — meist gegen die eigenen „Zeitfresser“ und Pain Points; ein Teil ist bereits an die IT für Betrieb und Wartung übergeben.</li>
+      <li><strong>Autonomie als Wirkung:</strong> Mitarbeitende wählen selbst, welchen Prozessschritt sie verbessern und welches Tool sie bauen — Gestaltungsspielraum statt reiner Tool-Nutzung.</li>
+      <li><strong>Einordnung:</strong> Die Nutzungsdaten im Ergebnisteil zeigen, wie intensiv die Einsteiger arbeiten — die betrieblichen Effekte wurden nicht kausal gemessen.</li>
+      </ul>`
+  };
+  const tldetailVibe=document.getElementById('tldetailVibe');
+  document.querySelectorAll('#timelineVibe .tl').forEach(el=>{
+    el.addEventListener('click',e=>{
+      e.stopPropagation();
+      document.querySelectorAll('#timelineVibe .tl').forEach(x=>x.classList.remove('sel'));
+      el.classList.add('sel');
+      tldetailVibe.innerHTML=detailsVibe[el.dataset.key]||'';
+      tldetailVibe.scrollTop=0;
     });
   });
 
