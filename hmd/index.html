@@ -9,7 +9,7 @@
 <title>Partizipative KI-Einführung im Produktdatenmanagement — Koch & Schenkl</title>
 <meta name="description" content="Fachvortrag zur Fallstudie der BMW Group: Wie partizipative Mechanismen — Führung als Enabler, vierstufige Qualifizierung, Lernformate und Vibe Coding — die Einführung generativer KI tragen.">
 <meta property="og:title" content="Partizipative KI-Einführung im Produktdatenmanagement">
-<meta property="og:description" content="Mitarbeitende als aktive Gestalter der KI-Transformation — Fallstudie BMW Group (Koch & Schenkl).">
+<meta property="og:description" content="Mitarbeitende als aktive Gestalter der KI-Transformation — Fallstudie BMW Group (Koch &amp; Schenkl), erschienen 2026 in HMD Praxis der Wirtschaftsinformatik.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://mschenkl.github.io/cv/hmd/">
 <meta property="og:image" content="https://mschenkl.github.io/cv/hmd/preview.jpg">
@@ -171,6 +171,12 @@
 
   /* Review-Runde 2: Links, Fokus, A11y, Eval-Zeilen, Nutzungs-Kette, Mobil */
   a{color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+
+  /* Quellenfolie: auf schmalen Fenstern innen scrollen statt abschneiden */
+  @media (max-width:700px){
+    #quellen{overflow-y:auto;overscroll-behavior:contain}
+    #quellen > div[style*="columns"]{columns:1}
+  }
   a:hover{color:var(--accent2)}
   button.tl{font:inherit;text-align:left;color:var(--ink);width:auto}
   :focus-visible{outline:2px solid var(--accent2);outline-offset:2px}
@@ -212,6 +218,12 @@
     <div class="sub"><strong>Mitarbeitende als aktive Gestalter der KI-Transformation</strong></div>
     <div class="sub" style="margin-top:1.1rem">Eine Fallstudie aus der BMW Group: ein vollständiger Action-Research-Zyklus, Top-down- und Bottom-up-Maßnahmen — und was Befragungs-, Nutzungs- und Beobachtungsdaten zeigen.</div>
     <div class="meta">Michael Koch · Mark Schenkl — BMW Group</div>
+    <p class="note" style="margin-top:1.4rem;font-style:normal;font-size:.95rem">
+      Erschienen am 2. Oktober 2026 in <em>HMD Praxis der Wirtschaftsinformatik</em> (Springer) ·
+      <a href="https://doi.org/10.1365/s40702-026-01339-z" target="_blank" rel="noopener">doi.org/10.1365/s40702-026-01339-z</a><br>
+      <span class="teal">Volltext frei lesen:</span>
+      <a href="https://rdcu.be/k5rteoyv753a" target="_blank" rel="noopener">rdcu.be/k5rteoyv753a</a>
+    </p>
   </section>
 
   <!-- 1 AGENDA -->
@@ -491,6 +503,11 @@
   <section id="quellen" class="slide top">
     <div class="kicker" style="margin-top:.4rem">Anhang · Quellen (Auswahl — vollständiges Literaturverzeichnis im Artikel)</div>
     <h2>Literatur</h2>
+    <div class="tldetail" style="margin-top:0;margin-bottom:1.1rem">
+      <h3 style="color:var(--accent2);font-size:1rem">Dieser Beitrag</h3>
+      <p style="font-size:.92rem">Koch M, Schenkl M (2026) Partizipative KI-Einführung im Produktdatenmanagement — Mitarbeitende als aktive Gestalter der KI-Transformation. HMD Praxis der Wirtschaftsinformatik, Online-First, 2. Oktober 2026. <a href="https://doi.org/10.1365/s40702-026-01339-z" target="_blank" rel="noopener">https://doi.org/10.1365/s40702-026-01339-z</a></p>
+      <p class="muted" style="font-size:.88rem;margin-top:.35rem">Volltext frei zugänglich (SharedIt): <a href="https://rdcu.be/k5rteoyv753a" target="_blank" rel="noopener">https://rdcu.be/k5rteoyv753a</a></p>
+    </div>
     <div style="columns:2;column-gap:2.6rem;font-size:.86rem;color:var(--muted);line-height:1.5">
       <p style="margin-bottom:.55rem"><a href="https://doi.org/10.1016/j.im.2025.104212" target="_blank" rel="noopener noreferrer">Abhari K (2025) Employee Participation in Digital Transformation. Information &amp; Management 62:104212.</a></p>
       <p style="margin-bottom:.55rem">Bouquet C, Wright CJ, Nolan J (2026) Match Your AI Strategy to Your Organization's Reality. Harvard Business Review 104(1).</p>
