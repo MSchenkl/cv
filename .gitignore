@@ -3,6 +3,7 @@
 !README.md
 *.pptx
 *.pdf
+!hmd/Koch-Schenkl-2026-Partizipative-KI-Einfuehrung-AM.pdf
 *.mov
 *.docx
 *.xlsx
